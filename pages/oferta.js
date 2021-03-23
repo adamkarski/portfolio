@@ -10,7 +10,7 @@ import Kontakt from "../components/kontakt.js";
 export default function Oferta() {
   return (
       
- 
+    <div> </div>
     
   );
 }
