@@ -9,12 +9,12 @@ const Layout = ({ children }) => {
       <Head>
         <title>Stream404 - Strony internetowe</title>
         <link rel="icon" href="/favicon.ico" />
-        {/* <meta charset="UTF-8" />
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <meta name="author" content="" /> */}
+        <meta name="author" content="" />
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
       </Head>
 
