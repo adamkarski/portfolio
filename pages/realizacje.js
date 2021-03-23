@@ -6,7 +6,13 @@ import Box_ofer from "../components/box_ofer";
 
 export default function Realizacje() {
   return (
+
+     
+
+
     <div>
+
+
       <Box_ofer
         title={"Back2Roots"}
         image={"http://stream404.art.pl/wp-content/uploads/2017/02/b2r.jpg"}
@@ -23,16 +29,13 @@ export default function Realizacje() {
         link={"#"}
       />
 
-<Box_ofer
+      <Box_ofer
         title={"Edytor Wyswig"}
         image={"http://stream404.art.pl/wp-content/uploads/2016/07/Zrzut-ekranu-2016-07-01-12.32.50.jpg"}
         opis={"Edytor szablonów Ebay / Allegro"}
         lista={"icon / icon / icon "}
         link={"#"}
       />
-
-
-
 
     </div>
   );
