@@ -5,6 +5,13 @@ export default class extends Component {
     return (
       <foter className="footer-wrapper">
        
+          <div>
+
+          test
+
+
+          </div>
+
 
 
       </foter>
