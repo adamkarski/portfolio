@@ -50,7 +50,7 @@ export default class extends Component {
 
 
 
-    <nav id="header" class="fixed w-full top-0 text-white">
+    <nav id="header" class="fixed w-full top-0 text-white bg-white lg:bg-opacity-90">
     
       
     <div class="w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
@@ -75,7 +75,7 @@ export default class extends Component {
           </svg>
         </button>
       </div>
-      <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
+      <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-opacity-0 text-black p-4 lg:p-0 z-20" id="nav-content">
         <ul class="list-reset lg:flex justify-end flex-1 items-center">
           <li class="mr-3">
 

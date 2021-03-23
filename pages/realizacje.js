@@ -22,6 +22,16 @@ export default function Realizacje() {
         lista={"icon / icon / icon "}
         link={"#"}
       />
+
+<Box_ofer
+        title={"Edytor Wyswig"}
+        image={"http://stream404.art.pl/wp-content/uploads/2016/07/Zrzut-ekranu-2016-07-01-12.32.50.jpg"}
+        opis={"Edytor szablonów Ebay / Allegro"}
+        lista={"icon / icon / icon "}
+        link={"#"}
+      />
+
+
     </div>
   );
 }

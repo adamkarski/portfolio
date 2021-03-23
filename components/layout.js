@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
       </Head>
 
-      <body class="leading-normal tracking-normal text-white gradient">
+      <body className="leading-normal tracking-normal text-white gradient">
       
           
         
@@ -26,15 +26,15 @@ const Layout = ({ children }) => {
          
 
 
-      <section class="bg-white-200 border-b py-8">
-      <div class="container max-w-4xl mx-auto m-8">
+      <section className="bg-white-200 border-b py-8">
+      <div className="container max-w-4xl mx-auto m-8">
               {children}
         </div>
       </section>
 
 
-      <section class="bg-white-200 border-b py-8">
-        <div class="container max-w-4xl mx-auto m-8">
+      <section className="bg-white-200 border-b py-8">
+        <div className="container max-w-4xl mx-auto m-8">
               <Kontakt />
         </div>
       </section>
