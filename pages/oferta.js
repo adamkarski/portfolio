@@ -9,13 +9,13 @@ import Kontakt from "../components/kontakt.js";
 
 export default function Oferta() {
   return (
-      
-<div className="grid grid-cols-3 gap-1 border-gray-50">
-  <div className="bg-red-500 ">Oferta</div>
-  <motion.div layoutId="title" className="bg-red-500 text-right col-span-2"></motion.div>
-</div>
 
-   
     
+        <div className="grid grid-cols-3 gap-1 border-gray-50">
+          <div className="bg-red-500 ">Oferta</div>
+          <motion.div layoutId="title" className="bg-red-500 text-right col-span-2"></motion.div>
+        </div>    
+
+
   );
 }
