@@ -21,15 +21,15 @@ export default function Realizacje({items}) {
           <Box_ofer
               title={item.title}
               image={"http://stream404.art.pl/wp-content/uploads/2017/02/b2r.jpg"}
-              opis={"stylowe meble na zamówienie"}
-              lista={"icon / icon / icon "}
+              opis={item.media['name']}
+              lista={item.media}
               link={"#"}
-              image={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`}
+              // image={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`}
           />
       ))}
-
-          {tags.map((tag) => (
-            <div className="text-gray-500" xs="6" sm="4" key={tag.tag_name}>
+    <hr></hr>
+          {items.map((item) => (
+            <div className="text-gray-500" xs="6" sm="4" key={item.tag_name}>
               <div style={{ margin: "0 0.5rem 20px 0.5rem" }}>
                 {/* <CardImg
                   top={true}
@@ -37,13 +37,13 @@ export default function Realizacje({items}) {
                   src={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`}
                 /> */}
                 <div>
-                  <div>{tag.tag_name}</div>
+                  <div>{item.tag_name}</div>
                   {/* <CardText>{tag.description}</CardText> */}
                 </div>
                 <div className="card-footer">
                   <Link
-                    as={`/restaurants/${tag.id}`}
-                    href={`/restaurants?id=${tag.id}`}
+                    as={`/restaurants/${item.id}`}
+                    href={`/restaurants?id=${item.id}`}
                   >
                     <a className="btn btn-primary">View</a>
                   </Link>
