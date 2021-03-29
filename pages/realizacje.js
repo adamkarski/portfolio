@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import Box_ofer from "../components/box_ofer";
 import fetchQuery from '../components/utils.js';
 
+const api_url ='http://strapi.stream404.art.pl';
+
+
 export default function Realizacje({items}) {
   return (
 
@@ -20,10 +23,21 @@ export default function Realizacje({items}) {
         {items.map((item) => (
           <Box_ofer
               title={item.title}
-              image={"http://stream404.art.pl/wp-content/uploads/2017/02/b2r.jpg"}
-              opis={item.media['name']}
-              lista={item.media}
-              link={"#"}
+
+              
+
+              image={api_url+item.miniatura['url']}
+              opis={item.subtitle}
+              lista={item.tags.map((tag) =>
+               
+               <span><img src={api_url + "/public/icons/" + tag.tag_name + ".svg"} /></span>
+              
+               )}
+              
+              link={api_url+"/projekt/"+item.id}
+
+             
+
               // image={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`}
           />
       ))}
