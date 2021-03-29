@@ -1,8 +1,7 @@
 import { Component } from "react";
 
-import Link from "next/link";
-
-
+// import Link from "next/link";
+import Link from '../components/Link.js'
 
 
 export default class extends Component {
@@ -57,11 +56,11 @@ export default class extends Component {
       <div className="pl-4 flex items-center">
      
       
-      <Link href="/">
-          <img src="/images/logo.svg"></img>
+      <Link href="/" >
+         <a href="/"  className="selected"><img src="/images/logo.svg"></img></a>
        
           </Link>
-          
+         
           
           
           
@@ -80,18 +79,18 @@ export default class extends Component {
           <li className="mr-3">
 
           
-                  <Link href="kontakt">Kontakt</Link>
+                  <Link  href="/kontakt"><a  className="selected">Kontakt</a></Link>
 
           </li>
           <li className="mr-3">
            
-                  <Link href="realizacje">Realizacje</Link>
+                  <Link  href="/realizacje"><a  className="selected">Realizacje</a></Link>
           
           </li>
           <li className="mr-3">
           <a className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4">
 
-          <Link href="oferta">Oferta</Link>
+          <Link href="/oferta"><a className="selected">Oferta</a></Link>
 
 
 
