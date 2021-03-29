@@ -10,4 +10,7 @@ async function fetchQuery(path, params = null) {
   const data = await response.json()
   return data
 }
-export default { baseUrl, fetchQuery }
+const api_url ='http://strapi.stream404.art.pl';
+const host = typeof window !== 'undefined' && window.location.hostname ? window.location.hostname : '';
+
+export default { baseUrl, fetchQuery,api_url, host }

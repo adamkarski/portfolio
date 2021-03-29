@@ -1,6 +1,9 @@
 import "../styles/layout.scss";
 import "../styles/globals.css";
 
+import "../styles/box_ofer.css";
+
+
 import "tailwindcss/tailwind.css";
 import Layout from "../components/layout";
 import { AnimateSharedLayout } from "framer-motion";

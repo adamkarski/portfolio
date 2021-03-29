@@ -5,15 +5,13 @@ import { motion } from "framer-motion";
 import Box_ofer from "../components/box_ofer";
 import fetchQuery from '../components/utils.js';
 
-const api_url ='http://strapi.stream404.art.pl';
 
+
+const api_url ='http://strapi.stream404.art.pl';
+const host = typeof window !== 'undefined' && window.location.hostname ? window.location.hostname : '';
 
 export default function Realizacje({items}) {
   return (
-
-     
-    
-
 
     
     <div>
@@ -23,37 +21,42 @@ export default function Realizacje({items}) {
         {items.map((item) => (
           <Box_ofer
               title={item.title}
-
+              slug={item.slug}
               
 
               image={api_url+item.miniatura['url']}
               opis={item.subtitle}
               lista={item.tags.map((tag) =>
                
-               <span><img src={api_url + "/public/icons/" + tag.tag_name + ".svg"} /></span>
+               <li><img className="h-10 w-14 m-0 p-2 hover:bg-gray-100"  src={api_url + "/icons/" + tag.tag_name + ".svg"} /></li>
               
                )}
               
-              link={api_url+"/projekt/"+item.id}
+              link={api_url+"/projekt/"+item.slug}
 
              
 
-              // image={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`}
+           
           />
       ))}
+
+
+
     <hr></hr>
-          {items.map((item) => (
+
+          {/* // image={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`} */}
+          {/* {items.map((item) => (
             <div className="text-gray-500" xs="6" sm="4" key={item.tag_name}>
-              <div style={{ margin: "0 0.5rem 20px 0.5rem" }}>
+              <div style={{ margin: "0 0.5rem 20px 0.5rem" }}> */}
                 {/* <CardImg
                   top={true}
                   style={{ height: 250 }}
                   src={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`}
                 /> */}
-                <div>
-                  <div>{item.tag_name}</div>
+                {/* <div> */}
+                  {/* <div>{item.tag_name}</div> */}
                   {/* <CardText>{tag.description}</CardText> */}
-                </div>
+                {/* </div>
                 <div className="card-footer">
                   <Link
                     as={`/restaurants/${item.id}`}
@@ -63,42 +66,15 @@ export default function Realizacje({items}) {
                   </Link>
                 </div>
               </div>
-            </div>
-          ))}
+            </div> */}
+          {/* ))} */}
 
 
-                  <hr></hr>
-
-     
-
-      <Box_ofer
-        title={"Back2Roots"}
-        image={"http://stream404.art.pl/wp-content/uploads/2017/02/b2r.jpg"}
-        opis={"stylowe meble na zamówienie"}
-        lista={"icon / icon / icon "}
-        link={"#"}
-      />
-
-      <Box_ofer
-        title={"Elektrolabs"}
-        image={"http://stream404.art.pl/wp-content/uploads/2021/02/elektrolabs.jpg"}
-        opis={"Strona domowa elektryka"}
-        lista={"icon / icon / icon "}
-        link={"#"}
-      />
-
-      <Box_ofer
-        title={"Edytor Wyswig"}
-        image={"http://stream404.art.pl/wp-content/uploads/2016/07/Zrzut-ekranu-2016-07-01-12.32.50.jpg"}
-        opis={"Edytor szablonów Ebay / Allegro"}
-        lista={"icon / icon / icon "}
-        link={"#"}
-      />
-
+         
+      
     </div>
   );
 }
-
 
 
 export async function getStaticProps() {
