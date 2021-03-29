@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "export": "next build && next export"
+    "local": "next start",
+    "export": "next build && next export",
+    "start": "NODE_ENV=production node app.js"
   },
   "dependencies": {
     "framer-motion": "^4.0.0",
