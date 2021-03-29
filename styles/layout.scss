@@ -32,6 +32,11 @@ a:focus {
     height: 210px;
 }
 
+a.navlink.active{
+
+  border-bottom: 2px solid gray;
+}
+
 .backSVG {
   background-image: url('/images/backSVG.svg');
   background-size: cover;
