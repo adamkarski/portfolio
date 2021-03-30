@@ -62,8 +62,8 @@ export default class extends Component {
             </div>
             <p className="text-sm text-gray-700 mt-4 min-h-5 max-h-20">{this.props.opis}<br/><br/><br/><br/><br/></p>
         
-            <div class="flex items-center">
-            <ul class="list-none flex ">
+            <div className="flex items-center">
+            <ul className="list-none flex ">
             {this.props.lista}
               </ul>
             </div>
