@@ -3,7 +3,6 @@ import Footer from "../components/footer.js";
 import Kontakt from "../components/kontakt.js";
 import MetaTags from "react-meta-tags";
 
-import Head from "next/head";
 const title = "home";
 const Layout = ({ children, tags, title }) => {
   return (

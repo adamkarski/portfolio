@@ -12,5 +12,5 @@ const baseUrl = process.env.BASE_URL
 // }
 const api_url ='http://strapi.stream404.art.pl';
 const host = typeof window !== 'undefined' && window.location.hostname ? window.location.hostname : '';
-
-export default { baseUrl, api_url, host }
+const PageTitle ='Stream404'
+export default { baseUrl, api_url, host, PageTitle }

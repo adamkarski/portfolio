@@ -1,21 +1,18 @@
 import { Component } from "react";
 import Link from "next/link";
-import Head from "next/head";
 import { motion } from "framer-motion";
 import Box_ofer from "../components/box_ofer";
 import conf from "../components/utils.js";
-
+import MetaTags from "react-meta-tags";
 
 // Object.keys(conf).map(key => console.log(key))
 
 export default function Realizacje({ items }) {
   return (
-    
-    <div>
-        <Head>
-        <title key={'title'}>Realizacje</title>
-      </Head>
-      <hr></hr>
+    <>
+      <MetaTags>
+      <title key={"title"}>{conf.PageTitle} // Realizacje</title>
+      </MetaTags>
 
       {items.map((item) => (
         <Box_ofer
@@ -23,23 +20,17 @@ export default function Realizacje({ items }) {
           slug={item.slug}
           image={item.miniatura["url"]}
           opis={item.subtitle}
-
           lista={item.tags}
-                   
+
           // link={api_url + "/realizacje/" + item.slug}
-        
         />
       ))}
-
-  
-
-      
-    </div>
+    </>
   );
 }
 
 export async function getStaticProps() {
-  const res = await fetch(conf.api_url+"/portfolios");
+  const res = await fetch(conf.api_url + "/portfolios");
   const items = await res.json();
 
   return {

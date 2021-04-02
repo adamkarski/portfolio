@@ -1,19 +1,22 @@
-import { useRouter } from 'next/router'
-import Head from "next/head";
-const Projekt = () => {
-  const router = useRouter()
-  const slug = router.query.slug || []
+import { useRouter } from "next/router";
+import MetaTags from "react-meta-tags";
+import conf from "../../components/utils";
 
-  console.log(router.query);
+const Projekt = () => {
+  const router = useRouter();
+  const slug = router.query.slug || [];
 
   return (
     <>
-     <Head>
-        <title key={'title'}>Foo</title>
-      </Head>
+      <MetaTags>
+        <title key={"title"}>
+          {conf.PageTitle} // {router.query.slug}
+        </title>
+      </MetaTags>
+
       <h1>Slug: {router.query.slug}</h1>
     </>
-  )
-}
+  );
+};
 
-export default Projekt
+export default Projekt;

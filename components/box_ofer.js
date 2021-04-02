@@ -73,7 +73,7 @@ export default class extends Component {
              {this.props.lista.map((tag) => (
             <li key={tag.id} className={tag.id}>
               <p>{tag.id.toString()}</p>
-              <img
+              <img key={tag.id}
                 className="h-10 w-14 m-0 p-2 hover:bg-gray-100"
                 src={conf.api_url + "/icons/" + tag.tag_name + ".svg"} 
               />
