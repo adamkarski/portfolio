@@ -7,7 +7,13 @@ import Head from "next/head";
 const title = "home";
 const Layout = ({ children, tags, title }) => {
   return (
-    <div className="bodyWrap">
+
+    <div className='bodyWrap'>
+   
+   if(!preloadTrue ){
+   <div className="w-full h-300 back-red">prealod</div> 
+  }
+     
       <MetaTags>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
