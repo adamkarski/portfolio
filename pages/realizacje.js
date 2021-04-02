@@ -3,7 +3,10 @@ import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import Box_ofer from "../components/box_ofer";
-import api_url from "../components/utils.js";
+import conf from "../components/utils.js";
+
+
+Object.keys(conf).map(key => console.log(key))
 
 export default function Realizacje({ items }) {
   return (
@@ -14,14 +17,14 @@ export default function Realizacje({ items }) {
         <Box_ofer
           title={item.title}
           slug={item.slug}
-          image={api_url + item.miniatura["url"]}
+          image={item.miniatura["url"]}
           opis={item.subtitle}
 
           lista={item.tags.map((tag) => (
             <li>
               <img
                 className="h-10 w-14 m-0 p-2 hover:bg-gray-100"
-                src={api_url + "/icons/" + tag.tag_name + ".svg"} 
+                src={conf.api_url + "/icons/" + tag.tag_name + ".svg"} 
               />
             </li>
           ))}
@@ -62,7 +65,7 @@ export default function Realizacje({ items }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://strapi.stream404.art.pl/portfolios");
+  const res = await fetch(conf.api_url+"/portfolios");
   const items = await res.json();
 
   return {
