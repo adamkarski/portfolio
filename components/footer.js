@@ -3,7 +3,7 @@ import { Component } from "react"
 export default class extends Component {
   render () {
     return (
-      <foter className="footer-wrapper">
+      <div className="footer-wrapper">
        
           <div>
 
@@ -14,7 +14,7 @@ export default class extends Component {
 
 
 
-      </foter>
+      </div>
     )
   }
 }

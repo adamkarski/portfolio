@@ -80,7 +80,7 @@ export default class extends Component {
                   </Link>
                 </li>
                 <li className="mr-3">
-                  <Link href="omnie">
+                  <Link href="/omnie">
                     <a className="navlink shadow-lg mx-auto lg:mx-0 bg-white text-gray-500 font-bold rounded-full mt-4 lg:mt-0 py-3 px-5 focus:outline-none focus:shadow-outline">
                       O mnie
                     </a>

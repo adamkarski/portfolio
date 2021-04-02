@@ -12,7 +12,7 @@ export default function MyApp({ Component, pageProps, preloadTrue }) {
   React.useEffect(() => {
 
    
-    alert('wgralem strone');
+    //alert('wgralem strone');
     
   }, [])
   return (

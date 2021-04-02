@@ -4,12 +4,16 @@ const Projekt = () => {
   const router = useRouter()
   const slug = router.query.slug || []
 
+  console.log(router.query);
+
   return (
     <>
-      <Head title="as"/>
-      <h1>Slug: {slug.join('/')}</h1>
+     <Head>
+        <title key={'title'}>Foo</title>
+      </Head>
+      <h1>Slug: {router.query.slug}</h1>
     </>
   )
 }
 
-export default Comment
+export default Projekt

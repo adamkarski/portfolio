@@ -6,11 +6,15 @@ import Box_ofer from "../components/box_ofer";
 import conf from "../components/utils.js";
 
 
-Object.keys(conf).map(key => console.log(key))
+// Object.keys(conf).map(key => console.log(key))
 
 export default function Realizacje({ items }) {
   return (
+    
     <div>
+        <Head>
+        <title key={'title'}>Realizacje</title>
+      </Head>
       <hr></hr>
 
       {items.map((item) => (
@@ -20,46 +24,16 @@ export default function Realizacje({ items }) {
           image={item.miniatura["url"]}
           opis={item.subtitle}
 
-          lista={item.tags.map((tag) => (
-            <li>
-              <img
-                className="h-10 w-14 m-0 p-2 hover:bg-gray-100"
-                src={conf.api_url + "/icons/" + tag.tag_name + ".svg"} 
-              />
-            </li>
-          ))}
+          lista={item.tags}
                    
           // link={api_url + "/realizacje/" + item.slug}
         
         />
       ))}
 
-      <hr></hr>
+  
 
-      {/* // image={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`} */}
-      {/* {items.map((item) => (
-            <div className="text-gray-500" xs="6" sm="4" key={item.tag_name}>
-              <div style={{ margin: "0 0.5rem 20px 0.5rem" }}> */}
-      {/* <CardImg
-                  top={true}
-                  style={{ height: 250 }}
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${tag.image[0].url}`}
-                /> */}
-      {/* <div> */}
-      {/* <div>{item.tag_name}</div> */}
-      {/* <CardText>{tag.description}</CardText> */}
-      {/* </div>
-                <div className="card-footer">
-                  <Link
-                    as={`/restaurants/${item.id}`}
-                    href={`/restaurants?id=${item.id}`}
-                  >
-                    <a className="btn btn-primary">View</a>
-                  </Link>
-                </div>
-              </div>
-            </div> */}
-      {/* ))} */}
+      
     </div>
   );
 }
