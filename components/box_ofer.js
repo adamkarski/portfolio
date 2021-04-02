@@ -7,6 +7,11 @@ function handleClick(page) {
   console.log(page_);
   } 
 
+function componentDidMount() {
+
+}
+
+
 export default class extends Component {
     
   
@@ -16,12 +21,11 @@ export default class extends Component {
         const title = 'Welcome to React';
 
         const state ={
-            title:'Back2Roots',
+            title:'',
             image:'',
             opis:'',
             lista:'',
-            link:'',
-            slug:''
+            slug:'', 
         };
 
     return (
@@ -70,16 +74,22 @@ export default class extends Component {
         
         
             <div className="transform scale-75 object-bottom mx-20 my-8 text-right p-0 m-0 absolute">
-             <Link href={'/projekt/'+this.props.slug}>
-               
-             
+             {/* <Link href={'/projekt/'+this.props.slug}> */}
+            <Link 
+                href="/projekt/...slug" 
+                as="/projekt/sluugg"
+            >   
+
              <button className="bg-blue-600 text-gray-200 px-2 py-2 rounded-md">Czytaj więcjej..</button>
                
-               </Link>
+            </Link>
                
             </div>
           </div>
         </motion.div>
+
+
+
 
     );
   }

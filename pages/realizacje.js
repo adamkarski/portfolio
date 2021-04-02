@@ -16,15 +16,18 @@ export default function Realizacje({ items }) {
           slug={item.slug}
           image={api_url + item.miniatura["url"]}
           opis={item.subtitle}
+
           lista={item.tags.map((tag) => (
             <li>
               <img
                 className="h-10 w-14 m-0 p-2 hover:bg-gray-100"
-                src={api_url + "/icons/" + tag.tag_name + ".svg"}
+                src={api_url + "/icons/" + tag.tag_name + ".svg"} 
               />
             </li>
           ))}
-          link={api_url + "/projekt/" + item.slug}
+                   
+          // link={api_url + "/realizacje/" + item.slug}
+        
         />
       ))}
 
