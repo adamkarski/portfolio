@@ -1,12 +1,9 @@
 import { Component } from "react";
 import { motion } from "framer-motion";
-<<<<<<< HEAD
-=======
 
 
 
 // import Link from "next/link";
->>>>>>> 691ee48eff9326e4fc6505a34986667c32902afc
 import Link from "../components/Link.js";
 
 export default class extends Component {
