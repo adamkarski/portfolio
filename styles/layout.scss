@@ -22,11 +22,17 @@ body {
 a:focus {
   outline: none;
 }
+.logo_div{
+  position: absolute;
+  top: 4rem;
+  transform: scale(1.8);
 
+
+}
 #second{
   position: absolute;
-    top: -47px;
-    right: -311px;
+    top: -6rem;
+    right: -23rem;
     z-index: 2000;
     width: 100%;
     height: 210px;
@@ -37,9 +43,32 @@ a.navlink.active{
   border-bottom: 2px solid gray;
 }
 
+@media screen and (min-width: 1024px) {
+  .backSVG{
+    transform: scaleX(1.2);
+    background-position: -19px -3rem !important;
+    background-repeat: no-repeat;
+  }
+}
+@media screen and (min-width: 1224px) {
+  .backSVG{
+    top: 20px;
+    background-position: -19px -4rem !important;
+    background-repeat: no-repeat;
+  }
+}
+
+
+
 .backSVG {
   background-image: url('/images/backSVG.svg');
   background-size: cover;
+
+  min-height: 368px;
+  background-position: 9px -20px;
+
+  
+
 }
 
 // .layout-wrapper {

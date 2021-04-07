@@ -15,7 +15,8 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-meta-tags": "^1.0.1",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "spiritjs": "^3.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",

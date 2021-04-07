@@ -18,7 +18,7 @@ export default class extends Component {
             </div>
           </div>
         </div>
-        <div className="relative -mt-10 lg:-mt-24">
+        <div className="relative -mt-24 lg:-mt-18 8sm:-mt-25">
           <img src="/images/line01.svg"></img>
 
           <div id="second" className="-mt-10 lg:-mt-24">
@@ -31,7 +31,7 @@ export default class extends Component {
           className="fixed w-full top-0 text-white bg-white lg:bg-opacity-90"
         >
           <div className="w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
-            <div className="pl-4 flex items-center">
+            <div className="pl-4 flex items-center logo_div">
               <Link href="/">
                 <a href="/" className="">
                   <img src="/images/logo.svg"></img>
