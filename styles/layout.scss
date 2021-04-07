@@ -26,9 +26,16 @@ a:focus {
   position: absolute;
   top: 4rem;
   transform: scale(1.8);
-
-
+  transition: all ease 0.2s !important;
 }
+.logo_div.upper{
+  transition: all ease 0.2s !important;
+  position: initial;
+  top: 2px;
+  transform: scale(0.8);
+}
+
+
 #second{
   position: absolute;
     top: -6rem;

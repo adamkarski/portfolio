@@ -9,6 +9,23 @@ import React from "react";
 
 export default function MyApp({ Component, pageProps, preloadTrue }) {
  
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  })
+
+const handleScroll = () => {
+    // console.log('scroll event', window.scrollY)
+    if(window.scrollY > 80){
+      
+      document.querySelector(".logo_div").className="pl-4 flex items-center logo_div upper"
+    }else{
+      document.querySelector(".logo_div").className="pl-4 flex items-center logo_div"
+    }
+  }
+
+
   React.useEffect(() => {
 
    

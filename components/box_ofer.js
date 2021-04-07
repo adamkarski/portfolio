@@ -10,9 +10,24 @@ function handleClick(page) {
   } 
 
 function componentDidMount() {
+ console.log('componnent Mount')
+ 
 
 }
+// function listenToScroll() => {
+//   const winScroll =
+//     document.body.scrollTop || document.documentElement.scrollTop
 
+//   const height =
+//     document.documentElement.scrollHeight -
+//     document.documentElement.clientHeight
+
+//   const scrolled = winScroll / height
+
+//   this.setState({
+//     theposition: scrolled,
+//   })
+// }
 
 export default class extends Component {
     
