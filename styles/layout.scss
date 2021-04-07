@@ -29,6 +29,7 @@ a:focus {
 
 
 }
+
 #second{
   position: absolute;
     top: -6rem;
@@ -55,6 +56,13 @@ a.navlink.active{
     top: 20px;
     background-position: -19px -4rem !important;
     background-repeat: no-repeat;
+  }
+  .logo_div{
+    position: absolute;
+    top: 2px;
+    transform: scale(1);
+
+
   }
 }
 

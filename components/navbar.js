@@ -1,4 +1,7 @@
 import { Component } from "react";
+import { motion } from "framer-motion";
+
+
 
 // import Link from "next/link";
 import Link from "../components/Link.js";
@@ -33,9 +36,9 @@ export default class extends Component {
           <div className="w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
             <div className="pl-4 flex items-center logo_div">
               <Link href="/">
-                <a href="/" className="">
+                <motion.a href="/" className="">
                   <img src="/images/logo.svg"></img>
-                </a>
+                </motion.a>
               </Link>
             </div>
             <div className="block lg:hidden pr-4">
