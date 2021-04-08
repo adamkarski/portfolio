@@ -14,20 +14,7 @@ function componentDidMount() {
  
 
 }
-// function listenToScroll() => {
-//   const winScroll =
-//     document.body.scrollTop || document.documentElement.scrollTop
 
-//   const height =
-//     document.documentElement.scrollHeight -
-//     document.documentElement.clientHeight
-
-//   const scrolled = winScroll / height
-
-//   this.setState({
-//     theposition: scrolled,
-//   })
-// }
 
 export default class extends Component {
     
@@ -35,7 +22,8 @@ export default class extends Component {
     
 
     render() {
-        const title = 'Welcome to React';
+      
+      const rand = 100 + Math.random() * (100 - 10);
 
         const state ={
             title:'',
@@ -84,11 +72,13 @@ export default class extends Component {
             <p className="text-sm text-gray-700 mt-4 min-h-5 max-h-20">{this.props.opis}<br/><br/><br/><br/><br/></p>
         
             <div className="flex items-center">
-            <ul className="list-none flex ">
+            <ul className="list-none flex " key={rand+rand+rand}>
              {this.props.lista.map((tag) => (
-            <li key={tag.id} className={tag.id}>
-              <p>{tag.id.toString()}</p>
-              <img key={tag.id}
+
+               
+            <li  className={tag.id} key={rand+rand+tag.id}>
+              <p className="text-black" key={rand+rand+tag.id}>{rand+tag.id}</p>
+              <img  key={rand+rand+tag.id}
                 className="h-10 w-14 m-0 p-2 hover:bg-gray-100"
                 src={conf.api_url + "/icons/" + tag.tag_name + ".svg"} 
               />
@@ -100,9 +90,11 @@ export default class extends Component {
         
             <div className="transform scale-75 object-bottom mx-20 my-8 text-right p-0 m-0 absolute">
              {/* <Link href={'/projekt/'+this.props.slug}> */}
+            
+            
             <Link 
                 href="/projekt/...slug" 
-                as="/projekt/sluugg"
+                as={"/projekt/"+this.props.slug}
             >   
 
              <button className="bg-blue-600 text-gray-200 px-2 py-2 rounded-md">Czytaj więcjej..</button>

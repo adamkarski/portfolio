@@ -15,7 +15,8 @@ export default function Realizacje({ items }) {
       </MetaTags>
 
       {items.map((item) => (
-        <Box_ofer
+        <div key={item.title}>
+        <Box_ofer 
           title={item.title}
           slug={item.slug}
           image={item.miniatura["url"]}
@@ -24,6 +25,7 @@ export default function Realizacje({ items }) {
 
           // link={api_url + "/realizacje/" + item.slug}
         />
+        </div>
       ))}
     </>
   );
