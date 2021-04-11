@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion"
-import conf from "../components/utils"
+import conf from "../lib/utils"
 
 
 function handleClick(page) {

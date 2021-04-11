@@ -26,12 +26,12 @@ const handleScroll = () => {
   }
 
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
 
    
-    //alert('wgralem strone');
+  //   //alert('wgralem strone');
     
-  }, [])
+  // }, [])
   return (
  
  
