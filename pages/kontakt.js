@@ -2,7 +2,7 @@ import { Component } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Box_ofer from "../components/box_ofer";
-import conf from "../components/utils.js";
+import conf from "../lib/utils.js";
 import MetaTags from "react-meta-tags";
 
 

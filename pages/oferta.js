@@ -2,7 +2,7 @@ import { Component } from "react";
 import Link from "next/link";
 import MetaTags from "react-meta-tags";
 import { motion } from "framer-motion";
-import conf from "../components/utils";
+import conf from "../lib/utils";
 
 export default function Oferta({ tags }) {
   return (

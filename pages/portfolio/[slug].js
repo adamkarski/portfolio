@@ -2,7 +2,8 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import MetaTags from "react-meta-tags";
 import conf from "../../lib/utils"
-import { getPostBySlug } from '../../lib/api'
+import {getPortfolioBySlug, getPortfolioSlugs}  from "../../lib/api"
+
 
 
 export default function Projekt(props, context) {
@@ -41,7 +42,6 @@ export const getStaticProps= async(context) => {
   }
   export const getStaticPaths= async(context) => {
     const slugs = await getPortfolioSlugs();
-
 
     return {
       paths: [
