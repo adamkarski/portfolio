@@ -8,7 +8,8 @@ import { getPostBySlug } from '../../lib/api'
 export default function Projekt(props, context) {
     
    
-  
+  const router = useRouter();
+
   
   
     return (
@@ -19,25 +20,29 @@ export default function Projekt(props, context) {
           </title>
         </MetaTags>
   
-     <p className="text-black">asassa</p>
+     <p className="text-black">{props.slug}</p>
        
-  
+      
       </>
     );
   }
   
 
-export async function getStaticProps() {
-    const router = useRouter();
-    const slug = router.query.slug || [];
-    
-         
+export const getStaticProps= async(context) => {
+    const slug = context.params.slug || [];
+
+    const page = await getPortfolioBySlug(slug);
+
+
 
     return {
-      props: {slug}
+      props: {slug, page}
     }
   }
-  export async function getStaticPaths() {
+  export const getStaticPaths= async(context) => {
+    const slugs = await getPortfolioSlugs();
+
+
     return {
       paths: [
         // String variant:
@@ -45,7 +50,7 @@ export async function getStaticProps() {
         // Object variant:
         { params: { slug: "elektrolabs" } },
       ],
-      fallback: true,
+      fallback: 'blocking',
     };
   }
   
