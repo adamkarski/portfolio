@@ -3,6 +3,8 @@ import Link from "next/link";
 import MetaTags from "react-meta-tags";
 import { motion } from "framer-motion";
 import conf from "../lib/utils";
+import Testimonials from "../components/testimonials"
+
 
 export default function Oferta({ tags }) {
   return (
@@ -12,13 +14,16 @@ export default function Oferta({ tags }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </MetaTags>
 
-      <div className="grid grid-cols-3 gap-1 border-gray-50">
-        <div className="bg-red-500 ">Oferta</div>
-        <motion.div
-          layoutId="title"
-          className="bg-red-500 text-right col-span-2"
-        ></motion.div>
-      </div>
+  
+      <Testimonials >
+
+    </Testimonials>
+
+
+
+
     </>
   );
 }
+
+

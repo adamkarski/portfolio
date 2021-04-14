@@ -23,7 +23,6 @@ export default function Realizacje({ items }) {
           opis={item.subtitle}
           lista={item.tags}
 
-          // link={api_url + "/realizacje/" + item.slug}
         />
         </div>
       ))}

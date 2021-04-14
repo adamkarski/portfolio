@@ -3,7 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import MetaTags from "react-meta-tags";
-import conf from "../components/utils";
+import conf from "../lib/utils";
 
 
 export default function Omnie({ profil }) {

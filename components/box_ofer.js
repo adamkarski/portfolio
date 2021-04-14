@@ -76,9 +76,9 @@ export default class extends Component {
              {this.props.lista.map((tag) => (
 
                
-            <li  className={tag.id} key={rand+rand+tag.id}>
-              <p className="text-black" key={rand+rand+tag.id}>{rand+tag.id}</p>
-              <img  key={rand+rand+tag.id}
+            <li  className={tag.id} key={tag.id}>
+             
+              <img  key={rand+tag.id}
                 className="h-10 w-14 m-0 p-2 hover:bg-gray-100"
                 src={conf.api_url + "/icons/" + tag.tag_name + ".svg"} 
               />
@@ -93,8 +93,8 @@ export default class extends Component {
             
             
             <Link 
-                href="/projekt/...slug" 
-                as={"/projekt/"+this.props.slug}
+                href="/realizacje/...slug" 
+                as={"/realizacje/"+this.props.slug}
             >   
 
              <button className="bg-blue-600 text-gray-200 px-2 py-2 rounded-md">Czytaj więcjej..</button>

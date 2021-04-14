@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import MetaTags from "react-meta-tags";
 import conf from "../../lib/utils";
 
-import Single_portfolio from "../../components/single_portfolio"
+import Single_page from "../../components/single_page"
 
 
 
@@ -22,11 +22,11 @@ export default function Projekt() {
         </title>
       </MetaTags>
 
-      <Single_portfolio
+      <Single_page
        slug={router.query.slug}
       >
      
-      </Single_portfolio>
+      </Single_page>
 
     </>
   );
