@@ -44,9 +44,9 @@ export async function getStaticPaths() {
   return {
     paths: [
       // String variant:
-      "/projekt/Back2Roots",
+      // "/realizacje/Back2Roots",
       // Object variant:
-      { params: { slug: "Back2Roots" } },
+      // { params: { slug: "Back2Roots" } },
     ],
     fallback: true,
   };
