@@ -49,7 +49,16 @@ export const getStaticProps = async (context) => {
   const pagea = await getPortfolioBySlug(slug);
   const page = pagea[0];
 
-  if(page.content){ page.content = page.content.replace('/uploads/', `${conf.api_url}/uploads/`);
+  function replaceAll(string, search, replace) {
+    return string.split(search).join(replace);
+  }
+
+
+  if(page.content){ 
+    
+    const new_content= replaceAll(page.content, '/uploads/', `${conf.api_url}/uploads/`);
+
+    page.content = new_content
 }
 
   return {
