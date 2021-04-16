@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { motion } from "framer-motion";
-
+import BackSVG from "../components/backSVG"
 
 
 // import Link from "next/link";
@@ -10,7 +10,15 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <div className="pt-24 backSVG">
+        <div className="pt-24 ">
+            <div className="back_SVG">
+              <BackSVG>
+
+              </BackSVG>
+              
+              </div> 
+
+
           <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center ">
             <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
               <p className="text-black">Left</p>

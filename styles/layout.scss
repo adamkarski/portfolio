@@ -35,7 +35,13 @@ a:focus {
   transform: scale(0.8);
 }
 
+.backSVG{
 
+  position: absolute;
+  width: 100%;
+  top: 47px;
+
+}
 
 #second{
   position: absolute;
@@ -86,6 +92,28 @@ a.navlink.active{
 
 }
 
+.anim-oferta-image {
+  margin: 0px;
+  padding: 0px;
+  width:200px;
+  height:450px;
+
+
+  .flex-box-mask{
+    width:100%;
+    top: 0px;;
+    position: absolute;
+    left: 0px;
+    display: flex;
+    background-color: white;
+  
+    .flex-box-mask-item{position: absolute;
+      width:25%;
+      height:100%;
+      border:solid red 2px;
+  }
+  }
+}
 // .layout-wrapper {
 //   width: 97.5%;
 //   height: 100%;

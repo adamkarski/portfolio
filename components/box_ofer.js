@@ -97,7 +97,7 @@ export default class extends Component {
                 as={"/realizacje/"+this.props.slug}
             >   
 
-             <button className="bg-blue-600 text-gray-200 px-2 py-2 rounded-md">Czytaj więcjej..</button>
+             <motion.button whileHover={{ scale: 1.05 }} whileTap={{ opacity: 0.4 }} className="bg-blue-600 text-gray-200 px-2 py-2 rounded-md">Czytaj więcjej..</motion.button>
                
             </Link>
                
