@@ -98,19 +98,25 @@ a.navlink.active{
   width:200px;
   height:450px;
 
+  transform: scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(11deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px) skewX(0deg) skewY(0deg);
+
 
   .flex-box-mask{
+
+transform-style: preserve-3d;
     width:100%;
     top: 0px;;
     position: absolute;
     left: 0px;
     display: flex;
     background-color: white;
-  
+   
     .flex-box-mask-item{position: absolute;
-      width:25%;
-      height:100%;
-      border:solid red 2px;
+      position: relative;
+      width: 25%;
+      height: 240px;
+      /* border: solid gray 2px; */
+      background-color: rebeccapurple;
   }
   }
 }
