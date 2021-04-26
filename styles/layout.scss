@@ -106,13 +106,13 @@ a.navlink.active{
     top: 0px;;
     left: 0px;
     display: flex;
-    background-color: white;
+    background-color:transparent;
    
     .flex-box-mask-item{
       position: relative;
       width: 25%;
       height:100%;
-      border: solid gray 2px; 
+      border: solid gray 0px; 
       background-color: white;
       margin: 0px;
       padding: 0px;

@@ -1,40 +1,84 @@
 import { Component } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+
+import {useEffect} from "react";
+
 import conf from "../lib/utils.js";
 import MetaTags from "react-meta-tags";
 
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
+
+
+// Prepends the `perspective` to the transform value.
+function transformTemplate(transformProps, transformedString) {
+  // I don't see the `perspective` prop in `transformProps`
+  return `perspective(150px) ${transformedString}`
+}
+
+const boxVariants = {
+  hidden: { scale: 0 },
+  visible: {
+    scale: 1,
+    transition: {
+      duration: 0.5
+    }
+  }
+}
+
+
 export default function Test() {
+
+  const controls = useAnimation();
+  const { ref, inView } = useInView();
+  
+  useEffect(() => {
+    if (inView) {
+      controls.start( {opacity:1, skewY: "-8deg"});
+    }
+    if (!inView) {
+      controls.start( {opacity:0, skewY: "0deg"});
+    }
+  }, [controls, inView]);
+  
+  
+
   return (
     <>
     
-      <motion.div
-        className="anim-oferta-image w-1/2 h-full  bg-gray-500 transparent"
-        animate={{ opacity: 1}}
-        initial={{ opacity: 0, skewY: "0deg" }}
-      >
-        <img
-          className="image_flex"
-          src="http://stream404.art.pl/wp-content/uploads/2020/06/bilbielsko.jpg"
-        />
 
-        <div key="id0" className="flex-box-mask  absolute">
+      <motion.div
+        className="anim-oferta-image w-1/2 h-full bg-transparent"
+      
+        initial={{ opacity:0 }}
+       
+        ref={ref} 
+        animate={controls}
+      >
+       
+
+        <div key="id0" className="flex-box-mask absolute">
           <motion.div
-            initial={{ height:12 }}
-            animate={{ height: 100, delay:100 }}
+            initial={{ height:0 , opacity:1}}
+            animate={{ height: 100,  opacity:0}}
+            transform={{delay:100}}
             key="id1"
             className="flex-box-mask-item"
           ></motion.div>
           
          
-          <div key="id3" className="flex-box-mask-item"></div>
+          <div key="id2" className="flex-box-mask-item opacity-100"></div>
           <div key="id3" className="flex-box-mask-item"></div>
           <div key="id4" className="flex-box-mask-item"></div>
           <div key="id5" className="flex-box-mask-item"></div>
         </div>
 
         {/* <img className="image_flex" src="http://stream404.art.pl/wp-content/uploads/2021/02/elektrolabs.jpg"/> */}
-        
+        <img
+          className="image_flex"
+          src="http://stream404.art.pl/wp-content/uploads/2020/06/bilbielsko.jpg"
+        />
       </motion.div>
     </>
   );
