@@ -28,17 +28,20 @@ const boxVariants = {
 }
 
 
-export default function Test() {
+export default function TestAnimations() {
 
   const controls = useAnimation();
-  const { ref, inView } = useInView();
-  
+  const { ref, ref2, inView } = useInView();
+
+
   useEffect(() => {
     if (inView) {
-      controls.start( {opacity:1, skewY: "-8deg"});
+      controls.start( {opacity:1, skewY: "-8deg", transition: {
+        duration: 0.7, delay:0.3
+      }});
     }
     if (!inView) {
-      controls.start( {opacity:0, skewY: "0deg"});
+      controls.start( {opacity:0, skewY: "-8deg"});
     }
   }, [controls, inView]);
   
@@ -46,13 +49,15 @@ export default function Test() {
 
   return (
     <>
-    
+ <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-      <motion.div
+      <div className="container ">
+
+      <motion.div key="iz1"
         className="anim-oferta-image w-1/2 h-full bg-transparent"
       
         initial={{ opacity:0 }}
-       
+        transform={{delay:400}}
         ref={ref} 
         animate={controls}
       >
@@ -60,8 +65,8 @@ export default function Test() {
 
         <div key="id0" className="flex-box-mask absolute">
           <motion.div
-            initial={{ height:0 , opacity:1}}
-            animate={{ height: 100,  opacity:0}}
+            initial={{ height:0 }}
+            animate={{ height: 100}}
             transform={{delay:100}}
             key="id1"
             className="flex-box-mask-item"
@@ -77,9 +82,50 @@ export default function Test() {
         {/* <img className="image_flex" src="http://stream404.art.pl/wp-content/uploads/2021/02/elektrolabs.jpg"/> */}
         <img
           className="image_flex"
-          src="http://stream404.art.pl/wp-content/uploads/2020/06/bilbielsko.jpg"
+          src="/images/isba.jpg"
         />
       </motion.div>
+    
+      <div className="w-1/2  text-gray-700">Lewa strona<hr/> </div>
+      </div>    
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <div className="container ">
+
+<motion.div  key="iz2"
+  className="anim-oferta-image w-1/2 h-full bg-transparent"
+
+  initial={{ opacity:0 }}
+  transform={{delay:400}}
+  ref={ref} 
+  animate={controls}
+>
+ 
+
+  <div key="id0" className="flex-box-mask absolute">
+    <motion.div
+      initial={{ height:0 }}
+      animate={{ height: 100}}
+      transform={{delay:100}}
+      key="id1"
+      className="flex-box-mask-item"
+    ></motion.div>
+    
+   
+    <div key="id2" className="flex-box-mask-item opacity-100"></div>
+    <div key="id3" className="flex-box-mask-item"></div>
+    <div key="id4" className="flex-box-mask-item"></div>
+    <div key="id5" className="flex-box-mask-item"></div>
+  </div>
+
+  {/* <img className="image_flex" src="http://stream404.art.pl/wp-content/uploads/2021/02/elektrolabs.jpg"/> */}
+  <img
+    className="image_flex"
+    src="/images/isba.jpg"
+  />
+</motion.div>
+
+<div className="w-1/2  text-gray-700">Lewa strona<hr/> </div>
+</div>
     </>
   );
 }

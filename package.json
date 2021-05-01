@@ -2,12 +2,14 @@
   "name": "portfolio-404",
   "version": "0.1.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "local": "next start",
     "export": "next build && next export",
-    "start": "NODE_ENV=production node app.js"
+    "start": "NODE_ENV=production node app.js",
+    "prod_start": "NODE_ENV=production node app.js"
   },
   "dependencies": {
     "framer-motion": "^4.1.9",
