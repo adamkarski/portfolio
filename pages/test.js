@@ -31,7 +31,7 @@ const boxVariants = {
 export default function TestAnimations() {
 
   const controls = useAnimation();
-  const { ref, ref2, inView } = useInView();
+  const { ref, inView } = useInView();
 
 
   useEffect(() => {
