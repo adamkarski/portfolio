@@ -3,40 +3,23 @@ import { InView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import ImgSlide from "../components/imageOferta2";
 
-const titleProjectVariant = {
+const maleAnimationVariant = {
   hidden: {
-    x: -200,
     opacity: 0,
   },
   visible: {
-    x: 0,
     opacity: 1,
     transition: { duration: 1 },
   },
 };
-const gitTitleVariant = {
+
+const slideAnim = {
   hidden: {
-    x: 0,
-
-    opacity: 0,
-  },
-  visible: {
-    x: 0,
-
-    opacity: 1,
+    height: 349,
     transition: { duration: 1 },
   },
-};
-const gitLogoVariant = {
-  hidden: {
-    scale: 1,
-
-    opacity: 0,
-  },
   visible: {
-    scale: 1,
-
-    opacity: 1,
+    height: 0,
     transition: { duration: 1 },
   },
 };
@@ -44,25 +27,36 @@ const gitLogoVariant = {
 const Oferta = ({}) => {
   const maleAnimation = useAnimation();
   const wordpressAnimation = useAnimation();
-  let varia ='true';
+  let passVariableAnim = {};
   return (
     <div id="projects">
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <InView>
         {({ inView, ref, entry }) => {
           if (inView) {
-            maleAnimation.start(titleProjectVariant.visible);
-            varia ='truea';
-            
+            maleAnimation.start(maleAnimationVariant.visible);
+            passVariableAnim = slideAnim.visible;
           } else if (!inView) {
-            maleAnimation.start(titleProjectVariant.hidden);
-            varia ='falsea';
+            maleAnimation.start(maleAnimationVariant.hidden);
+            passVariableAnim = slideAnim.hidden;
           }
 
           return (
             <motion.div animate={maleAnimation} ref={ref}>
-           
-
-              <ImgSlide opis={"opis oferty"} visible={varia}/>
+              <ImgSlide opis={"opis oferty"} visible={passVariableAnim} />
             </motion.div>
           );
         }}
@@ -80,9 +74,9 @@ const Oferta = ({}) => {
       <InView>
         {({ inView, ref, entry }) => {
           if (inView) {
-            wordpressAnimation.start(gitLogoVariant.visible);
+            wordpressAnimation.start(maleAnimationVariant.visible);
           } else if (!inView) {
-            wordpressAnimation.start(gitLogoVariant.hidden);
+            wordpressAnimation.start(maleAnimationVariant.hidden);
           }
           return (
             <motion.div ref={ref} animate={wordpressAnimation}>
