@@ -1,50 +1,98 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { InView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
+import ImgSlide from "../components/imageOferta2";
 
-import { useAnimation } from "framer-motion";
+const titleProjectVariant = {
+  hidden: {
+    x: -200,
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 1 },
+  },
+};
+const gitTitleVariant = {
+  hidden: {
+    x: 0,
 
-import { useInView } from "react-intersection-observer";
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
 
+    opacity: 1,
+    transition: { duration: 1 },
+  },
+};
+const gitLogoVariant = {
+  hidden: {
+    scale: 1,
 
-import StyledBox from "../components/ImageRealizacje"
+    opacity: 0,
+  },
+  visible: {
+    scale: 1,
 
-const BoxVariants = {
-
-visible: { opacity: 1, x: 0, transition: { duration: 1 } },
-
-hidden: { opacity: 0, x: 300 },
-
+    opacity: 1,
+    transition: { duration: 1 },
+  },
 };
 
-const Box = () => {
+const Oferta = ({}) => {
+  const maleAnimation = useAnimation();
+  const wordpressAnimation = useAnimation();
+  let varia ='true';
+  return (
+    <div id="projects">
+      <InView>
+        {({ inView, ref, entry }) => {
+          if (inView) {
+            maleAnimation.start(titleProjectVariant.visible);
+            varia ='truea';
+            
+          } else if (!inView) {
+            maleAnimation.start(titleProjectVariant.hidden);
+            varia ='falsea';
+          }
 
-const controls = useAnimation();
+          return (
+            <motion.div animate={maleAnimation} ref={ref}>
+           
 
-const [ref, inView] = useInView();
+              <ImgSlide opis={"opis oferty"} visible={varia}/>
+            </motion.div>
+          );
+        }}
+      </InView>
 
-useEffect(() => {
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
 
-if (inView) {
-
-controls.start("visible");
-
-}
-
-}, [controls, inView]);
-
-return (
-
-<StyledBox
-
-ref={ref}
-
-animate={controls}
-
-initial="hidden"
-
-variants={BoxVariants}
-
-/>
-
-);
-
+      <InView>
+        {({ inView, ref, entry }) => {
+          if (inView) {
+            wordpressAnimation.start(gitLogoVariant.visible);
+          } else if (!inView) {
+            wordpressAnimation.start(gitLogoVariant.hidden);
+          }
+          return (
+            <motion.div ref={ref} animate={wordpressAnimation}>
+              <ImgSlide />
+            </motion.div>
+          );
+        }}
+      </InView>
+    </div>
+  );
 };
+
+export default Oferta;
