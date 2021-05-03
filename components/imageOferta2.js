@@ -24,7 +24,7 @@ const ImgSlide = (props) => {
           key="iz1"
           className="anim-oferta-image w-1/2 h-full bg-transparent relative"
           initial={{ opacity: 1 }}
-          transition={{ delay: 400 }}
+          transition={{ delay: 400 , staggerChildren:2}}
          
           //animate={props.visible}
         >

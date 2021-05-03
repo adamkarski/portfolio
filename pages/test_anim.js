@@ -16,11 +16,11 @@ const maleAnimationVariant = {
 const slideAnim = {
   hidden: {
     height: 349,
-    transition: { duration: 1 },
+    transition: { },
   },
   visible: {
     height: 0,
-    transition: { duration: 1 },
+    transition: { },
   },
 };
 
@@ -55,7 +55,7 @@ const Oferta = ({}) => {
           }
 
           return (
-            <motion.div animate={maleAnimation} ref={ref}>
+            <motion.div animate={maleAnimation}  ref={ref}>
               <ImgSlide opis={"opis oferty"} visible={passVariableAnim} />
             </motion.div>
           );
