@@ -19,23 +19,9 @@ export default class extends Component {
               </div> 
 
 
-          <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center ">
-            <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-              <p className="text-black">Left</p>
-            </div>
-
-            <div className="w-full md:w-3/5 py-6 text-center">
-              <p className="text-black">Right</p>
-            </div>
-          </div>
+          
         </div>
-        <div className="relative -mt-24 lg:-mt-18 8sm:-mt-25">
-          <img src="/images/line01.svg"></img>
-
-          <div id="second" className="-mt-10 lg:-mt-24">
-            <img src="/images/line02.svg"></img>
-          </div>
-        </div>
+        
 
         <nav
           id="header"

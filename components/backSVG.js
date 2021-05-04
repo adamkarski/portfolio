@@ -19,7 +19,7 @@ function backSVG(props) {
     >
       <style>
         {
-          ".prefix__st3{fill:#c9c9c9}.prefix__st5{fill:#ddd}.prefix__st6{fill:#6d6d6d}.prefix__st8{fill:#2f2f2f}.prefix__st9{fill:#606060}"
+          ".whiteBG{fill:#fff}.whiteBGTrans{opacity:0.7;fill:#fff}.prefix__st3{fill:#c9c9c9}.prefix__st5{fill:#ddd}.prefix__st6{fill:#6d6d6d}.prefix__st8{fill:#2f2f2f}.prefix__st9{fill:#606060}"
         }
       </style>
       <motion.switch
@@ -221,6 +221,15 @@ animate={{
               d="M387.03 228.91c8.43-.69 16.86-1.42 25.29-2.18-8.43 8.17-16.86 16.15-25.29 23.91v-21.73z"
               fill="#e5e5e5"
             />
+
+
+<path class="whiteBG" d="M995.6,362.7v-9.9h0.1v-7.9h-0.1V333v-8.5v-102v-5.2c-12.5,3.3-34.6,9.1-71.7,18.9
+	c-134.4,35.7-274.9,46.9-385.8,57.1c-110.8,10.2-295.3,5.6-363.3,0c-68-5.6-173.5-27.8-173.5-27.8v58.9v8.5v11.9v4.8v3.2v9.9H995.6z
+	"/>
+<path class="whiteBGTrans" d="M585.2,267c-56.8,7.9-413,60.9-488.5,75.4c-21,4-14.4,11.5,6.1,20.3h466l395.2-79L997,269V158.6
+	C815.9,233,630.7,260.7,585.2,267z"/>
+
+
           </g>
         </g>
       </motion.switch>
