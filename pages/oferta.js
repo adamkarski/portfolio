@@ -19,7 +19,7 @@ const slideAnim = {
     transition: {},
   },
   visible: {
-    height: 364,
+    height: 539,
     transition: {},
   },
 };

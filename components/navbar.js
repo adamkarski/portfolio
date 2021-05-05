@@ -11,6 +11,7 @@ export default class extends Component {
     return (
       <div>
         <div className="pt-24 ">
+
             <div className="back_SVG">
               <BackSVG>
 
@@ -19,9 +20,15 @@ export default class extends Component {
               </div> 
 
 
-          
+
         </div>
-        
+
+        <div className="back_image absolute w-1/2">
+              
+              <img src="/images/imageSlide/face2face2.svg" />
+
+              </div> 
+
 
         <nav
           id="header"
