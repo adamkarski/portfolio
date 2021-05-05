@@ -32,11 +32,11 @@ const Layout = ({ children, tags, title }) => {
         <div className="layout-wrapper">
           <Navbar></Navbar>
 
-          <section className="bg-white-200 border-b py-8">
+          <section className="section_first">
             <div className="container max-w-4xl mx-auto m-8">{children}</div>
           </section>
 
-          <section className="bg-white-200 border-b py-8">
+          <section className="">
             <div className="container max-w-4xl mx-auto m-8">
               <Kontakt />
             </div>

@@ -71,8 +71,22 @@ a.navlink.active{
 
   }
 }
+.section_first{
+
+margin-top: -200px;
+
+}
+.image_flex{
+
+  max-height: 374px;
+
+}
+
+.div_mask_clip{
 
 
+
+}
 
 .backSVG {
   background-image: url('/images/backSVG.svg');
@@ -84,6 +98,17 @@ a.navlink.active{
   
 
 }
+
+
+.maskIMG {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  // -webkit-mask-image: url(#mask);
+  clip-path:'#mask';
+}
+
+
 
 .anim-oferta-image {
   margin: 0px;
@@ -103,12 +128,13 @@ a.navlink.active{
    
     .flex-box-mask-item{
       position: relative;
-      width: 25%;
+      width: 20%;
       height:100%;
-      border: solid gray 0px; 
-      background-color: white;
+      // border: solid gray 0px; 
+      // background-color: white;
       margin: 0px;
       padding: 0px;
+      bottom: 0px;
     }
   }
 }
