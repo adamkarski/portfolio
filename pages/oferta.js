@@ -19,7 +19,7 @@ const slideAnim = {
     transition: {},
   },
   visible: {
-    height: 539,
+    height: 439,
     transition: {},
   },
 };
@@ -30,44 +30,14 @@ const Oferta = ({}) => {
   let passVariableAnim = {};
   return (
     <>
-      <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center ">
-        <div className="w-full md:w-2/3 text-left">
-          <InView>
-            {({ inView, ref, entry }) => {
-              if (inView) {
-                maleAnimation.start(maleAnimationVariant.visible);
-                passVariableAnim = slideAnim.visible;
-              } else if (!inView) {
-                maleAnimation.start(maleAnimationVariant.hidden);
-                passVariableAnim = slideAnim.hidden;
-              }
 
-              return (
-                <motion.div animate={maleAnimation} ref={ref} className="p-15">
-                  <ImgSlide opis={"opis oferty"} visible={passVariableAnim} image={"http://strapi.stream404.art.pl/uploads/bilbielsko_83d69203f3.jpeg"}/>
-                </motion.div>
-              );
-            }}
-          </InView>
-        </div>
-        <div className="w-full md:w-1/3 text-left">
-          <h1 class="text-3xl md:text-4xl font-bold mb-5 text-gray-600">
-            Wordpress development
-          </h1>
-
-          <h2 class="text-1xl md:text-2xl mb-5 text-gray-600">
-            Lorem ipsum sir dolor amet
-          </h2>
-        </div>
-      </div>
-
-      <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center ">
+<div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center ">
         <div className="w-full md:w-1/3  text-left">
-          <h1 class="text-3xl md:text-4xl font-bold mb-5 text-gray-600">
+          <h1 className="text-3xl md:text-4xl font-bold mb-5 text-gray-600">
             Autorskie projekty
           </h1>
 
-          <h3 class="text-1xl md:text-2xl mb-5 text-gray-600">
+          <h3 className="text-1xl md:text-2xl mb-5 text-gray-600">
             Strony przygotowane do wyswitlania na komórkach. Z systemem CMS. Na najnowszych technologiach. 
           </h3>
         </div>
@@ -85,7 +55,7 @@ const Oferta = ({}) => {
                   animate={wordpressAnimation}
                   className="p-20"
                 >
-                  <ImgSlide visible={passVariableAnim} image={'http://strapi.stream404.art.pl/uploads/b2r2_1024x747_3997b9d117.jpeg'}/>
+                  <ImgSlide visible={passVariableAnim} name={"b22r"} image={'/images/imageSlide/b2r.jpg'} className="relative"/>
                 </motion.div>
               );
             }}
@@ -93,7 +63,42 @@ const Oferta = ({}) => {
         </div>
       </div>
 
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center ">
+        <div className="w-full md:w-2/3 text-left">
+          <InView>
+            {({ inView, ref, entry }) => {
+              if (inView) {
+                maleAnimation.start(maleAnimationVariant.visible);
+                passVariableAnim = slideAnim.visible;
+              } else if (!inView) {
+                maleAnimation.start(maleAnimationVariant.hidden);
+                passVariableAnim = slideAnim.hidden;
+              }
+
+              return (
+                <motion.div animate={maleAnimation} ref={ref} className="p-15">
+                  <ImgSlide opis={"opis oferty"} name={"worpderrs"} visible={passVariableAnim} image={"/images/imageSlide/wordpress.jpg"}/>
+                </motion.div>
+              );
+            }}
+          </InView>
+        </div>
+        <div className="w-full md:w-1/3 text-left">
+          <h1 className="text-3xl md:text-4xl font-bold mb-5 text-gray-600">
+            Wordpress development
+          </h1>
+
+          <h2 className="text-1xl md:text-2xl mb-5 text-gray-600">
+            Lorem ipsum sir dolor amet
+          </h2>
+        </div>
+      </div>
+    
+
+
+
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     
     </>
   );
 };

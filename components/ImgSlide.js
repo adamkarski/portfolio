@@ -7,7 +7,7 @@ const ImgSlide = (props) => {
   return (
     <>
       <svg
-        id="prefix__Layer_1"
+        id={props.name}
         xmlns="http://www.w3.org/2000/svg"
         x={0}
         y={0}
@@ -15,23 +15,23 @@ const ImgSlide = (props) => {
         xmlSpace="preserve"
         {...props}
       >
-        <style>{".prefix__st0{fill:#fff}"}</style>
+        <style>{".prefix__st0_mask{fill:#fff}"}</style>
         <image
           width={700}
           height={539}
           href={props.image}
           transform="translate(0 .5) scale(.8511)"
           overflow="visible"
-          clip-path="url(#clip)"
+          clipPath="url(#clip)"
         />
 
         <clipPath id="clip">
-          <rect className="st0" width="119.3" height="539" />
-          <motion.rect
+          <motion.heightrect className="prefix__st0_mask" width="119.3" height="539" 
+          
             initial={{ height: 0 }}
             animate={{ height: props.visible.height }}
             transition={{ delay: 1.4, duration: 0.7 }}
-            x="119.3"
+            x="19.3"
             width="119.3"
             height="459.2"
           />
@@ -39,7 +39,7 @@ const ImgSlide = (props) => {
             initial={{ height: 0 }}
             animate={{ height: props.visible.height }}
             transition={{ delay: 1.4, duration: 0.7 }}
-            className="st0"
+            className="prefix__st0_mask"
             x="238.6"
             width="119.3"
             height="459.2"
@@ -48,7 +48,7 @@ const ImgSlide = (props) => {
             initial={{ height: 0 }}
             animate={{ height: props.visible.height }}
             transition={{ delay: 0.8, duration: 1.7 }}
-            className="st0"
+            className="prefix__st0_mask"
             x="357.9"
             width="119.3"
             height="459.2"
@@ -57,7 +57,7 @@ const ImgSlide = (props) => {
             initial={{ height: 0 }}
             animate={{ height: props.visible.height }}
             transition={{ delay: 1.2, duration: 1.2 }}
-            className="st0"
+            className="prefix__st0_mask"
             x="476.5"
             width="119.3"
             height="459.2"

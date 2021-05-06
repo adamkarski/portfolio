@@ -14,7 +14,7 @@ export default function Omnie({ profil }) {
       </MetaTags>
       <div className="w-80 rounded">
         <img
-          class="w-full h-56 object-cover object-center"
+          className="w-full h-56 object-cover object-center"
           src={profil.avatar_url}
           alt="avatar"
         />

@@ -22,7 +22,7 @@ function mask_svg(props) {
           href={props.image}
           transform="translate(0 .5) scale(.8511)"
           overflow="visible"
-          clip-path='url(#clip)'
+          clipPath='url(#clip)'
         />
 
         <clipPath id="clip">

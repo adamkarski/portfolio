@@ -20,15 +20,28 @@ body {
 a:focus {
   outline: none;
 }
+
+
+@keyframes fadeIn {
+  0% { opacity: 1;}
+  99% { opacity: 0.01;}
+  100% { opacity: 0;}
+}
+
+
 .logo_div {
   position: relative;
   margin-top: 200px;
-  left: 950px;
-
+  right: 350px;
+  animation: fadeIn 1s;
+ 
   transition: all ease 0.5s !important;
   img {
-    transform: scale(4);
+    opacity:0.9; 
     top: 120rem;
+    width: 170px;
+    height:70px;
+    transform: rotate(-6deg) scale(3.4);
   }
 }
 .logo_div.upper {
@@ -40,6 +53,9 @@ a:focus {
   
   transform: scale(0.8);
   img{  
+    opacity:1;
+    width: 170px;
+    height:70px;
     transform: scale(1);
   }
 }

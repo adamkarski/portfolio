@@ -33,7 +33,7 @@ const Layout = ({ children, tags, title }) => {
           <Navbar></Navbar>
 
           <section className="section_first">
-            <div className="container max-w-4xl mx-auto m-8">{children}</div>
+            <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
           </section>
 
           <section className="">

@@ -37,8 +37,8 @@ export default class extends Component {
           <motion.div className="w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
             <motion.div className="pl-4 flex items-center logo_div opacity-3">
               <Link href="/">
-                <motion.a href="/" className="">
-                  <img src="/images/logo.svg"></img>
+                <motion.a href="/" className="w-30 h-30">
+                  <img width="400" height="400" src="/images/logo2.svg"></img>
                 </motion.a>
               </Link>
             </motion.div>
