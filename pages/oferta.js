@@ -60,7 +60,7 @@ const Oferta = ({}) => {
                   animate={wordpressAnimation}
                   className="p-20 pr-0"
                 >
-                  <ImgSlide visible={passVariableAnim} image={'http://strapi.stream404.art.pl/uploads/b2r2_1024x747_3997b9d117.jpeg'}/>
+                  <ImgSlide visible={passVariableAnim} image={'/images/imageSlide/b2r.jpg'}/>
                 </motion.div>
               );
             }}
@@ -81,7 +81,7 @@ const Oferta = ({}) => {
 
               return (
                 <motion.div animate={maleAnimation} ref={ref} className="p-20 pl-0">
-                  <ImgSlide opis={"opis oferty"} visible={passVariableAnim} image={"http://strapi.stream404.art.pl/uploads/bilbielsko_83d69203f3.jpeg"}/>
+                  <ImgSlide opis={"opis oferty"} visible={passVariableAnim} image={"/images/imageSlide/wordpress.jpg"}/>
                 </motion.div>
               );
             }}

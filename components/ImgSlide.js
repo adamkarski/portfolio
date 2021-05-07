@@ -66,6 +66,15 @@ const ImgSlide = (props) => {
             width="119.3"
             height="459.2"
           />
+           <motion.rect
+            initial={{ height: 0 }}
+            animate={{ height: props.visible.height }}
+            transition={{ delay: 1.2, duration: 1.2 }}
+            className="st0"
+            x="595.8"
+            width="119.3"
+            height="459.2"
+          />
         </clipPath>
       </svg>
     </>
