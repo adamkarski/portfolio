@@ -35,12 +35,18 @@ export default class extends Component {
           className="fixed w-full top-0 text-white bg-white lg:bg-opacity-90"
         >
           <motion.div className="w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
-            <motion.div className="pl-4 flex items-center logo_div opacity-3">
+            <motion.div className=" logo_div ">
+              
+              
               <Link href="/">
                 <motion.a href="/" className="w-30 h-30">
                   <img width="400" height="400" src="/images/logo2.svg"></img>
                 </motion.a>
               </Link>
+               
+                <motion.div className="text-slogan"> 
+                <p className="text-gray-700  text-4xl">Lepsza wersja Twojej strony</p>
+                </motion.div>
             </motion.div>
             <div className="block lg:hidden pr-4">
               <button

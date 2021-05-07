@@ -5,7 +5,7 @@ import ImgSlide from "../components/ImgSlide";
 
 const maleAnimationVariant = {
   hidden: {
-    opacity: 0,
+    opacity: 1,
   },
   visible: {
     opacity: 1,
@@ -15,11 +15,11 @@ const maleAnimationVariant = {
 
 const slideAnim = {
   hidden: {
-    height: 0,
+    height: 0 ,
     transition: {},
   },
   visible: {
-    height: 439,
+    height: 539,
     transition: {},
   },
 };
@@ -30,6 +30,7 @@ const Oferta = ({}) => {
   let passVariableAnim = {};
   return (
     <>
+
 
 <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center ">
         <div className="w-full md:w-1/3  text-left">
@@ -46,23 +47,26 @@ const Oferta = ({}) => {
             {({ inView, ref, entry }) => {
               if (inView) {
                 wordpressAnimation.start(maleAnimationVariant.visible);
+                passVariableAnim = slideAnim.visible;
+                console.log(maleAnimationVariant.visible);
+
               } else if (!inView) {
                 wordpressAnimation.start(maleAnimationVariant.hidden);
+                passVariableAnim = slideAnim.hidden;
               }
               return (
                 <motion.div
                   ref={ref}
                   animate={wordpressAnimation}
-                  className="p-20"
+                  className="p-20 pr-0"
                 >
-                  <ImgSlide visible={passVariableAnim} name={"b22r"} image={'/images/imageSlide/b2r.jpg'} className="relative"/>
+                  <ImgSlide visible={passVariableAnim} image={'http://strapi.stream404.art.pl/uploads/b2r2_1024x747_3997b9d117.jpeg'}/>
                 </motion.div>
               );
             }}
           </InView>
         </div>
       </div>
-
       <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center ">
         <div className="w-full md:w-2/3 text-left">
           <InView>
@@ -76,8 +80,8 @@ const Oferta = ({}) => {
               }
 
               return (
-                <motion.div animate={maleAnimation} ref={ref} className="p-15">
-                  <ImgSlide opis={"opis oferty"} name={"worpderrs"} visible={passVariableAnim} image={"/images/imageSlide/wordpress.jpg"}/>
+                <motion.div animate={maleAnimation} ref={ref} className="p-20 pl-0">
+                  <ImgSlide opis={"opis oferty"} visible={passVariableAnim} image={"http://strapi.stream404.art.pl/uploads/bilbielsko_83d69203f3.jpeg"}/>
                 </motion.div>
               );
             }}
@@ -93,12 +97,9 @@ const Oferta = ({}) => {
           </h2>
         </div>
       </div>
-    
 
 
-
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-     
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </>
   );
 };

@@ -21,41 +21,36 @@ a:focus {
   outline: none;
 }
 
-
 @keyframes fadeIn {
-  0% { opacity: 1;}
-  99% { opacity: 0.01;}
-  100% { opacity: 0;}
-}
-
-
-.logo_div {
-  position: relative;
-  margin-top: 200px;
-  right: 350px;
-  animation: fadeIn 1s;
- 
-  transition: all ease 0.5s !important;
-  img {
-    opacity:0.9; 
-    top: 120rem;
-    width: 170px;
-    height:70px;
-    transform: rotate(-6deg) scale(3.4);
+  0% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0.01;
+  }
+  100% {
+    opacity: 0;
   }
 }
+
+.logo_div.upper .text-slogan {
+  transform: rotate(0deg) scale(0.7);
+  position: absolute;
+  top: -307px;
+  left: 309px;
+  width: 352px;
+}
 .logo_div.upper {
-  
   transition: all ease 0s !important;
   position: initial;
   top: 2px;
   margin-top: 0px;
-  
+  margin-left: -90px;
   transform: scale(0.8);
-  img{  
-    opacity:1;
+  img {
+    opacity: 1;
     width: 170px;
-    height:70px;
+    height: 70px;
     transform: scale(1);
   }
 }
@@ -76,6 +71,22 @@ a.navlink.active {
     background-position: -19px -3rem !important;
     background-repeat: no-repeat;
   }
+  .logo_div .text-slogan {
+  }
+  .logo_div {
+    transition: all ease 0s !important;
+    position: initial;
+    top: 2px;
+    margin-top: 0px;
+
+    transform: scale(0.8);
+    img {
+      opacity: 1;
+      width: 170px;
+      height: 70px;
+      transform: scale(1);
+    }
+  }
 }
 @media screen and (min-width: 1224px) {
   .backSVG {
@@ -83,10 +94,29 @@ a.navlink.active {
     background-position: -19px -4rem !important;
     background-repeat: no-repeat;
   }
-  .logo_div {
+  .logo_div .text-slogan {
+    font-weight: 100;
+    opacity: 1;
+    margin-top: 300px;
+    transform: rotate(-6deg) scale(1.2);
+    margin-left: -155px;
+    left: 50%;
     position: absolute;
-    top: 2px;
-    transform: scale(1);
+  }
+
+  .logo_div {
+    left: 50%;
+    top: 140px;
+    position: absolute;
+    transition: all ease 0s !important;
+    margin-left: 0px;
+    transform: scale(0.9);
+    img {
+      top: 120rem;
+      width: 518px;
+      height: 223px;
+      transform: rotate(-6deg);
+    }
   }
 }
 .section_first {
