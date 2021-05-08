@@ -3,15 +3,17 @@ import Footer from "../components/footer.js";
 import Kontakt from "../components/kontakt.js";
 import MetaTags from "react-meta-tags";
 
+
+
+
 const title = "home";
 const Layout = ({ children, tags, title }) => {
   return (
 
+    
+
+
     <div className='bodyWrap'>
-   
-   if(!preloadTrue ){
-   <div className="w-full h-300 back-red">prealod</div> 
-  }
      
       <MetaTags>
         <title>{title}</title>
@@ -27,6 +29,10 @@ const Layout = ({ children, tags, title }) => {
           rel="stylesheet"
         />
       </MetaTags>
+
+
+        
+
 
       <div className="leading-normal tracking-normal text-white gradient">
         <div className="layout-wrapper">

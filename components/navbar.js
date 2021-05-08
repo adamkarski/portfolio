@@ -1,55 +1,57 @@
 import { Component } from "react";
 import { motion } from "framer-motion";
-import BackSVG from "../components/backSVG"
+import BackSVG from "../components/backSVG";
 
-
-// import Link from "next/link";
+//import Link from "next/link";
 import Link from "../components/Link.js";
 
 export default class extends Component {
+  static async getInitialProps() {
+    return { someProp: "a random prop" };
+  }
+  state = {
+    navbarV: false,
+  };
+  navbarState = () => {
+    const { navbarV } = this.state;
+    this.setState({ navbarV: !navbarV });
+//    console.log(this.state.navbarV);
+  };
+
   render() {
     return (
       <div>
         <div className="pt-24 ">
-
-            <div className="back_SVG">
-              <BackSVG>
-
-              </BackSVG>
-              
-              </div> 
-
-
-
+          <div className="back_SVG">
+            <BackSVG></BackSVG>
+          </div>
         </div>
 
         <div className="back_image absolute w-1/2">
-              
-              <img src="/images/imageSlide/face2face2.svg" />
-
-              </div> 
-
+          <img src="/images/imageSlide/face2face2.svg" />
+        </div>
 
         <nav
           id="header"
           className="fixed w-full top-0 text-white bg-white lg:bg-opacity-90"
         >
-          <motion.div className="w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+          <motion.div className={"visible_" +this.state.navbarV.toString() +" w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2"}>
             <motion.div className=" logo_div ">
-              
-              
               <Link href="/">
                 <motion.a href="/" className="w-30 h-30">
                   <img width="400" height="400" src="/images/logo2.svg"></img>
                 </motion.a>
               </Link>
-               
-                <motion.div className="text-slogan"> 
-                <p className="text-gray-700  text-4xl">Lepsza wersja Twojej strony</p>
-                </motion.div>
+
+              <motion.div className="text-slogan">
+                <p className="text-gray-700  text-4xl">
+                  Lepsza wersja Twojej strony
+                </p>
+              </motion.div>
             </motion.div>
             <div className="block lg:hidden pr-4">
               <button
+                onClick={this.navbarState}
                 id="nav-toggle"
                 className="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
               >
@@ -63,10 +65,18 @@ export default class extends Component {
                 </svg>
               </button>
             </div>
-            <div
-              className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-opacity-0 text-black p-4 lg:p-0 z-20"
+            <div 
+              className=" w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-opacity-0 text-black p-4 lg:p-0 z-20" 
               id="nav-content"
             >
+
+
+
+
+
+
+
+
               <ul className="list-reset lg:flex justify-end flex-1 items-center">
                 <li className="mr-3">
                   <Link href="/kontakt">
