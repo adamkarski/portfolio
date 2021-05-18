@@ -3,7 +3,7 @@ import Footer from "../components/footer.js";
 import Kontakt from "../components/kontakt.js";
 import MetaTags from "react-meta-tags";
 
-
+import Mouse from "../public/images/mouse.svg";
 
 
 const title = "home";
@@ -28,18 +28,26 @@ const Layout = ({ children, tags, title }) => {
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
           rel="stylesheet"
         />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  
+</link>
       </MetaTags>
 
 
-        
+      <style global jsx>
+  {` html { scroll-behavior: smooth; }`}
+</style>
 
 
       <div className="leading-normal tracking-normal text-white gradient">
         <div className="layout-wrapper">
           <Navbar></Navbar>
 
+          <Mouse />
           <section className="section_first">
             <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
+          
+
           </section>
 
           <section className="">
