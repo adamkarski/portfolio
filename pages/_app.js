@@ -17,30 +17,51 @@ export default function MyApp({ Component, pageProps, preloadTrue }) {
 
 const handleScroll = () => {
     // console.log('scroll event', window.scrollY)
+
+ 
+
     if(window.scrollY > 80){
       
       document.querySelector(".logo_div").className="pl-4 flex items-center logo_div upper"
     }else{
       document.querySelector(".logo_div").className="pl-4 flex items-center logo_div"
     }
+    if(window.scrollY > 260){
+      document.querySelector('.mouse_svg__mouseAnim').setAttribute('class','mouse_svg__mouseAnim hidden');
+      
+      document.querySelector("body").className="bodyColor01";
+      document.querySelector(".headerElements").className="headerElements_hide headerElements";
+    }else{
+      document.querySelector('.mouse_svg__mouseAnim').setAttribute('class','mouse_svg__mouseAnim');
+      document.querySelector("body").className="noColor"
+      document.querySelector(".headerElements").className="headerElements";
+    }
+
+    if(window.scrollY > 30){
+      document.querySelector('.mouse_svg__mouseAnim').setAttribute('class','mouse_svg__mouseAnim hiddenm');
+      
+        }else{
+      document.querySelector('.mouse_svg__mouseAnim').setAttribute('class','mouse_svg__mouseAnim');
+      }
+
+
   }
 
 
-  // React.useEffect(() => {
 
-   
-  //   //alert('wgralem strone');
-    
-  // }, [])
   return (
  
- 
+    
+
  <Layout>
       <AnimateSharedLayout>
         <Component {...pageProps} />
       </AnimateSharedLayout>
-    </Layout>
+
+   
+    </Layout> 
   );
+
 
 
 }
