@@ -61,7 +61,7 @@ import { useState } from 'react';
           key={props.uid + 'r1'}
          initial={{ height: 0 }}
          animate={{ height: 200}}
-         transition={{ delay: 1.4, duration: 0.7 }}
+         transition={{ delay: .4, duration: 0.7 }}
           className="st0" width="119.3" height="459" />
         <motion.rect
          key={ props.uid + 'r2'}
@@ -75,7 +75,7 @@ import { useState } from 'react';
         <motion.rect
           initial={{ height: 0 }}
           animate={{ height: 200}}
-          transition={{ delay: 1.4, duration: 0.7 }}
+          transition={{ delay: .4, duration: 0.97 }}
           className="st0"
           x="238.6"
           width="119.3"
@@ -102,7 +102,7 @@ import { useState } from 'react';
          <motion.rect
           initial={{ height: 0 }}
           animate={{ height: 200}}
-          transition={{ delay: 1.2, duration: 1.2 }}
+          transition={{ delay: 0, duration: .2 }}
           className="st0"
           x="595.8"
           width="119.3"
