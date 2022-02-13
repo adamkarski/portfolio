@@ -5,6 +5,7 @@ import ImgSlide from "../components/imageOferta"
 const maleAnimationVariant = {
   hidden: {
     opacity: 1,
+    transition: { duration: .1 },
   },
   visible: {
     opacity: 1,
@@ -15,6 +16,7 @@ const maleAnimationVariant = {
 const wordpressAnimationVariant = {
   hidden: {
     opacity: 1,
+    transition: { duration: .1 },
   },
   visible: {
     opacity: 1,

@@ -134,10 +134,10 @@ export default class extends Component {
                 id="nav-toggle"
                 className="focus:outline-none focus:shadow-outline"
               >
-                <div class="hamburguer">
-                  <div class="lines line-top"></div>
-                  <div class="lines line-mid"></div>
-                  <div class="lines line-bottom"></div>
+                <div className="hamburguer">
+                  <div className="lines line-top"></div>
+                  <div className="lines line-mid"></div>
+                  <div className="lines line-bottom"></div>
                 </div>
               </button>
 

@@ -34,7 +34,7 @@ export default class ImgSlide extends Component {
         width={700}
         height={539}
         href={this.props.image}
-        transform="translate(0 .5) scale(.8511)"
+        transform="translate(0 .1) scale(.8511)"
         overflow="visible"
         clipPath="url(#clip)"
       />
@@ -85,7 +85,7 @@ export default class ImgSlide extends Component {
          <motion.rect
           initial={{ height: 0 }}
           animate={{ height: 200}}
-          transition={{ delay: 1.2, duration: 1.2 }}
+          transition={{ delay: .2, duration: .2 }}
           className="st0"
           x="595.8"
           width="119.3"
@@ -96,7 +96,7 @@ export default class ImgSlide extends Component {
 
 
 
-<p className="text-black dupaś">visibele {this.props.visible.toString() +" : " }</p>
+<p className="text-black">visibele {this.props.visible.toString() +" : " }</p>
 
              
    
