@@ -97,7 +97,7 @@ export default class extends Component {
         </div>
 
         <div className="headerElements">
-          <p className="text-black info">{this.state.navbarV.toString()}</p>
+          {/* <p className="text-black info">{this.state.navbarV.toString()}</p> */}
           <div className="pt-24 "></div>
 
           <Logotypes></Logotypes>
