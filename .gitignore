@@ -2,3 +2,7 @@ node_modules
 .next
 out
 package-lock.json
+.*
+.DS_Store
+yarn.lock
+yarn.lock
