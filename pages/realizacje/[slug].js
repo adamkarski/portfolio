@@ -18,6 +18,7 @@ export default function Projekt(props, context) {
   if(pageContent==null){
       content = <p className="text-black">...</p>
   }   else {
+    console.log(props);
       content = props.page.content.toString();
   }
 
@@ -25,7 +26,7 @@ export default function Projekt(props, context) {
     <>
       <MetaTags>
         <title key={"title"}>
-          {conf.PageTitle} // {"adsa"}
+          {conf.PageTitle} // {props.slug}
         </title>
       </MetaTags>
 
