@@ -168,13 +168,13 @@ export default class extends Component {
                     </a>
                   </LinkSmoothScroll>
                 </li>
-                <li className="mr-3">
-                  <Link href="/omnie">
+                {/* <li className="mr-3">
+                  <Link href="/kontakt">
                     <a className="navlink mx-auto lg:mx-0  text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
-                      O mnie
+                      Kontakt
                     </a>
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </motion.div>
