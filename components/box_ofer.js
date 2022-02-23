@@ -51,7 +51,7 @@ export default class extends Component {
     
         className="md:flex shadow-lg md:mx-auto mb-2 mt-20 max-w-lg md:max-w-2xl box_ofer border_radius_17" >
           <img rel="preload" as="image" className="overflow h-full w-full md:w-2/3 object-cover rounded-lg rounded-r-none pb-5/6" src={conf.api_url+this.props.image} alt="bag" />
-          <div className="w-full md:w-1/3 px-4 py-4 bg-white rounded-lg">
+          <div className="w-full md:w-1/3 px-4 py-4 bg-white rounded-lg rounded-l-none">
             <div className="flex items-center">
             <motion.h2 
             
