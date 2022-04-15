@@ -26,21 +26,33 @@ const handleScroll = () => {
       document.querySelector(".logo_div").className="pl-4 flex items-center logo_div"
     }
     if(window.scrollY > 260){
-      document.querySelector('.mouse_svg__mouseAnim').setAttribute('class','mouse_svg__mouseAnim hidden');
+      document.querySelector('.mouse_svg__mouseAnim')?.setAttribute('class','mouse_svg__mouseAnim hidden');
       
       document.querySelector("body").className="bodyColor01";
-      document.querySelector(".headerElements").className="headerElements_hide headerElements";
+    
+    
+      let ele = document.querySelector(".headerElements");
+      if(ele){
+        ele.className="headerElements_hide headerElements";
+      }
+    
+    
     }else{
-      document.querySelector('.mouse_svg__mouseAnim').setAttribute('class','mouse_svg__mouseAnim');
+      document.querySelector('.mouse_svg__mouseAnim')?.setAttribute('class','mouse_svg__mouseAnim');
       document.querySelector("body").className="noColor"
-      document.querySelector(".headerElements").className="headerElements";
+      
+      let ele = document.querySelector(".headerElements");
+
+      if(ele){
+        ele.className="headerElements";
+      }
     }
 
     if(window.scrollY > 30){
-      document.querySelector('.mouse_svg__mouseAnim').setAttribute('class','mouse_svg__mouseAnim hiddenm');
+      document.querySelector('.mouse_svg__mouseAnim')?.setAttribute('class','mouse_svg__mouseAnim hiddenm');
       
         }else{
-      document.querySelector('.mouse_svg__mouseAnim').setAttribute('class','mouse_svg__mouseAnim');
+      document.querySelector('.mouse_svg__mouseAnim')?.setAttribute('class','mouse_svg__mouseAnim');
       }
 
 

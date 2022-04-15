@@ -1,33 +1,7 @@
 import { Component } from "react";
 import { motion } from "framer-motion";
-import Logotypes from "../components/logotypes.js";
-import Link from "../components/Link.js";
-import LinkSmoothScroll from "../components/LinkSmoothScroll";
-
-// const scrollTo = (hash) => {
-
-// console.log('sasasa');
-
-//   if (typeof window !== 'undefined') {
-
-//     const hashId = hash;
-//     // const hashId = window.location.hash;
-//     window.scrollTo({ top: 900, behavior: 'smooth' })
-//     if (hashId) {
-//       // Use the hash to find the first element with that id
-//       const element = document.querySelector(hashId);
-//       // window.scrollTo({ top: 900, behavior: 'smooth' })
-//       if (element) {
-//         // Smooth scroll to that elment
-//         element.scrollIntoView({
-//           behavior: 'smooth',
-//           block: 'start',
-//           inline: 'nearest',
-//         });
-//       }
-//     }
-//   }
-// };
+import Link from "./Link.js";
+import LinkSmoothScroll from "./LinkSmoothScroll";
 
 export default class extends Component {
   static async getInitialProps() {
@@ -43,7 +17,7 @@ export default class extends Component {
 
   render() {
     return (
-      <div className="firstImage">
+      <>
         <div className={"mobileMenu " + this.state.navbarV.toString()}>
           <div className="back"></div>
 
@@ -86,18 +60,8 @@ export default class extends Component {
           </button>
         </div>
 
-        <div className="headerElements">
-          {/* <p className="text-black info">{this.state.navbarV.toString()}</p> */}
-          <div className="pt-24 "></div>
-
-          <Logotypes></Logotypes>
-
-          <img src="/images/responsive_devices.png" className="responsiveDev" />
-        </div>
-        <nav
-          id="header"
-          className="fixed w-full top-0 text-white  lg:bg-opacity-100"
-        >
+       
+        <nav id="header" className="fixed w-full top-0 text-white  lg:bg-opacity-100" >
           <motion.div
             className={
               "visible_" +
@@ -105,6 +69,7 @@ export default class extends Component {
               " w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2"
             }
           >
+           
             <motion.div className="logo_div">
               <Link href="/">
                 <motion.a href="/" className="w-30 h-30">
@@ -172,7 +137,7 @@ export default class extends Component {
             </div>
           </motion.div>
         </nav>
-      </div>
+        </>      
     );
   }
 }

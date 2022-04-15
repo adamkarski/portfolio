@@ -1,7 +1,8 @@
-import Navbar from "../components/navbar.js";
 import Footer from "../components/footer.js";
+
 import Kontakt from "../components/kontakt.js";
 import MetaTags from "react-meta-tags";
+import Navigation from "../components/Navigation.js";
 
 import Mouse from "../public/images/mouse.svg";
 
@@ -36,19 +37,23 @@ const Layout = ({ children, tags, title }) => {
         `}
       </style>
 
-      <div className="leading-normal tracking-normal text-white gradient">
-        <div className="layout-wrapper">
-          <Navbar></Navbar>
+    
+      <div className="layout-wrapper">
+          <Navigation ></Navigation>
 
-          <Mouse />
-          <section className="section_firsta">
-            <div className="container max-w-4xl mx-auto m-8 relative">
-              {children}
-            </div>
+          
+          <section className="section_first">
+            <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
+          
+
           </section>
+
+        
+
+          <Footer></Footer>
         </div>
       </div>
-    </div>
+    
   );
 };
 

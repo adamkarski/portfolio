@@ -1,22 +1,13 @@
-import Navbar from "../components/navbar.js";
 import MetaTags from "react-meta-tags";
-
-import Start_header from "../components/startHeader.js";
-
 import Mouse from "../public/images/mouse.svg";
+import Logotypes from "../components/logotypes.js";
 
-
-
+import Navigation from "../components/Navigation";
 
 const title = "home";
 const Layout = ({ children, tags, title }) => {
   return (
-
-    
-
-
-    <div className='bodyWrap'>
-     
+    <div className="bodyWrap">
       <MetaTags>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -30,39 +21,41 @@ const Layout = ({ children, tags, title }) => {
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
           rel="stylesheet"
         />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
-  
-</link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
+          rel="stylesheet"
+        ></link>
       </MetaTags>
 
-
       <style global jsx>
-  {` html { scroll-behavior: smooth; }`}
-</style>
+        {`
+          html {
+            scroll-behavior: smooth;
+          }
+        `}
+      </style>
 
+      <div className="layout-wrapper">
+        <Navigation></Navigation>
 
-      <div className="leading-normal tracking-normal text-white gradient">
-        <div className="layout-wrapper">
-          <Navbar></Navbar>
+        <section className="startPage">
 
+        <div className="headerElements">
+          <div className="pt-24 "></div>
 
-<Start_header></Start_header>
+          <Logotypes></Logotypes>
 
-
+          <img src="/images/responsive_devices.png" className="responsiveDev" />
+        </div>
 
           <Mouse />
-          <section className="section_first">
-            <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
-          
+        </section>
 
-          </section>
-
-       
-
-         
-        </div>
+        <section className="content">
+          {/* <div className="container max-w-4xl mx-auto m-8 relative">{children}</div> */}
+        </section>
       </div>
-      </div>
+    </div>
   );
 };
 
