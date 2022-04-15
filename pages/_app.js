@@ -2,7 +2,6 @@ import "../styles/layout.scss";
 import "../styles/globals.css";
 import "../styles/box_ofer.css";
 import "tailwindcss/tailwind.css";
-import Layout from "../components/layout";
 import { AnimateSharedLayout } from "framer-motion";
 import React from "react";
 
@@ -53,13 +52,13 @@ const handleScroll = () => {
  
     
 
- <Layout>
+
       <AnimateSharedLayout>
         <Component {...pageProps} />
       </AnimateSharedLayout>
 
    
-    </Layout> 
+
   );
 
 

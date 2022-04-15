@@ -1,9 +1,8 @@
-import { Component } from "react";
-import Link from "next/link";
-import { motion } from "framer-motion";
+
 import Box_ofer from "../components/box_ofer";
 import conf from "../lib/utils.js";
 import MetaTags from "react-meta-tags";
+import Layout from "../layouts/realizacje";
 
 // Object.keys(conf).map(key => console.log(key))
 
@@ -13,6 +12,9 @@ export default function Realizacje({ items }) {
       <MetaTags>
       <title key={"title"}>{conf.PageTitle} // Realizacje</title>
       </MetaTags>
+
+
+    <Layout>
 
       {items.map((item) => (
         <div key={item.title}>
@@ -26,6 +28,9 @@ export default function Realizacje({ items }) {
         />
         </div>
       ))}
+    
+    </Layout>
+
     </>
   );
 }

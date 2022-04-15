@@ -5,16 +5,10 @@ import MetaTags from "react-meta-tags";
 
 import Mouse from "../public/images/mouse.svg";
 
-
 const title = "home";
 const Layout = ({ children, tags, title }) => {
   return (
-
-    
-
-
-    <div className='bodyWrap'>
-     
+    <div className="bodyWrap">
       <MetaTags>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -28,38 +22,33 @@ const Layout = ({ children, tags, title }) => {
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
           rel="stylesheet"
         />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
-  
-</link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
+          rel="stylesheet"
+        ></link>
       </MetaTags>
 
-
       <style global jsx>
-  {` html { scroll-behavior: smooth; }`}
-</style>
-
+        {`
+          html {
+            scroll-behavior: smooth;
+          }
+        `}
+      </style>
 
       <div className="leading-normal tracking-normal text-white gradient">
         <div className="layout-wrapper">
           <Navbar></Navbar>
 
           <Mouse />
-          <section className="section_first">
-            <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
-          
-
-          </section>
-
-          <section className="">
-            <div className="container max-w-4xl mx-auto m-8">
-              <Kontakt />
+          <section className="section_firsta">
+            <div className="container max-w-4xl mx-auto m-8 relative">
+              {children}
             </div>
           </section>
-
-          <Footer></Footer>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 

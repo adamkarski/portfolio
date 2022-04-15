@@ -1,21 +1,15 @@
 import { Component } from "react";
 import { motion } from "framer-motion";
-import BackSVG from "../components/backSVG";
 import Logotypes from "../components/logotypes.js";
-//import Link from "next/link";
 import Link from "../components/Link.js";
-import LinkSmoothScroll from "../components/LinkSmoothScroll"
-
-
-
-
+import LinkSmoothScroll from "../components/LinkSmoothScroll";
 
 // const scrollTo = (hash) => {
 
 // console.log('sasasa');
 
 //   if (typeof window !== 'undefined') {
-    
+
 //     const hashId = hash;
 //     // const hashId = window.location.hash;
 //     window.scrollTo({ top: 900, behavior: 'smooth' })
@@ -35,7 +29,6 @@ import LinkSmoothScroll from "../components/LinkSmoothScroll"
 //   }
 // };
 
-
 export default class extends Component {
   static async getInitialProps() {
     return { someProp: "a random prop" };
@@ -50,10 +43,7 @@ export default class extends Component {
 
   render() {
     return (
-      
       <div className="firstImage">
-
-      
         <div className={"mobileMenu " + this.state.navbarV.toString()}>
           <div className="back"></div>
 
@@ -101,7 +91,7 @@ export default class extends Component {
           <div className="pt-24 "></div>
 
           <Logotypes></Logotypes>
-         
+
           <img src="/images/responsive_devices.png" className="responsiveDev" />
         </div>
         <nav
@@ -118,7 +108,11 @@ export default class extends Component {
             <motion.div className="logo_div">
               <Link href="/">
                 <motion.a href="/" className="w-30 h-30">
-                  <img width="400" height="400" src="/images/logotyp_a.svg"></img>
+                  <img
+                    width="400"
+                    height="400"
+                    src="/images/logotyp_a.svg"
+                  ></img>
                 </motion.a>
               </Link>
 
@@ -140,20 +134,12 @@ export default class extends Component {
                   <div className="lines line-bottom"></div>
                 </div>
               </button>
-
             </div>
             <div
               className=" w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0  lg:bg-opacity-0 text-black p-4 lg:p-0 z-20"
               id="nav-content"
             >
               <ul className="list-reset lg:flex justify-end flex-1 items-center">
-                <li className="mr-3">
-                  <Link href="/kontakt">
-                    <a className="navlink mx-auto lg:mx-0  text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
-                      Kontakt
-                    </a>
-                  </Link>
-                </li>
                 <li className="mr-3">
                   <Link href="/realizacje">
                     <a className="navlink mx-auto lg:mx-0 text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
@@ -164,9 +150,16 @@ export default class extends Component {
                 <li className="mr-3">
                   <LinkSmoothScroll href="/#oferta">
                     <a className="navlink mx-auto lg:mx-0 text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
-                      Oferta
+                      IoT Projects
                     </a>
                   </LinkSmoothScroll>
+                </li>
+                <li className="mr-3">
+                  <Link href="/kontakt">
+                    <a className="navlink mx-auto lg:mx-0  text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
+                      Kontakt
+                    </a>
+                  </Link>
                 </li>
                 {/* <li className="mr-3">
                   <Link href="/omnie">
