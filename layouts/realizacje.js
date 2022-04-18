@@ -7,11 +7,11 @@ const title = "Realizacje";
 const Layout = ({ children, tags, title }) => {
   return (
 
-    
+
 
 
     <div className='bodyWrap'>
-     
+
       <MetaTags>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -25,36 +25,45 @@ const Layout = ({ children, tags, title }) => {
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
           rel="stylesheet"
         />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
-  
-</link>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+        </link>
       </MetaTags>
 
 
       <style global jsx>
-  {` html { scroll-behavior: smooth; }`}
-</style>
+        {` html { scroll-behavior: smooth; }
+        
+        .top_margin{
+            margin-top: 8em;
+          }
+        
+        `}
+      </style>
 
 
-        <div className="layout-wrapper">
-          <Navigation ></Navigation>
+   
 
-          
-          <section className="section_first">
-            <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
-          
+      <div className="layout-wrapper">
+        <Navigation ></Navigation>
 
-          </section>
 
-          {/* <section className="">
-            <div className="container max-w-4xl mx-auto m-8">
-              <Kontakt />
-            </div>
-          </section> */}
+        <section className="section">
 
-          <Footer></Footer>
-        </div>
+
+          <div className="mx-auto m-8 relative sm:w-auto p-20">
+            {children}
+          </div>
+
+
+        </section>
+
+       
+        
+
+        <Footer></Footer>
       </div>
+    </div>
   );
 };
 
