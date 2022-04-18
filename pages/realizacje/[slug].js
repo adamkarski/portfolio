@@ -3,8 +3,12 @@ import { useRouter } from "next/router";
 import MetaTags from "react-meta-tags";
 import conf from "../../lib/utils";
 import { getPortfolioBySlug, getPortfolioSlugs } from "../../lib/api";
-import ReactMarkdown from 'react-markdown'
 
+import unified from 'unified';
+import parse from 'remark-parse';
+import remark2react from 'remark-react';
+
+import Layout from "../../layouts/singleRealizacje"
 
 export default function Projekt(props, context) {
   const router = useRouter();
@@ -18,8 +22,15 @@ export default function Projekt(props, context) {
   if(pageContent==null){
       content = <p className="text-black">...</p>
   }   else {
-    console.log(props);
-      content = props.page.content.toString();
+    //console.log(props);
+      //content = props.page.content.toString();
+
+      const content = unified()
+      .use(parse)
+      .use(remark2react)
+      .processSync(props.page.content.toString()).result;
+
+
   }
 
   return (
@@ -32,11 +43,17 @@ export default function Projekt(props, context) {
 
       <p className="text-black">{props.slug}</p>
 
-      {content}
+
+
+      <Layout>
+
+    
+    
+      
 
       <ReactMarkdown className="text-black">{content}</ReactMarkdown>
 
-     
+      </Layout>
 
 
 
