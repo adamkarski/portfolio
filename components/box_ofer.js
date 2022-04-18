@@ -8,8 +8,7 @@ function handleClick(page) {
   console.log(page_);
 }
 
-function componentDidMount() {
-}
+function componentDidMount() {}
 
 export default class Box_ofer extends Component {
   render() {
@@ -25,65 +24,95 @@ export default class Box_ofer extends Component {
 
     return (
       <>
-
-
-
         <style jsx>{`
-          .box_ofer{
-            min-height:30rem;
-            offset:10px white solid;
-            border: solid rgba(0,0,0,0.05) 4px; 
-            background: white;
-          }
-          .box_ofer .icons{
-            position: absolute;
-    /* float: right; */
-    background-color: white;
-    border-radius: 0px 14px 0px 10px;
-    padding: 4px;
-    right: -22px;
-    top: -5.5%;
-    padding-left: 12px;
-    padding-right: 14px;
-          }
-          .content .texts{
-            position:absolute;
-            width:100%;
-            height:100%;
-            background: rgb(0,0,0);
-            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.8) 20%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 100%);
-          }
-          .content{
-            position:absolute;
-            bottom:0px;
-            width:90%;
-            height:90%;
-            margin:4%;
-            
-          }
-          .content .opis, .content .title{
-            color: rgba(255,255,255,0.8);
+        
+          .box_ofer {
+
            
+   
+
+
+            min-height: 30rem;
+            border: solid rgba(0, 0, 0, 0.05) 4px;
+            background: white;
+
+          }
+          .box_ofer .icons {
+            position: absolute;
+            /* float: right; */
+            background-color: white;
+            border-radius: 0px 14px 0px 10px;
+            padding: 4px;
+            right: -22px;
+            top: -5.5%;
+            padding-left: 12px;
+            padding-right: 14px;
+          }
+          .box_ofer .icons:after {
+            content: "";
+            width: 120px;
+            height: 20px;
+
+            box-shadow: 0px 0px 0px rgba(0, 0, 0);
+            position: absolute;
+          }
+          .content .texts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgb(0, 0, 0);
+            background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0.8) 0%,
+              rgba(0, 0, 0, 0.8) 20%,
+              rgba(255, 255, 255, 0.1) 50%,
+              rgba(255, 255, 255, 0.1) 100%
+            );
+          }
+          .content {
+            position: absolute;
+            bottom: 0px;
+            width: 90%;
+            height: 90%;
+            margin: 4%;
+          }
+          .content .opis,
+          .content .title {
+            color: rgba(255, 255, 255, 0.8);
           }
 
           .content .title {
             position: absolute;
             bottom: 60px;
           }
+          .box_ofer .button_{
+            position: absolute;
+    right: -5.8%;
+    bottom: -5%;
+   
+          }
+          .box_ofer .button_ img {
+            width:35px;
+            height:33px;
+            padding-left:2px;
+            padding-right:10px;
 
+          }
           .content .opis {
             position: absolute;
             bottom: 20px;
-            display:none;
+            display: none;
           }
-          .content .backgr{
-              background-image: url(${conf.api_url + this.props.image});
-              position:absolute;
-              width:100%;
-              height:100%;
-              background-size:cover;
+          .content .backgr {
+            background-image: url(${conf.api_url + this.props.image});
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
           }
-          `}</style>
+        `}</style>
+
+        {/* <div className="box_container"> */}
 
         <motion.div
           initial={{ y: 500 }}
@@ -94,37 +123,20 @@ export default class Box_ofer extends Component {
             default: { duration: 0.7 },
           }}
         >
-
           <div className="box_ofer shadow-xl rounded-xl  ">
-
             <div className="content rounded-xl">
-              <div className="backgr rounded-md">
-              </div>
+              <div className="backgr rounded-md"></div>
 
               <div className="texts rounded-md">
                 <div className="p-3 title">
                   <h3 className="font-semibold text-xl leading-6  my-2">
                     {this.props.title}
                   </h3>
-                  <p className="paragraph-normal opis">
-                    {this.props.opis}
-                  </p>
-                 
-                  <Link
-                href="/realizacje/...slug"
-                as={"/realizacje/" + this.props.slug}
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ opacity: 0.4 }}
-                  className="bg-blue-600 text-gray-200 px-2 py-2 rounded-md"
-                >
-                  Czytaj więcjej..
-                </motion.button>
-              </Link>
+                  <p className="paragraph-normal opis">{this.props.opis}</p>
 
+                
                 </div>
-
+          </div>
                 <div className="flex items-center icons">
                   <ul className="list-none flex " key={rand + rand + rand}>
                     {this.props.lista.map((tag) => (
@@ -139,17 +151,26 @@ export default class Box_ofer extends Component {
                   </ul>
                 </div>
 
+                      <div className="button_">
+                  <Link 
+                    href="/realizacje/...slug"
+                    as={"/realizacje/" + this.props.slug}
+                  >
+                    <motion.button
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 1.01 }}
+                      className="bg-white text-black px-1 py-2 m-2 rounded-md pl-3"
+                    >
+                      <img src="/images/moreinfo.svg" className="w10 h10"></img>
+                    </motion.button>
+                  </Link>
+                  </div>
               </div>
-
-
             </div>
-          </div>
+          
         </motion.div>
 
-
-
-
-
+        {/* </div> */}
 
         {/* 
         <motion.div
@@ -228,11 +249,7 @@ export default class Box_ofer extends Component {
             </div>
           </div>
         </motion.div> */}
-
-
-
       </>
-
     );
   }
 }

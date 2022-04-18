@@ -19,6 +19,8 @@ export default function Realizacje({ items }) {
 
         <div class="flex flex-wrap ">
 
+       
+
 
           {items.map((item) => (
             <div key={item.title} className="w-full p-2 rounded lg:w-1/2 md:w-full xl:w-1/3">
