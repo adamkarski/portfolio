@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+// import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import MetaTags from "react-meta-tags";
 import conf from "../../lib/utils";
@@ -77,11 +77,11 @@ export default function Projekt(props, context) {
 
 
         <ReactMarkdown
-          children={content}
-          allowDangerousHtml={true}
-          escapeHtml={false}
+          children={content.toString()}
+          // allowDangerousHtml={true}
+          // escapeHtml={false}
           rehypePlugins={[rehypeRaw]}
-          components={MarkdownComponents}
+          // components={MarkdownComponents}
         />
 
       </Layout>
