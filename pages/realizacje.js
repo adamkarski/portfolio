@@ -17,9 +17,7 @@ export default function Realizacje({ items }) {
       <Layout>
 
 
-        <div class="flex flex-wrap ">
-
-       
+        <div className="flex flex-wrap ">
 
 
           {items.map((item) => (
@@ -49,16 +47,6 @@ export default function Realizacje({ items }) {
 export async function getStaticProps() {
   const res = await fetch(conf.api_url + "/portfolios?_sort=published_at:DESC");
   const items = await res.json();
-  
-//   const qs = require('qs');
-// const query = qs.stringify({
-//   sort: ['title:asc', 'slug:desc'],
-// }, {
-//   encodeValuesOnly: true,
-// });
-// const items = await request(conf.api_url + "/portfolios?"+query);
-// console.log(items);
-
 
   return {
     props: { items },

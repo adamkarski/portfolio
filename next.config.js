@@ -8,12 +8,14 @@ const withSvgr = require('next-plugin-svgr');
 //         return config;
 //       },
 //   }
-  // module.exports = withSvgr();
-  module.exports = withSvgr({
-    webpack(config, options) {
-      return config;
-    },
-    images: {
-      domains: ['strapi.stream404.art.pl'],
-    },
-  });
+// module.exports = withSvgr();
+module.exports = withSvgr({
+  webpack: function (config, options) {
+    console.log(options.webpack); // 4.44.1
+    options.webpack.node = { "fs": "empty" }
+    return config;
+  },
+  images: {
+    domains: ['strapi.stream404.art.pl'],
+  },
+});
