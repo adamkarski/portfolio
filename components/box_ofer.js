@@ -152,10 +152,14 @@ export default class Box_ofer extends Component {
                 </div>
 
                       <div className="button_">
-                  <Link 
+                  {/* <Link 
                     href="/realizacje/...slug"
                     as={"/realizacje/" + this.props.slug}
-                  >
+                  > */}
+
+<Link href={`/realizacje/${this.props.slug}`}>
+
+
                     <motion.button
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 1.01 }}
