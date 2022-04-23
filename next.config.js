@@ -23,7 +23,7 @@ module.exports = withSvgr({
     return [
       {
         // matching all API routes
-        // source: "/api/:path*",
+        source: "/realizacje/*",
         headers: [
           // { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "//strapi.stream404.art.pl" },
