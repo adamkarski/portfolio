@@ -56,14 +56,16 @@ export default function Projekt(props, context) {
   if (pageContent == null) {
     content = <p className="text-black">...</p>
   } else {
+    console.log(props.page);
     content = props.page.content.toString();
   }
+
 
   return (
     <>
       <MetaTags>
         <title key={"title"}>
-          {conf.PageTitle} // {props.slug}
+          {conf.PageTitle} // {props.page.title}
         </title>
       </MetaTags>
 
@@ -74,8 +76,44 @@ export default function Projekt(props, context) {
 
       <Layout>
 
-        <p>{conf.PageTitle}</p>
+      <style jsx>
+        {`
+        .text-h2 {
+         font-size:1.5rem;
+         padding-left:20px;
+         padding-bottom:0.5rem;
+         padding-top:0.5rem;
+         position:relative;
+        margin-bottom:2rem; 
+          }
+          .text-h2:before{
+            content:'';
+            margin-right:-3px;
+            width:5px;
+            height:100%;
+            background-color:#086D93;
+            position:absolute;
+            left:0px;
+            top:0px;
+           
 
+
+          }
+        `}
+      </style>
+      <h2 className="text-h2">{props.page.title}</h2>
+      <ul className="list-none flex " >
+                    {props.page.tags.map((tag) => (
+                      <li className={tag.id} key={tag.id}>
+                        <img
+                          key={tag.id}
+                          className="h-10 w-14 m-0 p-2 hover:bg-gray-100"
+                          src={conf.api_url + "/icons/" + tag.tag_name + ".svg"}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+      
         <ReactMarkdown
           children={content.toString()}
           // allowDangerousHtml={true}
