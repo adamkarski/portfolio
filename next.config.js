@@ -15,10 +15,12 @@ module.exports = withSvgr({
     options.webpack.node = { "fs": "empty" }
     return config;
   },
-  // swcMinify:false,
+  swcMinify:false,
   images: {
     domains: ['strapi.stream404.art.pl'],
   },
+  distDir: "build",
+
   async headers() {
     return [
       {
