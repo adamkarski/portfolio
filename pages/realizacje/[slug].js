@@ -74,7 +74,7 @@ export default function Projekt(props, context) {
 
       <Layout>
 
-
+        <p>{conf.PageTitle}</p>
 
         <ReactMarkdown
           children={content.toString()}
