@@ -299,36 +299,49 @@ function Projekt(props, context) {
                     ]
                 }, "title")
             }),
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_layouts_singleRealizacje__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
-                children: [
-                    react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                        id: "5a751d549c83b0ed",
-                        children: '.text-h2.jsx-5a751d549c83b0ed{font-size:1.5rem;padding-left:20px;padding-bottom:.5rem;padding-top:.5rem;position:relative;margin-bottom:2rem}.text-h2.jsx-5a751d549c83b0ed:before{content:"";margin-right:-3px;width:5px;height:100%;background-color:#086d93;position:absolute;left:0px;top:0px}'
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
-                        className: "jsx-5a751d549c83b0ed" + " " + "text-h2",
-                        children: props.page.title
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
-                        className: "jsx-5a751d549c83b0ed" + " " + "list-none flex ",
-                        children: props.page.tags.map((tag)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-                                className: "jsx-5a751d549c83b0ed" + " " + (tag.id || ""),
-                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                    src: _lib_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"].api_url */ .Z.api_url + "/icons/" + tag.tag_name + ".svg",
-                                    className: "jsx-5a751d549c83b0ed" + " " + "h-10 w-14 m-0 p-2 hover:bg-gray-100"
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_layouts_singleRealizacje__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                    className: "jsx-23dd57c17f0fdfe7" + " " + "page_layout",
+                    children: [
+                        react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
+                            id: "23dd57c17f0fdfe7",
+                            children: '.list-none.jsx-23dd57c17f0fdfe7{float:right;position:relative;top:-100px}.page_layout.jsx-23dd57c17f0fdfe7{background-color:rgba(100,100,100,.04);border-left:1px solid rgba(0,0,0,.1);border-right:1px solid rgba(0,0,0,.1);padding:1.2rem}.page_layout.jsx-23dd57c17f0fdfe7 p.jsx-23dd57c17f0fdfe7{padding:1.2rem}.text-h2.jsx-23dd57c17f0fdfe7{font-size:1.5rem;padding-left:20px;padding-bottom:.5rem;padding-top:.5rem;position:relative;margin-bottom:2rem}.text-h2.jsx-23dd57c17f0fdfe7:before{content:"";margin-right:-3px;width:5px;height:100%;background-color:#086d93;position:absolute;left:0px;top:0px}'
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
+                            className: "jsx-23dd57c17f0fdfe7" + " " + "text-h2",
+                            children: props.page.title
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
+                            className: "jsx-23dd57c17f0fdfe7" + " " + "",
+                            children: props.page.opis
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
+                            className: "jsx-23dd57c17f0fdfe7" + " " + "list-none flex ",
+                            children: props.page.tags.map((tag)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                    className: "jsx-23dd57c17f0fdfe7" + " " + (tag.id || ""),
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                        src: _lib_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"].api_url */ .Z.api_url + "/icons/" + tag.tag_name + ".svg",
+                                        className: "jsx-23dd57c17f0fdfe7" + " " + "h-10 w-14 m-0 p-2 hover:bg-gray-100"
+                                    }, tag.id)
                                 }, tag.id)
-                            }, tag.id)
-                        )
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_markdown__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                        children: content.toString(),
-                        // allowDangerousHtml={true}
-                        // escapeHtml={false}
-                        rehypePlugins: [
-                            rehype_raw__WEBPACK_IMPORTED_MODULE_8__["default"]
-                        ]
-                    })
-                ]
+                            )
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("br", {
+                            className: "jsx-23dd57c17f0fdfe7"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("br", {
+                            className: "jsx-23dd57c17f0fdfe7"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_markdown__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                            children: content.toString(),
+                            // allowDangerousHtml={true}
+                            // escapeHtml={false}
+                            rehypePlugins: [
+                                rehype_raw__WEBPACK_IMPORTED_MODULE_8__["default"]
+                            ]
+                        })
+                    ]
+                })
             })
         ]
     });

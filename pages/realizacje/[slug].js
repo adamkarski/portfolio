@@ -76,8 +76,28 @@ export default function Projekt(props, context) {
 
       <Layout>
 
+    <div className="page_layout">
       <style jsx>
         {`
+        .list-none{
+
+          float:right;
+          position:relative;
+          top:-100px;
+        }
+        .page_layout{
+          background-color:rgba(100,100,100,0.04);
+          border-left:1px solid rgba(0,0,0,0.1);
+          border-right:1px solid rgba(0,0,0,0.1);
+          padding:1.2rem;
+
+        }
+
+
+        .page_layout p{
+          padding:1.2rem;
+
+        }
         .text-h2 {
          font-size:1.5rem;
          padding-left:20px;
@@ -102,6 +122,8 @@ export default function Projekt(props, context) {
         `}
       </style>
       <h2 className="text-h2">{props.page.title}</h2>
+      <h3 className="">{props.page.opis}</h3>
+      
       <ul className="list-none flex " >
                     {props.page.tags.map((tag) => (
                       <li className={tag.id} key={tag.id}>
@@ -113,7 +135,7 @@ export default function Projekt(props, context) {
                       </li>
                     ))}
                   </ul>
-      
+                  <br/><br/>
         <ReactMarkdown
           children={content.toString()}
           // allowDangerousHtml={true}
@@ -122,6 +144,7 @@ export default function Projekt(props, context) {
           // components={MarkdownComponents}
         />
 
+</div>
       </Layout>
     </>
   );
