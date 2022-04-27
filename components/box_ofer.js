@@ -43,8 +43,8 @@ export default class Box_ofer extends Component {
             background-color: white;
             border-radius: 0px 14px 0px 10px;
             padding: 4px;
-            right: -22px;
-            top: -5.5%;
+            right: -15px;
+    top: -7.5%;
             padding-left: 12px;
             padding-right: 14px;
           }
@@ -83,7 +83,7 @@ export default class Box_ofer extends Component {
 
           .content .title {
             position: absolute;
-            bottom: 60px;
+            bottom: -8  px;
           }
           .box_ofer .button_{
             position: absolute;
@@ -100,7 +100,7 @@ export default class Box_ofer extends Component {
           }
           .content .opis {
             position: absolute;
-            bottom: 20px;
+            bottom: -8px;
             display: none;
           }
           .content .backgr {

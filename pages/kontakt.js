@@ -16,7 +16,7 @@ export default function Kontakt({ items }) {
     
       >
         <div>
-          <p className="text-gray-800 text-center">Zapraszamy do kontkaktu</p>
+          <p className="text-gray-800 text-center"></p>
         </div>
       </Layout>
     </>

@@ -9,12 +9,23 @@ import ReactMarkdown from 'react-markdown'
 import Layout from "../../layouts/singleRealizacje"
 import rehypeRaw from 'rehype-raw'
 
+import remarkGfm from 'remark-gfm'
 
 
 export default function Projekt(props, context) {
   const router = useRouter();
 
   const MarkdownComponents = {
+      
+    
+    link: (props) => {
+      return props.href.startsWith('https://twitter.com') ? (
+          <CustomTwitterComponent url={props.href} /> // Render Twitter links with custom component
+      ) : (
+          <a href={props.href}>{props.children}</a> // All other links
+      );
+  }
+
     // img: (props) => {
     //   console.log("NextImage Props: ", props);
     //   return <NextImage {...props} layout={"fill"} />;
@@ -90,6 +101,7 @@ export default function Projekt(props, context) {
           border-left:1px solid rgba(0,0,0,0.1);
           border-right:1px solid rgba(0,0,0,0.1);
           padding:1.2rem;
+          max-width:70%;
 
         }
 
@@ -140,8 +152,9 @@ export default function Projekt(props, context) {
           children={content.toString()}
           // allowDangerousHtml={true}
           // escapeHtml={false}
+          // remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}
-          // components={MarkdownComponents}
+          components={MarkdownComponents}
         />
 
 </div>
