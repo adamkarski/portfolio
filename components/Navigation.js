@@ -23,23 +23,13 @@ export default class extends Component {
 
           <ul>
             <li>
-              <Link href="/">
-                <a href="/">link one</a>
+              <Link href="/realizacje">
+                <a href="/realizacje">realizacje</a>
               </Link>
             </li>
             <li>
-              <Link href="/">
-                <a href="/">link one</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <a href="/">link one</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <a href="/">Kontakt</a>
+              <Link href="/Kontakt">
+                <a href="/kontakt">Kontakt</a>
               </Link>
             </li>
           </ul>

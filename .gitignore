@@ -1,9 +1,13 @@
 node_modules
-.next
-out
 package-lock.json
 .*
 .DS_Store
 yarn.lock
 yarn.lock
+.DS_Store
+.DS_Store
+pages/.DS_Store
+public/.DS_Store
+public/images/.DS_Store
+public/images/icons/.DS_Store
 .DS_Store
