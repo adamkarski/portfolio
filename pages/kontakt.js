@@ -24,7 +24,7 @@ export default function Kontakt({ items }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://strapi.stream404.art.pl/portfolios");
+  const res = await fetch("http://strapi.adamkarski.art/portfolios");
   const items = await res.json();
   return {
     props: { items },

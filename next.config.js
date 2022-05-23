@@ -17,7 +17,7 @@ module.exports = withSvgr({
   },
   // swcMinify:false,
   images: {
-    domains: ['strapi.stream404.art.pl'],
+    domains: ['strapi.adamkarski.art'],
   },
   distDir: "build",
 
@@ -28,7 +28,7 @@ module.exports = withSvgr({
         source: "/realizacje/[slug]",
         headers: [
            { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "http//strapi.stream404.art.pl" },
+          { key: "Access-Control-Allow-Origin", value: "http//strapi.adamkarski.art" },
           { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
           { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
         ]
