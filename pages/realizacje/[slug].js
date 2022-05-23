@@ -7,9 +7,9 @@ import { getPortfolioBySlug, getPortfolioSlugs } from "../../lib/api";
 import ReactMarkdown from 'react-markdown'
 
 import Layout from "../../layouts/singleRealizacje"
-import rehypeRaw from 'rehype-raw'
+ import rehypeRaw from 'rehype-raw'
 
-import remarkGfm from 'remark-gfm'
+// import remarkGfm from 'remark-gfm'
 
 
 export default function Projekt(props, context) {

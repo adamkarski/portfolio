@@ -30,7 +30,7 @@
     "react-markdown": "latest",
     "react-meta-tags": "latest",
     "react-native-svg": "latest",
-    "rehype-raw": "latest",
+    "rehype-raw": "^6.1.1",
     "remark": "latest",
     "remark-gfm": "^3.0.1",
     "remark-html": "latest",
