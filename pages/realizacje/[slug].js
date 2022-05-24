@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown'
 import Layout from "../../layouts/singleRealizacje"
  import rehypeRaw from 'rehype-raw'
 
-// import remarkGfm from 'remark-gfm'
+import from 'remark-gfm'
 
 
 export default function Projekt(props, context) {
