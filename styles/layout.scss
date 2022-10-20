@@ -19,13 +19,16 @@ body.noColor {
 body.bodyColor01 {
   transition: all ease 1.2s;
   // background-color: #2c95af;
+}
+body.Realizacje{
   background: rgb(255,255,255);
 background: -moz-linear-gradient(190deg, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 33%, rgba(42,157,178,1) 100%);
 background: -webkit-linear-gradient(190deg, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 33%, rgba(42,157,178,1) 100%);
 background: linear-gradient(190deg, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 33%, rgba(42,157,178,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#2a9db2",GradientType=1);
-}
 
+
+}
 
 @keyframes scroll {
   0% { 

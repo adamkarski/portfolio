@@ -10,7 +10,7 @@ const Layout = ({ children, tags, title }) => {
 
 
 
-    <div className='bodyWrap'>
+    <div className='bodyWrap realizacje'>
 
       <MetaTags>
         <title>{title}</title>

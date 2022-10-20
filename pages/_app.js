@@ -5,9 +5,7 @@ import "tailwindcss/tailwind.css";
 import { AnimateSharedLayout } from "framer-motion";
 import React from "react";
 
-
 export default function MyApp({ Component, pageProps, preloadTrue }) {
- 
 
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -28,7 +26,7 @@ const handleScroll = () => {
     if(window.scrollY > 260){
       document.querySelector('.mouse_svg__mouseAnim')?.setAttribute('class','mouse_svg__mouseAnim hidden');
       
-      document.querySelector("body").className="bodyColor01";
+      // document.querySelector("body").className="bodyColor01";
     
     
       let ele = document.querySelector(".headerElements");

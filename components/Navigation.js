@@ -13,6 +13,8 @@ export default class extends Component {
   navbarState = () => {
     const { navbarV } = this.state;
     this.setState({ navbarV: !navbarV });
+
+  
   };
 
   render() {
