@@ -47,13 +47,13 @@ const Layout = ({ children, tags, title }) => {
       <div className="layout-wrapper">
         <Navigation ></Navigation>
 
-
+          <div className="container center pb-56">
         <section className="section_first">
-            <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
+            <div className="container center max-w-4xl mx-auto m-8 ">{children}</div>
           
 
           </section>
-
+          </div> 
        
         
 

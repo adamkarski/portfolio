@@ -104,13 +104,13 @@ export default class extends Component {
                     </a>
                   </Link>
                 </li>
-                <li className="mr-3">
+                {/* <li className="mr-3">
                   <LinkSmoothScroll href="/#oferta">
                     <a className="navlink mx-auto lg:mx-0 text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
                       IoT Projects
                     </a>
                   </LinkSmoothScroll>
-                </li>
+                </li> */}
                 <li className="mr-3">
                   <Link href="/kontakt">
                     <a className="navlink mx-auto lg:mx-0  text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">

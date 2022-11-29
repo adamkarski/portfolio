@@ -30,6 +30,19 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endCo
 
 }
 
+.page_layoutx p img{
+
+  width: 69% !important;
+
+  text-align: center;
+  padding: 0px;
+  margin: 10px;
+  position: relative;
+  border: solid 20px rgba(0,0,0,0.1);
+  margin-left: 0px;
+          }
+
+
 @keyframes scroll {
   0% { 
     opacity: 0;

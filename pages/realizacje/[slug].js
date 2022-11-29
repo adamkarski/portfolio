@@ -87,14 +87,14 @@ export default function Projekt(props, context) {
 
       <Layout>
 
-    <div className="page_layout">
+    <div className="page_layoutx">
       <style jsx>
         {`
         .list-none{
 
           float:right;
           position:relative;
-          top:-100px;
+          top:-76px;
         }
         .page_layout{
           background-color:rgba(100,100,100,0.04);
@@ -102,10 +102,10 @@ export default function Projekt(props, context) {
           border-right:1px solid rgba(0,0,0,0.1);
           padding:1.2rem;
           max-width:70%;
-
+          
         }
 
-
+        
         .page_layout p{
           padding:1.2rem;
 
