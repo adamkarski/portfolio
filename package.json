@@ -21,7 +21,7 @@
     "flare-react": "latest",
     "framer-motion": "latest",
     "fs": "^0.0.1-security",
-    "markdown-to-jsx": "^latest",
+    "markdown-to-jsx": "latest",
     "next": "^12.1.6-canary.4",
     "next-plugin-svgr": "latest",
     "react": "latest",
