@@ -36,7 +36,7 @@ exports.modules = {
                                 }),
                                 /*#__PURE__*/ _jsx("p", {
                                     className: "text-red text-xs italic",
-                                    children: "Uzupe\u0142nij dane"
+                                    children: "Uzupełnij dane"
                                 })
                             ]
                         }),
@@ -73,7 +73,7 @@ exports.modules = {
             ]
         });
     }
-});;
+});
 
 
 /***/ }),
@@ -105,7 +105,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_com
 
 
 const title = "home";
-const Layout = ({ children , tags , title: title1  })=>{
+const Layout = ({ children , tags , title  })=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "jsx-56338ebc8e77b0bf" + " " + "bodyWrap",
         children: [
@@ -113,7 +113,7 @@ const Layout = ({ children , tags , title: title1  })=>{
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
                         className: "jsx-56338ebc8e77b0bf",
-                        /*#__PURE__*/ children: title1
+                        children: title
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                         rel: "icon",
@@ -232,7 +232,7 @@ function Kontakt({ items  }) {
             })
         ]
     });
-};
+}
 async function getStaticProps() {
     const res = await fetch("http://strapi.adamkarski.art/portfolios");
     const items = await res.json();
@@ -248,10 +248,10 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 562:
+/***/ 3280:
 /***/ ((module) => {
 
-module.exports = require("next/dist/server/denormalize-page-path.js");
+module.exports = require("next/dist/shared/lib/app-router-context.js");
 
 /***/ }),
 
@@ -283,10 +283,38 @@ module.exports = require("next/dist/shared/lib/mitt.js");
 
 /***/ }),
 
+/***/ 4406:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/page-path/denormalize-page-path.js");
+
+/***/ }),
+
 /***/ 4964:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/router-context.js");
+
+/***/ }),
+
+/***/ 1751:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js");
+
+/***/ }),
+
+/***/ 6220:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/compare-states.js");
+
+/***/ }),
+
+/***/ 299:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/format-next-pathname-info.js");
 
 /***/ }),
 
@@ -304,10 +332,17 @@ module.exports = require("next/dist/shared/lib/router/utils/get-asset-path-from-
 
 /***/ }),
 
-/***/ 4365:
+/***/ 5789:
 /***/ ((module) => {
 
-module.exports = require("next/dist/shared/lib/router/utils/get-middleware-regex.js");
+module.exports = require("next/dist/shared/lib/router/utils/get-next-pathname-info.js");
+
+/***/ }),
+
+/***/ 1897:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/is-bot.js");
 
 /***/ }),
 
@@ -318,6 +353,13 @@ module.exports = require("next/dist/shared/lib/router/utils/is-dynamic.js");
 
 /***/ }),
 
+/***/ 8854:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
+
+/***/ }),
+
 /***/ 1292:
 /***/ ((module) => {
 
@@ -325,10 +367,24 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-relative-url.j
 
 /***/ }),
 
+/***/ 4567:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/path-has-prefix.js");
+
+/***/ }),
+
 /***/ 979:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/router/utils/querystring.js");
+
+/***/ }),
+
+/***/ 3297:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slash.js");
 
 /***/ }),
 
@@ -374,6 +430,13 @@ module.exports = require("react");
 
 /***/ }),
 
+/***/ 6405:
+/***/ ((module) => {
+
+module.exports = require("react-dom");
+
+/***/ }),
+
 /***/ 4469:
 /***/ ((module) => {
 
@@ -409,7 +472,7 @@ module.exports = import("framer-motion");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [505,664,657,692,573], () => (__webpack_exec__(6481)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,657,692,573], () => (__webpack_exec__(6481)));
 module.exports = __webpack_exports__;
 
 })();

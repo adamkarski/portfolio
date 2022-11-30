@@ -118,7 +118,7 @@ framer_motion__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.the
             })
         });
     }
-});;
+});
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });

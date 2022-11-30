@@ -48,7 +48,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
         return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
             children: [
                 react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {
-                    id: "9afbeae4c0ac41b7",
+                    id: "b132402404022045",
                     dynamic: [
                         _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                     ],
@@ -71,10 +71,10 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                             duration: 0.7
                         }
                     },
-                    /*#__PURE__*/ children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                         className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                             [
-                                "9afbeae4c0ac41b7",
+                                "b132402404022045",
                                 [
                                     _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                 ]
@@ -83,7 +83,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                 [
-                                    "9afbeae4c0ac41b7",
+                                    "b132402404022045",
                                     [
                                         _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                     ]
@@ -93,7 +93,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                         [
-                                            "9afbeae4c0ac41b7",
+                                            "b132402404022045",
                                             [
                                                 _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                             ]
@@ -103,7 +103,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                         [
-                                            "9afbeae4c0ac41b7",
+                                            "b132402404022045",
                                             [
                                                 _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                             ]
@@ -112,7 +112,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                     children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                             [
-                                                "9afbeae4c0ac41b7",
+                                                "b132402404022045",
                                                 [
                                                     _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                                 ]
@@ -122,7 +122,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
                                                 className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                                     [
-                                                        "9afbeae4c0ac41b7",
+                                                        "b132402404022045",
                                                         [
                                                             _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                                         ]
@@ -133,7 +133,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                                 className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                                     [
-                                                        "9afbeae4c0ac41b7",
+                                                        "b132402404022045",
                                                         [
                                                             _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                                         ]
@@ -147,7 +147,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                         [
-                                            "9afbeae4c0ac41b7",
+                                            "b132402404022045",
                                             [
                                                 _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                             ]
@@ -156,7 +156,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
                                         className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                             [
-                                                "9afbeae4c0ac41b7",
+                                                "b132402404022045",
                                                 [
                                                     _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                                 ]
@@ -165,7 +165,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                         children: this.props.lista.map((tag)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
                                                 className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                                     [
-                                                        "9afbeae4c0ac41b7",
+                                                        "b132402404022045",
                                                         [
                                                             _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                                         ]
@@ -175,21 +175,20 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                                     src: _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + "/icons/" + tag.tag_name + ".svg",
                                                     className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                                         [
-                                                            "9afbeae4c0ac41b7",
+                                                            "b132402404022045",
                                                             [
                                                                 _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                                             ]
                                                         ]
                                                     ]) + " " + "h-10 w-14 m-0 p-2 hover:bg-gray-100"
                                                 }, rand + tag.id)
-                                            }, tag.id)
-                                        )
+                                            }, tag.id))
                                     }, rand + rand + rand)
                                 }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                         [
-                                            "9afbeae4c0ac41b7",
+                                            "b132402404022045",
                                             [
                                                 _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                             ]
@@ -209,7 +208,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                                 src: "/images/moreinfo.svg",
                                                 className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default().dynamic([
                                                     [
-                                                        "9afbeae4c0ac41b7",
+                                                        "b132402404022045",
                                                         [
                                                             _lib_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"].api_url */ .Z.api_url + this.props.image
                                                         ]
@@ -226,7 +225,7 @@ class Box_ofer extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             ]
         });
     }
-};
+}
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
@@ -256,7 +255,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_com
 
 
 const title = "Realizacje";
-const Layout = ({ children , tags , title: title1  })=>{
+const Layout = ({ children , tags , title  })=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "jsx-3cd593553a94b273" + " " + "bodyWrap realizacje",
         children: [
@@ -264,7 +263,7 @@ const Layout = ({ children , tags , title: title1  })=>{
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
                         className: "jsx-3cd593553a94b273",
-                        /*#__PURE__*/ children: title1
+                        children: title
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                         rel: "icon",
@@ -371,7 +370,7 @@ function Realizacje({ items  }) {
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react_meta_tags__WEBPACK_IMPORTED_MODULE_4___default()), {
-                /*#__PURE__*/ children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("title", {
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("title", {
                     children: [
                         _lib_utils_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"].PageTitle */ .Z.PageTitle,
                         " // Realizacje"
@@ -396,14 +395,13 @@ function Realizacje({ items  }) {
                                     opis: item.subtitle,
                                     lista: item.tags
                                 })
-                            }, item.title)
-                        )
+                            }, item.title))
                     })
                 ]
             })
         ]
     });
-};
+}
 async function getStaticProps() {
     const res = await fetch(_lib_utils_js__WEBPACK_IMPORTED_MODULE_3__/* ["default"].api_url */ .Z.api_url + "/portfolios?_sort=published_at:DESC");
     const items = await res.json();
@@ -419,10 +417,10 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 562:
+/***/ 3280:
 /***/ ((module) => {
 
-module.exports = require("next/dist/server/denormalize-page-path.js");
+module.exports = require("next/dist/shared/lib/app-router-context.js");
 
 /***/ }),
 
@@ -454,10 +452,38 @@ module.exports = require("next/dist/shared/lib/mitt.js");
 
 /***/ }),
 
+/***/ 4406:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/page-path/denormalize-page-path.js");
+
+/***/ }),
+
 /***/ 4964:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/router-context.js");
+
+/***/ }),
+
+/***/ 1751:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js");
+
+/***/ }),
+
+/***/ 6220:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/compare-states.js");
+
+/***/ }),
+
+/***/ 299:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/format-next-pathname-info.js");
 
 /***/ }),
 
@@ -475,10 +501,17 @@ module.exports = require("next/dist/shared/lib/router/utils/get-asset-path-from-
 
 /***/ }),
 
-/***/ 4365:
+/***/ 5789:
 /***/ ((module) => {
 
-module.exports = require("next/dist/shared/lib/router/utils/get-middleware-regex.js");
+module.exports = require("next/dist/shared/lib/router/utils/get-next-pathname-info.js");
+
+/***/ }),
+
+/***/ 1897:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/is-bot.js");
 
 /***/ }),
 
@@ -489,6 +522,13 @@ module.exports = require("next/dist/shared/lib/router/utils/is-dynamic.js");
 
 /***/ }),
 
+/***/ 8854:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
+
+/***/ }),
+
 /***/ 1292:
 /***/ ((module) => {
 
@@ -496,10 +536,24 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-relative-url.j
 
 /***/ }),
 
+/***/ 4567:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/path-has-prefix.js");
+
+/***/ }),
+
 /***/ 979:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/router/utils/querystring.js");
+
+/***/ }),
+
+/***/ 3297:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slash.js");
 
 /***/ }),
 
@@ -545,6 +599,13 @@ module.exports = require("react");
 
 /***/ }),
 
+/***/ 6405:
+/***/ ((module) => {
+
+module.exports = require("react-dom");
+
+/***/ }),
+
 /***/ 4469:
 /***/ ((module) => {
 
@@ -580,7 +641,7 @@ module.exports = import("framer-motion");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [505,664,657,692], () => (__webpack_exec__(6709)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,657,692], () => (__webpack_exec__(6709)));
 module.exports = __webpack_exports__;
 
 })();

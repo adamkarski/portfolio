@@ -69,13 +69,6 @@ module.exports = require("next/dist/shared/lib/constants.js");
 
 /***/ }),
 
-/***/ 2796:
-/***/ ((module) => {
-
-module.exports = require("next/dist/shared/lib/head-manager-context.js");
-
-/***/ }),
-
 /***/ 8743:
 /***/ ((module) => {
 
@@ -111,7 +104,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [505,859], () => (__webpack_exec__(1514)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,859], () => (__webpack_exec__(1514)));
 module.exports = __webpack_exports__;
 
 })();

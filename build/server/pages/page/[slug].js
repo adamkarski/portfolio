@@ -66,7 +66,7 @@ class Single_page extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
             ]
         });
     }
-};
+}
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
@@ -145,7 +145,7 @@ function Projekt() {
             })
         ]
     });
-};
+}
 async function getStaticProps() {
     return {
         props: {}

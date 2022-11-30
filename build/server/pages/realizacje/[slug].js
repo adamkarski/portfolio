@@ -28,7 +28,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_com
 
 
 const title = "Realizacje";
-const Layout = ({ children , tags , title: title1  })=>{
+const Layout = ({ children , tags , title  })=>{
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "jsx-3cd593553a94b273" + " " + "bodyWrap",
         children: [
@@ -36,7 +36,7 @@ const Layout = ({ children , tags , title: title1  })=>{
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("title", {
                         className: "jsx-3cd593553a94b273",
-                        /*#__PURE__*/ children: title1
+                        children: title
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
                         rel: "icon",
@@ -208,8 +208,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rehype_raw__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1871);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_markdown__WEBPACK_IMPORTED_MODULE_6__, _layouts_singleRealizacje__WEBPACK_IMPORTED_MODULE_7__, rehype_raw__WEBPACK_IMPORTED_MODULE_8__]);
 ([react_markdown__WEBPACK_IMPORTED_MODULE_6__, _layouts_singleRealizacje__WEBPACK_IMPORTED_MODULE_7__, rehype_raw__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-
-
 // import { GetStaticPaths, GetStaticProps } from "next";
 
 
@@ -218,8 +216,10 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([reac
 
 
 
+
+
 //import remarkGfm from 'remark-gfm'
-function Projekt(props1, context) {
+function Projekt(props, context) {
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     const MarkdownComponents = {
         link: (props)=>{
@@ -228,7 +228,7 @@ function Projekt(props1, context) {
             }) // Render Twitter links with custom component
              : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                 href: props.href,
-                /*#__PURE__*/ children: props.children
+                children: props.children
             }) // All other links
             ;
         }
@@ -239,15 +239,15 @@ function Projekt(props1, context) {
         });
     }
     let content;
-    const pageContent = props1.page.content;
+    const pageContent = props.page.content;
     if (pageContent == null) {
         content = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
             className: "text-black",
             children: "..."
         });
     } else {
-        console.log(props1.page);
-        content = props1.page.content.toString();
+        console.log(props.page);
+        content = props.page.content.toString();
     }
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
@@ -256,7 +256,7 @@ function Projekt(props1, context) {
                     children: [
                         _lib_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"].PageTitle */ .Z.PageTitle,
                         " // ",
-                        props1.page.title
+                        props.page.title
                     ]
                 }, "title")
             }),
@@ -270,22 +270,21 @@ function Projekt(props1, context) {
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h2", {
                             className: "jsx-59c9e31094ac4696" + " " + "text-h2",
-                            children: props1.page.title
+                            children: props.page.title
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
                             className: "jsx-59c9e31094ac4696" + " " + "",
-                            children: props1.page.opis
+                            children: props.page.opis
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
                             className: "jsx-59c9e31094ac4696" + " " + "list-none flex ",
-                            children: props1.page.tags.map((tag)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                            children: props.page.tags.map((tag)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
                                     className: "jsx-59c9e31094ac4696" + " " + (tag.id || ""),
                                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                         src: _lib_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"].api_url */ .Z.api_url + "/icons/" + tag.tag_name + ".svg",
                                         className: "jsx-59c9e31094ac4696" + " " + "h-10 w-14 m-0 p-2 hover:bg-gray-100"
                                     }, tag.id)
-                                }, tag.id)
-                            )
+                                }, tag.id))
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("br", {
                             className: "jsx-59c9e31094ac4696"
@@ -308,7 +307,7 @@ function Projekt(props1, context) {
             })
         ]
     });
-};
+}
 const getStaticProps = async (context)=>{
     const slug = context.params.slug || [];
     const pagea = await (0,_lib_api__WEBPACK_IMPORTED_MODULE_5__/* .getPortfolioBySlug */ .gV)(slug);
@@ -347,10 +346,10 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 562:
+/***/ 3280:
 /***/ ((module) => {
 
-module.exports = require("next/dist/server/denormalize-page-path.js");
+module.exports = require("next/dist/shared/lib/app-router-context.js");
 
 /***/ }),
 
@@ -382,10 +381,38 @@ module.exports = require("next/dist/shared/lib/mitt.js");
 
 /***/ }),
 
+/***/ 4406:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/page-path/denormalize-page-path.js");
+
+/***/ }),
+
 /***/ 4964:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/router-context.js");
+
+/***/ }),
+
+/***/ 1751:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js");
+
+/***/ }),
+
+/***/ 6220:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/compare-states.js");
+
+/***/ }),
+
+/***/ 299:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/format-next-pathname-info.js");
 
 /***/ }),
 
@@ -403,10 +430,17 @@ module.exports = require("next/dist/shared/lib/router/utils/get-asset-path-from-
 
 /***/ }),
 
-/***/ 4365:
+/***/ 5789:
 /***/ ((module) => {
 
-module.exports = require("next/dist/shared/lib/router/utils/get-middleware-regex.js");
+module.exports = require("next/dist/shared/lib/router/utils/get-next-pathname-info.js");
+
+/***/ }),
+
+/***/ 1897:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/is-bot.js");
 
 /***/ }),
 
@@ -417,6 +451,13 @@ module.exports = require("next/dist/shared/lib/router/utils/is-dynamic.js");
 
 /***/ }),
 
+/***/ 8854:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
+
+/***/ }),
+
 /***/ 1292:
 /***/ ((module) => {
 
@@ -424,10 +465,24 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-relative-url.j
 
 /***/ }),
 
+/***/ 4567:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/path-has-prefix.js");
+
+/***/ }),
+
 /***/ 979:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/router/utils/querystring.js");
+
+/***/ }),
+
+/***/ 3297:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slash.js");
 
 /***/ }),
 
@@ -470,6 +525,13 @@ module.exports = require("next/router");
 /***/ ((module) => {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ 6405:
+/***/ ((module) => {
+
+module.exports = require("react-dom");
 
 /***/ }),
 
@@ -522,7 +584,7 @@ module.exports = import("rehype-raw");;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [505,664,657,692], () => (__webpack_exec__(7427)));
+var __webpack_exports__ = __webpack_require__.X(0, [676,664,657,692], () => (__webpack_exec__(7427)));
 module.exports = __webpack_exports__;
 
 })();
