@@ -18,13 +18,13 @@ export default function Projekt(props, context) {
   const MarkdownComponents = {
       
     
-    link: (props) => {
-      return props.href.startsWith('https://twitter.com') ? (
-          <CustomTwitterComponent url={props.href} /> // Render Twitter links with custom component
-      ) : (
-          <a href={props.href}>{props.children}</a> // All other links
-      );
-  }
+  //   link: (props) => {
+  //     return props.href.startsWith('https://twitter.com') ? (
+  //         <CustomTwitterComponent url={props.href} /> // Render Twitter links with custom component
+  //     ) : (
+  //         <a href={props.href}>{props.children}</a> // All other links
+  //     );
+  // }
 
     // img: (props) => {
     //   console.log("NextImage Props: ", props);

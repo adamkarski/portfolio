@@ -51,8 +51,12 @@ const Layout = ({ children, tags, title }) => {
           <Mouse />
         </section>
 
+
+
+        <frontImages />
+
         <section className="content">
-          {/* <div className="container max-w-4xl mx-auto m-8 relative">{children}</div> */}
+          <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
         </section>
       </div>
     </div>

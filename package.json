@@ -22,10 +22,10 @@
     "framer-motion": "latest",
     "fs": "latest",
     "markdown-to-jsx": "latest",
-    "next": "^13.0.5",
+    "next": "latest",
     "next-plugin-svgr": "latest",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "latest",
+    "react-dom": "latest",
     "react-intersection-observer": "latest",
     "react-markdown": "latest",
     "react-meta-tags": "latest",
@@ -38,10 +38,13 @@
     "remark-react": "latest",
     "sass": "latest",
     "spiritjs": "latest",
+    "styled-components": "^5.3.6",
+    "tailgrids": "^2.0.0",
     "unified": "latest"
   },
   "devDependencies": {
     "autoprefixer": "latest",
+    "babel-plugin-styled-components": "^2.0.7",
     "postcss": "latest",
     "tailwindcss": "latest"
   }

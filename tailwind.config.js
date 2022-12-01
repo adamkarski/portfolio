@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [require("tailgrids/plugin")],
 }
 
 
