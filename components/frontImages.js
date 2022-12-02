@@ -8,9 +8,9 @@ import { useState } from 'react';
 
   }
 
- const ImgSlide = (props) =>{
+ const FrontImages = (props) =>{
 
-  state = {
+  let state = {
     visible: false,
   };
 
@@ -21,103 +21,86 @@ import { useState } from 'react';
 
   return (
     <>
-<div>
-      <button onClick={clicked}>click me</button>
-      <input type="text" name="search" />
-      <div>
-        <p>{value}</p>
+
+
+<div className="container FrontImages">
+      <div className="item item-1">
+        <img src="http://strapi.adamkarski.art/uploads/FJ_site_portfolio_nextjs_miniatura_5770eb9890.jpg" alt="" />
+        <span className="count">1</span>
       </div>
+      <div className="item item-2">
+        <img src="http://strapi.adamkarski.art/uploads/banner_140x380_902c957ee5.jpg" alt="" />
+        <span className="count">2</span>
+      </div>
+      <div className="item item-3">
+        <img src="http://strapi.adamkarski.art/uploads/koszulki_931d594edd.jpg" alt="" />
+        <span className="count">3</span>
+      </div>
+ 
     </div>
 
-    <div id={this.props.uid} key={props.uid}>
-    
+<style jsx>{`
+        
+.FrontImages {
+  width: 60%;
+  position: relative;
+  margin-left: 20px;
+  display: grid;
+    grid-template-columns: 0fr 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    grid-gap: 8px;
+}
+img {
+  width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    object-position: left;
+  
+}
+.item {
+  margin:20px;
+  box-shadow: 2px 2px 34px rgba(100,100,100,0.2);
 
+  position: relative;
+}
+.count {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+  width: 50px;
+  height: 50px;
+  background-color: #0000008c;
+  text-align: center;
+  border-radius:40px;
+  display:none;
+}
 
-      
-    <svg
-      id={props.uid+"prefix__Layer_1"}
-      xmlns="http://www.w3.org/2000/svg"
-      x={0}
-      y={0}
-      viewBox="0 0 596.3 459.4"
-      xmlSpace="preserve"
-      {...props}
-      key={props.uid}
-    >
-
-   
-      <style>{".prefix__st0{fill:#fff}"}</style>
-      <image
-        width={700}
-        height={539}
-        href={props.image}
-        transform="translate(0 .5) scale(.8511)"
-        overflow="visible"
-        clipPath="url(#clip)"
-      />
-
-      <clipPath id="clip">
-        <motion.rect
-          key={props.uid + 'r1'}
-         initial={{ height: 0 }}
-         animate={{ height: 200}}
-         transition={{ delay: .4, duration: 0.7 }}
-          className="st0" width="119.3" height="459" />
-        <motion.rect
-         key={ props.uid + 'r2'}
-          initial={{ height: 0 }}
-          animate={{ height: 200}}
-          transition={{ delay: 1.4, duration: 0.7 }}
-          x="119.3"
-          width="119.3"
-          height="459.2"
-        />
-        <motion.rect
-          initial={{ height: 0 }}
-          animate={{ height: 200}}
-          transition={{ delay: .4, duration: 0.97 }}
-          className="st0"
-          x="238.6"
-          width="119.3"
-          height="459.2"
-        />
-        <motion.rect
-          initial={{ height: 0 }}
-          animate={{ height: 200}}
-          transition={{ delay: 0.8, duration: 1.7 }}
-          className="st0"
-          x="357.9"
-          width="119.3"
-          height="459.2"
-        />
-        <motion.rect
-          initial={{ height: 0 }}
-          animate={{ height: 200}}
-          transition={{ delay: 1.2, duration: 1.2 }}
-          className="st0"
-          x="476.5"
-          width="119.3"
-          height="459.2"
-        />
-         <motion.rect
-          initial={{ height: 0 }}
-          animate={{ height: 200}}
-          transition={{ delay: 0, duration: .2 }}
-          className="st0"
-          x="595.8"
-          width="119.3"
-          height="459.2"
-        />
-      </clipPath>
-    </svg>
+.item-1 {
+  grid-column: 2/3;
+  grid-row: 1/3;
+}
+.item-2 {
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+.item-3 {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
 
 
 
-<p className="text-black dupaś">visibele {props.visible.toString() +" : " }</p>
 
-             
-   
-  </div>
+      `}</style>
+
+
+
+
+
 
 
 
@@ -126,7 +109,7 @@ import { useState } from 'react';
 }
 
 
-export default frontImages
+export default FrontImages
 
 
 
