@@ -10,3 +10,16 @@ public/images/icons/.DS_Store
 yar.DS_Store
 build
 
+build/build-manifest.json
+build/cache/webpack/client-development/11.pack
+build/cache/webpack/client-development/12.pack
+build/cache/webpack/client-development/14.pack
+build/cache/webpack/client-development/5.pack
+build/cache/webpack/client-development/index.pack
+build/cache/webpack/client-development/index.pack.old
+build/server/middleware-build-manifest.js
+build/server/pages-manifest.json
+build/server/pages/index.js
+build/static/chunks/pages/index.js
+build/static/chunks/webpack.js
+build/static/development/_buildManifest.js

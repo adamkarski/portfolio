@@ -118,7 +118,7 @@ export default class extends Component {
                   <img
                     width="75"
                     height="60"
-                    src="/elements/messageicon.svg"
+                    src="/elements/messageIcon.svg"
                   ></img>
                    
                   </Link> }
