@@ -2,6 +2,7 @@ import { Component } from "react";
 import { motion } from "framer-motion";
 import LinkSmoothScroll from "./LinkSmoothScroll";
 import Link from 'next/link'
+import messageIcon from "./messageIcon";
 
 
 export default class extends Component {
@@ -114,7 +115,11 @@ export default class extends Component {
                 <li className="mr-3">
                   { <Link href="/kontakt" className="navlink mx-auto lg:mx-0  text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
                     
-                      Kontakt
+                  <img
+                    width="75"
+                    height="60"
+                    src="/elements/messageicon.svg"
+                  ></img>
                    
                   </Link> }
                 </li>
