@@ -49,3 +49,6 @@ export default class LinkSmoothScroll extends React.Component {
     return React.cloneElement(child, props)
   }
 }
+
+
+

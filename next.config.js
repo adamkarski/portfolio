@@ -9,13 +9,15 @@ const withSvgr = require('next-plugin-svgr');
 //       },
 //   }
 // module.exports = withSvgr();
+
+
 module.exports = withSvgr({
   webpack: function (config, options) {
     //console.log(options.webpack); // 4.44.1
     options.webpack.node = { "fs": "empty" }
     return config;
   },
-  // swcMinify:false,
+  swcMinify:false,
   images: {
     domains: ['strapi.adamkarski.art'],
   },

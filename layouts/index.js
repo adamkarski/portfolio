@@ -1,7 +1,7 @@
 import MetaTags from "react-meta-tags";
 import Mouse from "../public/images/mouse.svg";
 import Logotypes from "../components/logotypes.js";
-
+import FrontImages from "../components/frontImages"
 import Navigation from "../components/Navigation";
 
 const title = "home";
@@ -48,11 +48,15 @@ const Layout = ({ children, tags, title }) => {
           <img src="/images/responsive_devices.png" className="responsiveDev" />
         </div>
 
-          <Mouse />
+          {/* <Mouse /> */}
         </section>
 
+
+
+        <FrontImages />
+
         <section className="content">
-          {/* <div className="container max-w-4xl mx-auto m-8 relative">{children}</div> */}
+          <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
         </section>
       </div>
     </div>

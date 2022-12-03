@@ -1,7 +1,9 @@
 import { Component } from "react";
 import { motion } from "framer-motion";
-import Link from "./Link.js";
 import LinkSmoothScroll from "./LinkSmoothScroll";
+import Link from 'next/link'
+import messageIcon from "./messageIcon";
+
 
 export default class extends Component {
   static async getInitialProps() {
@@ -26,12 +28,11 @@ export default class extends Component {
           <ul>
             <li>
               <Link href="/realizacje">
-                <a href="/realizacje">realizacje</a>
-              </Link>
+                realizacje              </Link>
             </li>
             <li>
               <Link href="/Kontakt">
-                <a href="/kontakt">Kontakt</a>
+                Kontakt
               </Link>
             </li>
           </ul>
@@ -98,25 +99,29 @@ export default class extends Component {
             >
               <ul className="list-reset lg:flex justify-end flex-1 items-center">
                 <li className="mr-3">
-                  <Link href="/realizacje">
-                    <a className="navlink mx-auto lg:mx-0 text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
+                  {<Link href="/realizacje" className="navlink mx-auto lg:mx-0 text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
+                    
                       Realizacje
-                    </a>
-                  </Link>
+                   
+                  </Link> }
                 </li>
-                <li className="mr-3">
+                {/* <li className="mr-3">
                   <LinkSmoothScroll href="/#oferta">
                     <a className="navlink mx-auto lg:mx-0 text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
                       IoT Projects
                     </a>
                   </LinkSmoothScroll>
-                </li>
+                </li> */}
                 <li className="mr-3">
-                  <Link href="/kontakt">
-                    <a className="navlink mx-auto lg:mx-0  text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
-                      Kontakt
-                    </a>
-                  </Link>
+                  { <Link href="/kontakt" className="navlink mx-auto lg:mx-0  text-gray-500 font-bold  mt-4 lg:mt-0 py-3 px-5 focus:outline-none">
+                    
+                  <img
+                    width="75"
+                    height="60"
+                    src="/elements/messageIcon.svg"
+                  ></img>
+                   
+                  </Link> }
                 </li>
                 {/* <li className="mr-3">
                   <Link href="/omnie">

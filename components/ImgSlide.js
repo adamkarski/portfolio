@@ -113,7 +113,7 @@ import { useState } from 'react';
 
 
 
-<p className="text-black dupaś">visibele {props.visible.toString() +" : " }</p>
+<p className="text-black ">vis {props.visible.toString() +" : " }</p>
 
              
    
