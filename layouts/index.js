@@ -3,9 +3,17 @@ import Mouse from "../public/images/mouse.svg";
 import Logotypes from "../components/logotypes.js";
 import FrontImages from "../components/frontImages"
 import Navigation from "../components/Navigation";
+import Box_ofer from "../components/box_ofer";
+import RealizacjeComponnent from "../components/RealizacjeComponnent";
+
+
 
 const title = "home";
-const Layout = ({ children, tags, title }) => {
+const Layout = ({ children, tags, title, items }) => {
+
+
+  console.log(items);
+
   return (
     <div className="bodyWrap">
       <MetaTags>
@@ -55,12 +63,24 @@ const Layout = ({ children, tags, title }) => {
 
         <FrontImages />
 
+
+        <RealizacjeComponnent items={items}/>
+
         <section className="content">
           <div className="container max-w-4xl mx-auto m-8 relative">{children}</div>
         </section>
+
+      
+   
+
+
+
       </div>
     </div>
   );
 };
+
+
+
 
 export default Layout;
