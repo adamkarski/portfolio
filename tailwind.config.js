@@ -1,15 +1,16 @@
-// tailwind.config.js
+// /** @type {import('tailwindcss').Config} */
+// export default {
+//   content: [],
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [],
+// }
+
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-
+  content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
-    container: {
-      center: true,
-    },
+    extend: {}
   },
-  variants: {},
-  plugins: [require("tailgrids/plugin")],
-}
-
-
+  plugins: []
+};
