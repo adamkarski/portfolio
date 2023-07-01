@@ -588,10 +588,10 @@ position: absolute;
     p img{
       padding: 100px;
       min-width: 100%;
-
+      border-radius: 109px;
       @media (max-width: 769px){
         padding: 0px;
-
+        border-radius: 10px;
       }
 
     }
