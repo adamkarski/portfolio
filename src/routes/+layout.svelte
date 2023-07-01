@@ -1,11 +1,12 @@
 <script>
 	import responsive_devices from '$lib/images/responsive_devices.png';
 	import Navigation from './Navigation.svelte';
-	import Header from './Header.svelte';
-	// import './styles.css';
+	import HeaderIcons from "./HeaderIcons.svelte";
 	import './css/box_ofer.css';
 	import './css/layout.scss';
+	import Tagsbar from './Tagsbar.svelte';
 	let y;
+	
 </script>
 
 
@@ -15,13 +16,16 @@
 	
 	<Navigation  /> 
 	
+	<HeaderIcons/>
 
 	<section class="startPage">
 
+
+		
 	<div class="headerElements">
 	  <div class="pt-24 "></div>
 
-	  <!-- <Logotypes></Logotypes> -->
+	
 
 	  <img src={responsive_devices} class="responsiveDev" alt="responsive_devices"/> 
 	</div> 
@@ -38,13 +42,13 @@
 
 	<!-- <RealizacjeComponnent items={items}/> -->
 
-	<section class="content">
+	<section class="content pageContent">
 	  <div class="container max-w-4xl mx-auto m-8 relative">
 		<slot />
 	</div>
 	</section>
 
-  
+  <Tagsbar/>
 
 </div>
 

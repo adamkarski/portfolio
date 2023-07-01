@@ -5,15 +5,14 @@
 
 
 <script>
-	import { onMount } from "svelte";
-	let loadingDataState = true;
 	import Loader from "$lib/components/loader.svelte";
 	import { fade } from 'svelte/transition';
-	let visible = false;
-	
+	import { fly } from 'svelte/transition'
 	import moreinfo from '$lib/images/moreinfo.svg';
-	import { each } from "svelte/internal";
-	
+	let visible = false;
+	let loadingDataState = true;
+	let src;
+
 	async function getPortfolioItems() {
 	  	let response = await fetch("//strapi.adamkarski.art/portfolios/");
 	  		let portfolios = await response.json();
@@ -21,19 +20,13 @@
 		}
 	let promise = getPortfolioItems();
 
-
-	// onMount(() => {
-
-	// });
-	import { fly } from 'svelte/transition'
-let src;
-function preload(src) {
-  return new Promise(function(resolve) {
-    let img = new Image()
-    img.onload = resolve
-    img.src = src
-  })
-}
+	function preload(src) {
+	return new Promise(function(resolve) {
+		let img = new Image()
+		img.onload = resolve
+		img.src = src
+	})
+	}
 	
 </script>
 

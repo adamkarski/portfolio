@@ -120,7 +120,7 @@
 
 		{/each}
 </ul>
-
+<h2>{item.subtitle}</h2>
 			<Markdown {md} />
 		</div>
 	{:catch error}

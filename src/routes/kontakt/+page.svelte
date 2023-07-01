@@ -94,10 +94,8 @@
 
 
 
-		<div  >
-			<div
-				class="w-full p-8 my-4 md:px-10 lg:w-9/12 lg:pl-20 lg:pr-20 mr-auto rounded-2xl shadow-2xl"
-			>
+		<div>
+			<div class="w-full p-8 my-4 md:px-10 lg:w-9/12 lg:pl-20 lg:pr-20 mr-auto rounded-2xl shadow-2xl boxKontakt">
 
 
 			<div class="flex">
@@ -242,7 +240,7 @@
 </section>
 
 <style>
-	/* ... */
+	
 
 	form > div {
 		display: flex;
@@ -250,7 +248,7 @@
 		justify-content: space-between;
 	}
 
-	/* ... */
+	
 
 	.error-message {
 		color: tomato;

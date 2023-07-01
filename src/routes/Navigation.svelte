@@ -44,7 +44,7 @@
 		class="visible_false w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2"
 	>
 		<div class="logo_div">
-			<a href="/">
+			<a href="/realizacje">
 
 				{#if !safari}
 				<img src={logotype} alt="Zbigniew Karski" width="400" height="400" />
@@ -77,7 +77,7 @@
 		>
 			<ul class="list-reset lg:flex justify-end flex-1 items-center NavMenuIcons">
 				
-				<li class="mr-3">
+				<!-- <li class="mr-3">
 					<a
 						class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
 						href="/realizacje"
@@ -85,7 +85,7 @@
 						<img width="90" height="80" src={clientsIcon} alt="realizacje i klienci" class="clientsIcon"/></a
 					>
 					<div class="stackInfo">Klienci</div>
-				</li>
+				</li> -->
 				
 				<!-- <li class="mr-3">
 					<a

@@ -93,17 +93,16 @@ margin-top: 300px;
 
 .container_singlePage{
 
+
   margin-top: 300px;
+  box-shadow: -7px -10px 22px -17px rgba(0,0,0,0.1);
+  border-radius: 20px;
 
 
 
 }
 
-.headerIcons{
 
-opacity:0.5;
-
-}
 .firstImage{
   margin-top:0px;
   margin-bottom:0px;
@@ -472,24 +471,19 @@ position: absolute;
 //   padding-left: 30px;
 //   padding-right: 30px;
 // }
-.headerIcons {
-  position: absolute;
-  top: 50px;
-  left: 0px;
-}
-// .headerIcons .monoImage div[id^="mono_"] {
-//   opacity: 50;
-// }
 
-.headerIcons .svgIcon {
-  position: absolute;
-  left: -100px;
-  top: 50px;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-  height: 2em;
-  transition: all ease 0.4s;
+
+
+
+.pageContent{
+
+
+    position: initial;
+
+
 }
+
+
 .headerElements .responsiveDev {
   position: fixed;
   transform: rotate(38deg) scale(0.7);
@@ -498,53 +492,7 @@ position: absolute;
   transition: all ease 0.4s;
 }
 
-// .headerIcons  .monoImage div[id^="mono_"]:hover{
-//       -webkit-filter: none !important;
-//     filter: none !important;
-//     }
-.headerIcons .svgIcon:hover {
-  -webkit-filter: none !important;
-  filter: none !important;
-}
 
-.headerIcons .svgIcon._1 {
-  top: 390px;
-  left: 700px;
-  opacity: 0.6;
-}
-.headerIcons .svgIcon._2 {
-  top: 80px;
-  left: 890px;
-}
-.headerIcons .svgIcon._3 {
-  top: 120px;
-  left: 520px;
-}
-.headerIcons .svgIcon._4 {
-  top: 280px;
-  left: 620px;
-  transform: scale(1.4);
-}
-.headerIcons .svgIcon._5 {
-  top: 380px;
-  left: 420px;
-  transform: scale(0.6);
-}
-.headerIcons .svgIcon._6 {
-  top: 180px;
-  left: 620px;
-  transform: scale(1.1);
-}
-.headerIcons .svgIcon._7 {
-  top: 280px;
-  left: 780px;
-  transform: scale(1.1);
-}
-.headerIcons .svgIcon._8 {
-  top: 120px;
-  left: 1010px;
-  transform: scale(1.1);
-}
 
 // layout-wrapper xhidden
 .layout-wrapper.xhidden nav {
@@ -602,7 +550,7 @@ position: absolute;
       transition: all ease 0.7s;
     }
     p a:hover::after{
-      background-image: url(../link.png);
+      // background-image: url(../link.png);
       content: " ";
       width: 45px;
       display: inline-block;
@@ -618,11 +566,35 @@ position: absolute;
  
 }
 
+#iFrames{
+  padding: 20px; 
+  
+  IFRAME{
 
-#markdown_el{
+    border: solid rgba(0,0,0,0.05) 15px;
+    margin-bottom: 20px;
 
-  background-color: rgba(255, 255, 255, 0.6);
+  }
 
+}
+ #markdown_el{
+   
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 21px;
+
+    h2{
+      padding-left: 10px;
+    }
+    p img{
+      padding: 100px;
+      min-width: 100%;
+
+      @media (max-width: 769px){
+        padding: 0px;
+
+      }
+
+    }
 
     .backButton{
 
@@ -640,18 +612,47 @@ position: absolute;
     .backButton:hover{
       opacity: 0.8;
     }
-  
+    ul.titleBanner{
+
+      border-bottom: 1px solid rgba(8, 96, 130, 0.1);
+      padding-bottom: 15px;
+      margin-bottom: 34px;
+    
+    }
+    p{
+      padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    }
 
 }
-#markdown_el ul.titleBanner{
 
-  border-bottom: 1px solid rgba(8, 96, 130, 0.1);
-  padding-bottom: 15px;
-  margin-bottom: 34px;
+.NavMenuIcons li{
+
+  padding: 10px;;
+
 
 }
 
+.boxSingleItem{
+
+  min-height: 300px;
+  background-size: cover;
+  border-radius: 10px!important;
+}
+section.singleItem{
+
+  position: relative;
+  top: -100px;
+
+
+
+}
 section.kontakt{
+
+  position: relative;
+  top: -100px;
 
   .error-message{
 
@@ -659,6 +660,10 @@ section.kontakt{
     float: right;
 
 
+  }
+  .boxKontakt{
+
+    background-color: white;
   }
   .succesMessage{}
 

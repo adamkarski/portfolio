@@ -2,6 +2,7 @@
 	"name": "my-app",
 	"version": "0.0.1",
 	"scripts": {
+		"postbuild": "npx svelte-sitemap --domain https://zbigniew.adamkarski.art",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -27,8 +28,10 @@
 		"@emailjs/browser": "^3.11.0",
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@vitejs/plugin-basic-ssl": "^1.0.1",
+		"d3": "^7.8.5",
 		"emailjs": "^4.0.2",
 		"svelte-browser": "^0.4.6",
-		"svelte-exmarkdown": "^2.0.0"
+		"svelte-exmarkdown": "^2.0.0",
+		"svelte-sitemap": "^2.6.0"
 	}
 }

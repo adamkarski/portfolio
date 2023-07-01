@@ -12,12 +12,12 @@ const config = {
     //   // plugins: []
     // },
     adapter: adapter({
-      pages: 'data',
-      assets: 'data',
+      pages: 'build',
+      assets: 'build',
       fallback: 'index.html',
       precompress: false,
       strict: true,
-      outDir: 'data',
+      outDir: 'build',
       prerender: { enabled: true, handleHttpError: 'ignore'},
 	  ssr: true,
       vite: {
@@ -26,7 +26,7 @@ const config = {
             output: {
               manualChunks: undefined,
               cssCodeSplit: false,
-              outDir: 'data',
+              outDir: 'build',
             },
           },
         },
