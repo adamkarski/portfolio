@@ -1,5 +1,5 @@
 {
-	"name": "my-app",
+	"name": "Zbigniew Adam Karski Portfolio",
 	"version": "0.0.1",
 	"scripts": {
 		"postbuild": "npx svelte-sitemap --domain https://zbigniew.adamkarski.art",

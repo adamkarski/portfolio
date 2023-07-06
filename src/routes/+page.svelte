@@ -9,6 +9,8 @@
 	import { fade } from 'svelte/transition';
 	import { fly } from 'svelte/transition'
 	import moreinfo from '$lib/images/moreinfo.svg';
+	import {tag} from '$lib/stores/store.js'
+
 	let visible = false;
 	let loadingDataState = true;
 	let src;
@@ -16,7 +18,11 @@
 	async function getPortfolioItems() {
 	  	let response = await fetch("//strapi.adamkarski.art/portfolios/");
 	  		let portfolios = await response.json();
-	  	return portfolios;
+
+			console.log(portfolios);
+	  
+		
+			return portfolios;
 		}
 	let promise = getPortfolioItems();
 
@@ -27,8 +33,19 @@
 		img.src = src
 	})
 	}
-	
+
+	let tagCurrent;
+
+	tag.subscribe((value) => {
+	tagCurrent = value;
+		});
+
+
+
 </script>
+
+
+
 
 
 <section class="section" transition:fade>
@@ -46,10 +63,20 @@
 	{:then item}
 	
 
+
+
 		{#each item as item}
 
-		
-		<div class="w-full p-2 rounded lg:w-1/2 md:w-full xl:w-1/3 item" >
+
+			{#each item.tags as ls}
+
+			{#if ls.tag_name ==tagCurrent }
+			<!-- <p>{ls.tag_name}</p> -->
+	
+
+	
+
+		<div class="w-full p-2 rounded lg:w-1/2 md:w-full xl:w-1/3 item" transition:fade>
 
 		<div style="transform: translateY(150px) translateZ(0px);">
 			<div style="display: none;">{src = "//strapi.adamkarski.art/"}{src=src+item.miniatura.url}</div>
@@ -121,10 +148,12 @@
 				</div>
 			</div>
 		</div>
-
-
-	
+		<!-- <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+{tagCurrent} / {ls.tag_name} -->
+		{/if}
+		{/each}	
 		{/each}
+		
 	{:catch error}
 
 		<p style="color: red">{error.message}</p>
