@@ -5,17 +5,15 @@
 	import HeaderIcons from './HeaderIcons.svelte';
 	import './css/box_ofer.css';
 	import './css/layout.scss';
-
+	import { page } from '$app/stores';
 
 	let y;
-
-
 
 </script>
 
 <div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'}">
 	<Navigation />
-
+	
 	<HeaderIcons />
 
 	<section class="startPage">
@@ -40,7 +38,9 @@
 		</div>
 	</section>
 
+	{#if $page.url.pathname =="/realizacje" || $page.url.pathname =="/"}
 	<Tagsbar />
+	{/if}
 </div>
 
 <svelte:window bind:scrollY={y} />

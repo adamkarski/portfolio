@@ -44,7 +44,7 @@
 	// });
 </script>
 
-<div class="container">
+<div class="container" in:fade out:fade>
 	
 
 	{#await data}
@@ -60,7 +60,7 @@
 				
 				<h1>{item.title}</h1> -->
 
-				<li class="tag_icon" on:click={() => setTag("all")}>
+				<li class="tag_icon" on:click={() => setTag("all")} on:keydown={() => setTag("all")} >
 					<img
 						alt="Wszystkie prace"
 						src="//strapi.adamkarski.art/icons/all.svg"
@@ -73,7 +73,7 @@
 				</li>
 
 			{#each item as taga}
-				<li class="tag_icon" on:click={() => setTag(taga.tag_name)}>
+				<li class="tag_icon" on:click={() => setTag(taga.tag_name)}  on:keydown={() => setTag("all")} >
 					<img
 						alt="{taga.tag_name} "
 						src="//strapi.adamkarski.art/icons/{taga.tag_name}.svg"
@@ -109,7 +109,7 @@
 
 	#tagsBar {
 		position: fixed;
-		top: 0;
+		top: 10%;
 		left: 0;
 		height: 100%;
 		list-style-type: none;
