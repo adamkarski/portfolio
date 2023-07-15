@@ -29,7 +29,7 @@ tag.subscribe((value) => {
 	async function getPortfolioItems() {
 	  	let response = await fetch(apiURL);
 	  		let tags = await response.json();
-			// console.log(tags);
+			 console.log(tags);
 	  	return tags;
 		}
 	let data = getPortfolioItems();
@@ -37,7 +37,7 @@ tag.subscribe((value) => {
 
   function countItems(data)  {
     let itemsS= data.length;
-    console.log(itemsS)
+    // console.log(itemsS)
     return itemsS;
 	};
 
@@ -46,7 +46,7 @@ tag.subscribe((value) => {
 </script>
 
 
-<div class="container">
+<div class="containera">
   <div class="helper">
 
 
