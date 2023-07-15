@@ -20,7 +20,7 @@
 
 	function loga(items){
 
-		console.log(items);
+		// console.log(items);
 
 	}
 
@@ -36,7 +36,7 @@
 		console.log(data);
 		return data;
 	}
-	data = getPortfolioItems();
+	// data = getPortfolioItems();
 
 	// onMount(async () => {
 	// });

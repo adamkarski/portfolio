@@ -29,7 +29,7 @@
 			// substack.autoplay;
 
 			inputStr = inputStr.replaceAll(element, '');
-			console.log(element);
+			// console.log(element);
 			let src_str = element.match(/src\s*=\s*"(.+?)"/g);
 			src_str = src_str[0].replaceAll('src="https:', '');
 			src_str = src_str.replaceAll('"', '');
