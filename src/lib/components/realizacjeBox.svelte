@@ -1,8 +1,8 @@
 <script>
 	import { fade, fly } from 'svelte/transition';
-
+    import { strapiURL } from '$lib/stores/store.js';
     export let item = {};
-	export let src = '//strapi.adamkarski.art/' + item.miniatura.url;
+	export let src = strapiURL + item.miniatura.url;
 
 	import moreinfo from '$lib/images/moreinfo.svg';
 

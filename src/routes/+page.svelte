@@ -1,14 +1,14 @@
 <script>
 	import Loader from '$lib/components/loader.svelte';
 	import { fade } from 'svelte/transition';
-	import { tag, portfolioCount } from '$lib/stores/store.js';
+	import { tag, portfolioCount, strapiPorfolios } from '$lib/stores/store.js';
 	import Box from '$lib/components/realizacjeBox.svelte';
 
 	let visible = false;
 	let loadingDataState = true;
 
 	async function getPortfolioItems() {
-		let response = await fetch('//strapi.adamkarski.art/portfolios/');
+		let response = await fetch(strapiPorfolios);
 		let portfolios = await response.json();
 
 		// console.log(portfolios.length);

@@ -3,8 +3,9 @@
 // import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 	import Loader from '$lib/components/loader.svelte';
+	import {strapiPorfolios} from '$lib/stores/store.js'
+
 	import gridMenu from '$lib/images/gridMenu.svg';
-	import { fly } from 'svelte/transition';
 	import moreinfo from '$lib/images/moreinfo.svg';
 	let SingleItem;
 	let data;
@@ -27,7 +28,7 @@
 
 
 	async function getPortfolioItems() {
-		let response = await fetch('//strapi.adamkarski.art/portfolios/');
+		let response = await fetch(strapiPorfolios);
 		let portfolios = await response.json();
 		let len = portfolios.length
 

@@ -4,7 +4,7 @@
 	import logotype_safari from '$lib/images/logotype_safari.svg';
 	import messageIcon from '$lib/images/messageIcon.svg';
 	import clientsIcon from '$lib/images/clientsIcon.svg';
-	import { tag, portfolioCount } from '$lib/stores/store.js';
+	import { tag, portfolioCount, strapiTags } from '$lib/stores/store.js';
 
 
 	let tagCurrent;
@@ -25,10 +25,10 @@
 		return itemsS;
 	}
 
-	const apiURL = '//strapi.adamkarski.art/tags';
+	
 
 	async function getAllTags() {
-		let response = await fetch(apiURL);
+		let response = await fetch(strapiTags);
 		let tags = await response.json();
 		
 		return tags;
