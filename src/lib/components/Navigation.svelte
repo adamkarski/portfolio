@@ -133,7 +133,9 @@
 {#if mobile == true}
 <div class="mobileMenu " transition:scale={{ delay: 150, duration: 400, easing: quintOut }}>
 			<div class="back" >
-		
+				<div class="bg"></div>
+				<div class="bg bg2"></div>
+				<div class="bg bg3"></div>
 			</div>
 	<ul>
 		<li >
@@ -168,5 +170,41 @@
 		transition: all 0.5s ease;
 	}
 
+
+
+	.bg {
+  animation:slide 7s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #016889 50%, #0095BD 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:9s;
+  filter: blur(18px);
+}
+
+.bg3 {
+	filter: blur(18px);
+  animation-duration:13s;
+}
+
+
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+	
+  }
+}
 
 </style>

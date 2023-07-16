@@ -444,7 +444,19 @@ position: absolute;
     }
   }
 }
+@media  (max-width: 424px){
+.hamburguer  {
+  top: 0px;
+  position: absolute;
+  right: -13px;
+}
+.close-hamburguer {
+  top: 5px;
+  position: absolute;
+  right: -6px;
+}
 
+}
 @media  (max-width: 1224px) {
   .logo_div {
         // display:none;
