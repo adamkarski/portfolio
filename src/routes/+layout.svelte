@@ -1,8 +1,8 @@
 <script>
 	import responsive_devices from '$lib/images/responsive_devices.png';
 	import Tagsbar from '$lib/components/Tagsbar.svelte';
-	import Navigation from './Navigation.svelte';
-	import HeaderIcons from './HeaderIcons.svelte';
+	import Navigation from '$lib/components/Navigation.svelte';
+	import HeaderIcons from '$lib/components/HeaderIcons.svelte';
 	import './css/box_ofer.css';
 	import './css/layout.scss';
 	import { page } from '$app/stores';

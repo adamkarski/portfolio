@@ -1,34 +1,38 @@
 <script>
-	// import { page } from '$app/stores';
 	import logotype from '$lib/images/logotype.svg';
 	import logotype_safari from '$lib/images/logotype_safari.svg';
 	import messageIcon from '$lib/images/messageIcon.svg';
-	import clientsIcon from '$lib/images/clientsIcon.svg';
+	// import clientsIcon from '$lib/images/clientsIcon.svg';
 	import { fade } from 'svelte/transition';
-
-	let mobile= false;
+	import { tag } from '$lib/stores/store.js';
+	let mobile = false;
 	let safari = false;
 
 	import { isMacSafari } from 'svelte-browser';
-	if (isMacSafari){
-			safari= true;
-	}else{
-		safari= false;
-		let logotype= '../logotype_safari.svg';
-	
+	if (isMacSafari) {
+		safari = true;
+	} else {
+		safari = false;
+		let logotype = '../logotype_safari.svg';
 	}
 
+	function resetTags() {
+		tag.set('all');
+	};
 </script>
 
-
-<div class="mobileMenu {mobile}" >
+<div class="mobileMenu {mobile}">
 	<div class="back" />
 	<ul>
-		<li><a href="/realizacje" 	on:click={() => mobile = !mobile} class="mobileMenu_a">Realizacje </a></li>
-		<li><a href="/kontakt" 		on:click={() => mobile = !mobile} class="mobileMenu_a">Kontakt</a></li>
+		<li>
+			<a href="/realizacje" on:click={() => (mobile = !mobile)} class="mobileMenu_a">Realizacje </a>
+		</li>
+		<li><a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a">Kontakt</a></li>
 	</ul>
-	<button   transition:fade
-		id="nav-toggle"  on:click={() => mobile = !mobile} 
+	<button
+		transition:fade
+		id="nav-toggle"
+		on:click={() => (mobile = !mobile)}
 		class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
 		><svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
 			><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg
@@ -36,26 +40,19 @@
 	>
 </div>
 
-
-
-
 <nav id="header" class="fixed w-full top-0 text-white lg:bg-opacity-100">
 	<div
 		class="visible_false w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2"
 	>
 		<div class="logo_div">
-			<a href="/realizacje">
-
+			<a href="/realizacje" on:click={() => resetTags()}>
 				{#if !safari}
-				<img src={logotype} alt="Zbigniew Karski" width="400" height="400" />
+					<img src={logotype} alt="Zbigniew Karski" width="400" height="400" />
 				{/if}
-				
+
 				{#if safari}
-				<img src={logotype_safari} alt="Zbigniew Karski" width="400" height="400" />
+					<img src={logotype_safari} alt="Zbigniew Karski" width="400" height="400" />
 				{/if}
-
-
-				
 			</a>
 
 			<div class="text-slogan">
@@ -63,7 +60,10 @@
 			</div>
 		</div>
 		<div class="block lg:hidden pr-4">
-			<button id="nav-toggle" on:click={() => mobile = !mobile} class="focus:outline-none focus:shadow-outline"
+			<button
+				id="nav-toggle"
+				on:click={() => (mobile = !mobile)}
+				class="focus:outline-none focus:shadow-outline"
 				><div class="hamburguer">
 					<div class="lines line-top" />
 					<div class="lines line-mid" />
@@ -76,7 +76,6 @@
 			id="nav-content"
 		>
 			<ul class="list-reset lg:flex justify-end flex-1 items-center NavMenuIcons">
-				
 				<!-- <li class="mr-3">
 					<a
 						class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
@@ -86,7 +85,7 @@
 					>
 					<div class="stackInfo">Klienci</div>
 				</li> -->
-				
+
 				<!-- <li class="mr-3">
 					<a
 						class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"

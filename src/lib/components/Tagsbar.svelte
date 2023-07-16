@@ -1,9 +1,5 @@
 <script script="ts">
 	import { fade } from 'svelte/transition';
-	import logotype from '$lib/images/logotype.svg';
-	import logotype_safari from '$lib/images/logotype_safari.svg';
-	import messageIcon from '$lib/images/messageIcon.svg';
-	import clientsIcon from '$lib/images/clientsIcon.svg';
 	import { tag, portfolioCount, strapiTags } from '$lib/stores/store.js';
 
 
@@ -21,11 +17,8 @@
 
 	function countItems(data) {
 		let itemsS = data.length;
-
 		return itemsS;
 	}
-
-	
 
 	async function getAllTags() {
 		let response = await fetch(strapiTags);
@@ -64,9 +57,8 @@
 					<img
 						alt="Wszystkie prace"
 						src="//strapi.adamkarski.art/icons/all.svg"
-						class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
+						class=" h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 					/>
-					<!-- <button  on:click={ ()=> setTag(taga.tag_name)}>XXX</button> -->
 					<div class="countItems">
 						{$portfolioCount}
 					</div>
@@ -77,9 +69,8 @@
 					<img
 						alt="{taga.tag_name} "
 						src="//strapi.adamkarski.art/icons/{taga.tag_name}.svg"
-						class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
+						class="h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 					/>
-					<!-- <button  on:click={ ()=> setTag(taga.tag_name)}>XXX</button> -->
 					<div class="countItems">
 						{countItems(taga.portfolios)}
 					</div>
@@ -116,6 +107,11 @@
 		margin: 0;
 		padding: 0;
 		z-index: 100000;
+	}
+	.tagsImage{
+
+		/* width: 80%; */
+
 	}
 	.countItems {
 		background-color: rgba(0, 0, 0, 0.35);
