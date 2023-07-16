@@ -99,11 +99,7 @@ margin-top: 300px;
   margin-top: 300px;
   box-shadow: -7px -10px 22px -17px rgba(0,0,0,0.1);
   border-radius: 20px;
-
-
-
 }
-
 
 .firstImage{
   margin-top:0px;
@@ -120,12 +116,12 @@ opacity:0;
 }
 
 .headerElements {
-  transition: all ease .3s;
-  margin-top: 9%;
-  width: 100%;
-  height: 797px;
+  // transition: all ease .3s;
+  // margin-top: 9%;
+  // width: 100%;
+  // height: 797px;
   position: absolute;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 #header {
@@ -164,28 +160,24 @@ a:focus {
 }
 
 .NavMenuIcons li:hover .stackInfo{
-
   opacity: 1;
   visibility: visible;
-
 }
 
 
 .NavMenuIcons .clientsIcon{
-
   top: -4px;
   position: relative;
 }
 
 .mobileMenu{
-  transition: all ease 0.4s;
+  // transition: all ease 0.4s;
   position:fixed;
   width: 100%;
   height: 100%;
   background-color: #1495AF;
   z-index: 1000000;
- 
-  visibility: hidden;
+  // visibility: hidden;
   top: 0px;
   left: 0px;
   margin: 0px;
@@ -200,24 +192,21 @@ a:focus {
   }
   
   .mobileMenu_a{
-
-font-size: 0.5em;
-
+    font-size: 0.5em;
   }
 
 
 ul{
-
-  font-size: 6em;
+  text-align: center;
+  font-size: 5em;
   font-family: 'Archivo Black', sans-serif;
   position: relative;
-
 }
 }
 .mobileMenu.true{
-  opacity:1;
+//   opacity:1;
  
-visibility: visible;
+// visibility: visible;
 
     // a:active{
     //     color:red;
@@ -227,7 +216,7 @@ visibility: visible;
 }
 
 .mobileMenu.false{
-opacity: 0;
+// opacity: 0;
 }
 .coverImage{
   position: relative;
@@ -252,14 +241,14 @@ opacity: 0;
 	50% { transform: scale(1.1);}
 }
   .hamburguer {
-	position: fixed;
-	width: 2em;
-	height: 2em;
-	margin: 3em;
-  top:0px;
-  right:0px;
-	z-index: 30000000;
-	cursor: pointer;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    margin: 2em;
+    top: 34px;
+    right: 58px;
+    z-index: 30000000;
+    cursor: pointer;
 
 	&:hover {
 		animation: zoom 300ms ease-in;
@@ -277,6 +266,10 @@ opacity: 0;
 
 .close-hamburguer {
 	.lines { cursor: pointer;}
+
+  .lines.white{
+    background-color: white;
+  }
 
 	.line-top { transform: translateY(200%) rotate(45deg);}
 
@@ -373,7 +366,7 @@ opacity: 0;
 }
 
 nav {
-background-color: rgba(255,255,255,0.8);
+background-color: rgba(255,255,255,0.0);
 
 
 }
@@ -420,9 +413,12 @@ position: absolute;
 
 }
 
+
+// media queries 
+
 @media screen and (max-width: 1024px) {
   .logo_div {
-  
+    
   // display:none;
   
     .text-slogan {
@@ -448,6 +444,17 @@ position: absolute;
     }
   }
 }
+
+@media  (max-width: 1224px) {
+  .logo_div {
+        // display:none;
+   
+      transform: scale(0.5)!important;
+    
+      margin-left: -10px;
+  }
+
+}
 @media screen and (min-width: 1224px) {
   .backSVG {
     top: 20px;
@@ -456,6 +463,8 @@ position: absolute;
   }
   .logo_div {
     // display:none;
+   
+     
     img {
       // display:none;
     }
@@ -597,6 +606,20 @@ position: absolute;
       }
 
     }
+ p img:hover{
+transition: all ease 0.5s;
+  opacity: 0.87;
+
+ }
+    p::after:has(> img) { 
+      
+      position: relative;
+      top: 0;
+      left: 0;
+      border: 1px solid #000;
+      content: '⛅ ';
+     }
+    
 
     .backButton{
 

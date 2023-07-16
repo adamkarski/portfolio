@@ -19,13 +19,6 @@
 		});
 	}
 
-	function loga(items){
-
-		// console.log(items);
-
-	}
-
-
 
 	async function getPortfolioItems() {
 		let response = await fetch(strapiPorfolios);
@@ -34,7 +27,7 @@
 
 		
 		data = portfolios[Math.floor(Math.random(len) * 10)];
-		console.log(data);
+	
 		return data;
 	}
 	// data = getPortfolioItems();
