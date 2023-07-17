@@ -15,8 +15,8 @@
 	}
 </script>
 
-<div class="w-full p-2 rounded lg:w-1/2 md:w-full xl:w-1/3 item" in:fade out:fly>
-	<div style="transform: translateY(150px) translateZ(0px);">
+<div class="w-full p-2 rounded lg:w-1/3 md:w-1/2 xl:w-1/3 sm:w-1/2 item realizacjeItems"  in:fade out:fly>
+	<div style="transform: translateY(50px) translateZ(0px);">
 		<!-- <div style="display: none;">{src="//strapi.adamkarski.art/"+item.miniatura.url}</div> -->
 
 		<div class="coverImage">

@@ -56,7 +56,7 @@
 				<li class="tag_icon" on:click={() => setTag("all")} on:keydown={() => setTag("all")} >
 					<img
 						alt="Wszystkie prace"
-						src="//strapi.adamkarski.art/icons/all.svg"
+						src="/images/all.svg"
 						class=" h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 					/>
 					<div class="countItems">
@@ -99,14 +99,16 @@
 	}
 
 	#tagsBar {
-		position: fixed;
-		top: 10%;
-		left: 0;
-		height: 100%;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		z-index: 100000;
+		background-color: rgba(0,0,0,0.04);
+    position: fixed;
+    top: 10%;
+    left: 0;
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    z-index: 100000;
+    border-radius: 0px 8px;
 	}
 	.tagsImage{
 

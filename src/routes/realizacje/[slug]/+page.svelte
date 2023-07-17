@@ -106,13 +106,13 @@ import { fade, scale } from 'svelte/transition';
 		function imgElements(){
 		const elements = document.querySelectorAll('#markdown_el p img');
     	
-		console.log(elements);
-		console.log("elemensts")
+		// console.log(elements);
+		// console.log("elemensts")
 			
 		for(var i = 0; i < elements.length; i++) {
 
 			elements[i].addEventListener('click', function(){
-	console.log(this.src)
+	// console.log(this.src)
 	bigImageSrc= this.src;bigImage= true
 
 }, false);
@@ -140,13 +140,13 @@ import { fade, scale } from 'svelte/transition';
 	
 </script>
 
-<div class="container_singlePage">
+<div class="container_singlePage mx-auto m-4 relative sm:w-auto p-10">
 	{#await data}
 		{#if loadingDataState === true}
 			<Loader />
 		{/if}
 
-		{(visible = true)}
+		<div style="display:none">{(visible = true)}</div>
 	{:then item}
 		<div id="markdown_el">
 			
@@ -158,24 +158,26 @@ import { fade, scale } from 'svelte/transition';
 				</a>
 				
 				<h1>{item.title}</h1>
-			{#each item.tags as tag}
-
-
-			<li class="tag_icon">
-				<img alt="{tag.tag_name}"
-					src="//strapi.adamkarski.art/icons/{tag.tag_name}.svg"
-					class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
-				/>
-			</li>
-
-		
-
-		{/each}
+			
+				
 </ul>
-<h2>{item.subtitle}</h2>
+<ul class="flex">
+	{#each item.tags as tag}
+
+
+<li class="tag_icon">
+	<img alt="{tag.tag_name}"
+		src="//strapi.adamkarski.art/icons/{tag.tag_name}.svg"
+		class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
+	/>
+</li>
+
+	{/each}
+	</ul>
+<!-- <h2>{item.subtitle}</h2> -->
 		<div class="texts">
 
-			<button on:click={() => (imgElements())}>xxx</button>
+		
 
 			<Markdown {md} /></div>
 		</div>

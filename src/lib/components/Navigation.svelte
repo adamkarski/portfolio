@@ -5,7 +5,7 @@
 	// import clientsIcon from '$lib/images/clientsIcon.svg';
 	import { fade, scale } from 'svelte/transition';
 	import { quintOut } from "svelte/easing";
-	import { tag } from '$lib/stores/store.js';
+	import { tag, portfolios_all } from '$lib/stores/store.js';
 	let mobile = false;
 	let safari = false;
 
@@ -22,6 +22,15 @@
 	};
 
 	$: hamburger = mobile ? "close-hamburguer" : "";
+
+	let _portfolios={};
+	portfolios_all.subscribe((value) => {
+
+		console.log(_portfolios);
+		_portfolios = value;
+	
+	});
+
 
 	function on_key_down(event) {
         
@@ -113,6 +122,24 @@
 						href="/realizacje">Realizacje</a
 					>
 				</li> -->
+
+
+				<ul style="display:none">
+			
+					{#await _portfolios}
+					
+					{#each _portfolios as elem}
+					<li>
+						<a href="/realizacje/{elem.slug}" on:click={() => (mobile = !mobile)} class="mobileMenu_a" alt={elem.subtitle}>{elem.title} </a>
+					</li>
+						
+					{/each}
+					{/await}
+				
+				</ul>
+
+
+
 				<li class="mr-3">
 					<a
 						class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
@@ -143,7 +170,25 @@
 		</li>
 		<li>
 			<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a">Kontakt</a></li>
-	</ul>
+	
+	
+		<ul style="display:flex">
+			
+			{#await _portfolios then data}
+			
+			{#each data as elem}
+			<li>
+				<a href="/realizacje/{elem.slug}" on:click={() => (mobile = !mobile)} class="mobileMenu_a" alt={elem.subtitle}>{elem.title} </a>
+			</li>
+				
+			{/each}
+			{/await}
+		
+		</ul>
+
+
+	
+		</ul>
 	
 
 
