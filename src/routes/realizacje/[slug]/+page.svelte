@@ -125,28 +125,19 @@ import { fade, scale } from 'svelte/transition';
 
 
 
-
-// 	onMount(() => {
-		
-// 		// console.log()
-// 		// const ctx = $canvas;
-// 		if (browser) {
-//     const headingElement = document.querySelector('h1');
-//     console.log(headingElement);
-//   }
 		
 		
 	
 	
 </script>
 
-<div class="container_singlePage">
+<div class="container_singlePage mx-auto m-4 relative sm:w-auto p-10">
 	{#await data}
 		{#if loadingDataState === true}
 			<Loader />
 		{/if}
 
-		{(visible = true)}
+	<div style="display:none">	{()=>visible = true}</div>
 	{:then item}
 		<div id="markdown_el">
 			
@@ -158,6 +149,8 @@ import { fade, scale } from 'svelte/transition';
 				</a>
 				
 				<h1>{item.title}</h1>
+			</ul>
+			<ul class="flex">
 			{#each item.tags as tag}
 
 
@@ -171,11 +164,12 @@ import { fade, scale } from 'svelte/transition';
 		
 
 		{/each}
-</ul>
-<h2>{item.subtitle}</h2>
+
+		</ul>
+<!-- <h2>{item.subtitle}</h2> -->
 		<div class="texts">
 
-			<button on:click={() => (imgElements())}>xxx</button>
+			
 
 			<Markdown {md} /></div>
 		</div>
@@ -229,6 +223,7 @@ import { fade, scale } from 'svelte/transition';
     -o-object-fit: contain;
     object-fit: contain;
 	box-shadow: 12px 12px 36px 15px rgba(0,0,0,0.1);
+	border-radius: 9px;
 }
 
 

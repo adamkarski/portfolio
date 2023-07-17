@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import Loader from '$lib/components/loader.svelte';
 	import { fade } from 'svelte/transition';
-	import { tag, portfolioCount, strapiPorfolios } from '$lib/stores/store.js';
+	import { tag, portfolioCount, strapiPorfolios, portfolios_all } from '$lib/stores/store.js';
 	import Box from '$lib/components/realizacjeBox.svelte';
 
 	let visible = false;
@@ -14,6 +14,7 @@
 		// console.log(portfolios.length);
 
 		portfolioCount.set(portfolios.length);
+		portfolios_all.set(portfolios);
 		return portfolios;
 	}
 	let promise = getPortfolioItems();
@@ -27,8 +28,8 @@
 </script>
 
 <svelte:head>
-	<title>Realizacje - Zbigniew Adam Karski</title>
-	<meta name="description" content="Realizacje" />
+	<title>Portfolio - Zbigniew Adam Karski</title>
+	<meta name="description" content="Portfolio" />
 </svelte:head>
 
 <section class="section" transition:fade>

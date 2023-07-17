@@ -10,6 +10,7 @@
         }
     }
 </script>
+
 <script>
   	import {width, mobile} from '$lib/utils/device';
     //receive whether to override and render as mobile
@@ -29,7 +30,10 @@
 	let y;
 
 </script>
-
+<svelte:head>
+	<title>Portfolio - Zbigniew Adam Karski</title>
+	<meta name="description" content="Portfolio" />
+</svelte:head>
 <div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'}">
 	<Navigation />
 	
