@@ -80,10 +80,17 @@ import { fade, scale } from 'svelte/transition';
 		return inputStr;
 	}
 
+let title = "";
+let desc="";
+
 	async function getPortfolioItems() {
 		let response = await fetch(apiURL);
 		let portfolios = await response.json();
 		data = portfolios[0];
+
+		title = data.title;
+		desc= data.subtitle;
+		
 		//md = data.content;
 		// console.log(data.content);
 		md = data.content.replace(/\/uploads/g, strapiURL + '/uploads');
@@ -140,6 +147,13 @@ import { fade, scale } from 'svelte/transition';
 	
 </script>
 
+
+<svelte:head>
+	<title>{title} Portfolio - Zbigniew Adam Karski</title>
+	<meta name="description" content="{desc}" />
+</svelte:head>
+
+
 <div class="container_singlePage mx-auto m-4 relative sm:w-auto p-10">
 	{#await data}
 		{#if loadingDataState === true}
@@ -148,6 +162,9 @@ import { fade, scale } from 'svelte/transition';
 
 		<div style="display:none">{(visible = true)}</div>
 	{:then item}
+
+
+
 		<div id="markdown_el">
 			
 			
@@ -161,6 +178,9 @@ import { fade, scale } from 'svelte/transition';
 			
 				
 </ul>
+
+
+
 <ul class="flex">
 	{#each item.tags as tag}
 

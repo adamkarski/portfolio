@@ -15,10 +15,12 @@
 
 		portfolioCount.set(portfolios.length);
 		portfolios_all.set(portfolios);
-		console.log("portfolios_all set ")
+		
 		return portfolios;
 	}
 	let promise = getPortfolioItems();
+
+
 
 	let tagCurrent;
 
