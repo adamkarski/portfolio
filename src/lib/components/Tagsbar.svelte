@@ -72,7 +72,7 @@ tag.subscribe((value) => {
 			{#each item as taga}
 
      
-			<li class="tag_icon"   on:click={ ()=> setTag(taga.tag_name)}>
+			<li class="tag_icon"   on:click={ ()=> setTag(taga.tag_name)} on:keydown={ ()=> setTag(taga.tag_name)}>
 				<img alt="{taga.tag_name} "
 					src="//strapi.adamkarski.art/icons/{taga.tag_name}.svg"
 					class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
@@ -100,12 +100,12 @@ tag.subscribe((value) => {
 
 <style>
 
-  .container {
+  /* .container {
   display: table;
   height: 100%;
   position: absolute;
   overflow: hidden;
-  width: 100%;}
+  width: 100%;} */
 
 .helper {
   position: absolute; /*a variation of an "lte ie7" hack*/
@@ -144,9 +144,10 @@ tag.subscribe((value) => {
 
 
 @media screen and (max-height: 34em){
-  #tagsBar li{
-    /* font-size:70%; */
+  /* #tagsBar li{
+    /* font-size:70%; 
   }
+  */
 }
 
 
