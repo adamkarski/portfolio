@@ -109,7 +109,8 @@ let desc="";
 	onMount(() => {
 
 		setTimeout(imgElements, 3000);
-
+		if(data.title)title = data.title;
+		if(data.subtitle)desc= data.subtitle;
 		function imgElements(){
 		const elements = document.querySelectorAll('#markdown_el p img');
     	
@@ -208,11 +209,14 @@ let desc="";
 <div id="iFrames" />
 
 {#if bigImage}
-<div class="bigImageDiv" on:click={() => (bigImage = !bigImage)} in:fade={{ delay: 150, duration: 400, easing: quintOut }} out:fade>
+<div class="bigImageDiv" 
+on:click={() => (bigImage = !bigImage)} in:fade={{ delay: 150, duration: 400, easing: quintOut }} out:fade
+on:keypress={() => (bigImage = !bigImage)} 
+>
 	
 	<div class="blur"></div>
 	
-	<img src="{bigImageSrc}" class="bigImage"/> 
+	<img src="{bigImageSrc}" class="bigImage" alt="{bigImageSrc}"/> 
 </div>
 {/if}
 

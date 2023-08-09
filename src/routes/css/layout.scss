@@ -34,27 +34,9 @@ body.bodyColor01 {
   transition: all ease 1.2s;
   // background-color: #2c95af;
 }
-body.Realizacje{
-  background: rgb(255,255,255);
-background: -moz-linear-gradient(190deg, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 33%, rgba(42,157,178,1) 100%);
-background: -webkit-linear-gradient(190deg, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 33%, rgba(42,157,178,1) 100%);
-background: linear-gradient(190deg, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 33%, rgba(42,157,178,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#2a9db2",GradientType=1);
 
 
-}
 
-.page_layoutx p img{
-
-  width: 69% !important;
-
-  text-align: center;
-  padding: 0px;
-  margin: 10px;
-  position: relative;
-  border: solid 20px rgba(0,0,0,0.1);
-  margin-left: 0px;
-          }
 
 
 @keyframes scroll {
@@ -431,12 +413,28 @@ position: absolute;
   }
 }
 @media screen and (min-width: 1024px) {
+   
+  section.pageContent .container{
+
+    // width: 1400px;
+  }
+  section.pageContent section.realizacje{
+
+      // width: 1400px;
+          max-width: initial;
+    }
+
+}
+@media screen and (min-width: 1024px) {
   .backSVG {
     transform: scaleX(1.2);
     background-position: -19px -3rem !important;
     background-repeat: no-repeat;
   }
+  section.realizacje {
 
+    margin-top:80px;
+  }
   .logo_div {
     // display:none;
     img {
@@ -709,7 +707,7 @@ section.kontakt{
   position: relative;
   top: -100px;
 
-  .error-message{
+  :global(.error-message){
 
     position: relative;
     float: right;

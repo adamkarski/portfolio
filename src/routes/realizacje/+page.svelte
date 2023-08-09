@@ -11,11 +11,11 @@
 		let response = await fetch(strapiPorfolios);
 		let portfolios = await response.json();
 
-		// console.log(portfolios.length);
+		
 
 		portfolioCount.set(portfolios.length);
 		portfolios_all.set(portfolios);
-		console.log("portfolios_all set ");
+		
 		return portfolios;
 	}
 	let promise = getPortfolioItems();
@@ -35,7 +35,7 @@
 	<meta name="description" content="Portfolio" />
 </svelte:head>
 
-<section class="section" transition:fade>
+<section class="section realizacje" transition:fade>
 	<div class="mx-auto m-8 relative sm:w-auto p-20">
 		<div class="flex flex-wrap flex-table">
 			{#await promise}
@@ -46,6 +46,8 @@
 				{#each item as item}
 
 				{#if tagCurrent == 'all'}
+
+
 				<Box {item} />
 				{/if}
 

@@ -41,17 +41,12 @@
 	
 
 	{#await data}
-		<!-- <div class = "container">
-  <div class= "helper"> -->
+	
 
 		<p style="display: none;">{(visibles = true)}</p>
 	{:then item}
 		<ul id="tagsBar" class="list-none tags">
-			<!-- <a href="/realizacje" class="backButton">
-					<img src={backButton} alt="wstecz" width="25" height="25" />
-				</a>
-				
-				<h1>{item.title}</h1> -->
+		
 
 				<li class="tag_icon" on:click={() => setTag("all")} on:keydown={() => setTag("all")} >
 					<img
@@ -83,23 +78,10 @@
 </div>
 
 <style>
-	.container_a {
-		display: table;
-		height: 100%;
-		position: absolute;
-		overflow: hidden;
-		width: 100%;
-	}
 
-	.helper {
-		position: absolute; /*a variation of an "lte ie7" hack*/
-		top: 50%;
-		display: table-cell;
-		vertical-align: middle;
-	}
 
 	#tagsBar {
-		background-color: rgba(0,0,0,0.04);
+    background-color: rgba(0,0,0,0.04);
     position: fixed;
     top: 10%;
     left: 0;
@@ -108,33 +90,29 @@
     margin: 0;
     padding: 5px;
     z-index: 100000;
-    border-radius: 0px 8px;
+    border-radius: 0px 8px 8px 0px;
+    height: auto;
 	}
-	.tagsImage{
-
-		/* width: 80%; */
-
-	}
+	
 	.countItems {
-		background-color: rgba(0, 0, 0, 0.35);
-		position: absolute;
-		top: 10px;
-		left: 41px;
-		width: 19px;
-		font-weight: 600;
-		color: white;
-		border-radius: 25px;
-		font-size: 9px;
-		padding: 2px;
-		text-align: center;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: absolute;
+    top: 10px;
+    left: 41px;
+    width: 19px;
+    font-weight: 600;
+    color: white;
+    border-radius: 25px;
+    font-size: 9px;
+    padding: 2px;
+    text-align: center;
+    box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.7);
 	}
 	#tagsBar li {
 		position: relative;
 	}
 
 	@media screen and (max-height: 34em) {
-		#tagsBar li {
-			/* font-size:70%; */
-		}
+		
 	}
 </style>

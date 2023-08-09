@@ -11,7 +11,7 @@
 	>
 		<div class="logo_div">
 			<a href="/">
-				<!-- <img src={logotype} alt="Zbigniew Karski" width="400" height="400" /> -->
+				<!-- <img src={logotype} alt="Zbigniew Adam Karski" width="400" height="400" /> -->
 			</a>
 
 			<div class="text-slogan">

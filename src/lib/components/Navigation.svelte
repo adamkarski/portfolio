@@ -26,7 +26,7 @@
 	let _portfolios={};
 	portfolios_all.subscribe((value) => {
 
-		console.log(_portfolios);
+		//console.log(_portfolios);
 		_portfolios = value;
 	
 	});
@@ -35,7 +35,7 @@
 	function on_key_down(event) {
         
 		
-		console.log(event);
+		//console.log(event);
         if (event.repeat) return;
 
         // In the switch-case we're updating our boolean flags whenever the
@@ -76,11 +76,11 @@
 		<div class="logo_div">
 			<a href="/realizacje" on:click={() => resetTags()}>
 				{#if !safari}
-					<img src={logotype} alt="Zbigniew Karski" width="400" height="400" />
+					<img src={logotype} alt="Zbigniew Adam Karski" width="400" height="400" />
 				{/if}
 
 				{#if safari}
-					<img src={logotype_safari} alt="Zbigniew Karski" width="400" height="400" />
+					<img src={logotype_safari} alt="Zbigniew Adam Karski" width="400" height="400" />
 				{/if}
 			</a>
 
@@ -89,45 +89,33 @@
 			</div>
 		</div>
 		<div class="block lg:hidden pr-4">
-			<button
+			<a
 			id="nav-toggle"
 			on:click={() => (mobile = !mobile)}
-			class="focus:outline-none focus:shadow-outline"
+			on:keypress={() => (mobile = !mobile)}
+			class="button focus:outline-none focus:shadow-outline"
 			>
 				<div class="hamburguer {hamburger}">
 				<div class="lines line-top" />
 				<div class="lines line-mid" />
 				<div class="lines line-bottom" />
 				</div>
-			</button>
+			</a>
 		</div>
 		<div
 			class=" w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 lg:bg-opacity-0 text-black p-4 lg:p-0 z-20"
 			id="nav-content"
 		>
 			<ul class="list-reset lg:flex justify-end flex-1 items-center NavMenuIcons">
-				<!-- <li class="mr-3">
-					<a
-						class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
-						href="/realizacje"
-					>
-						<img width="90" height="80" src={clientsIcon} alt="realizacje i klienci" class="clientsIcon"/></a
-					>
-					<div class="stackInfo">Klienci</div>
-				</li> -->
-
-				<!-- <li class="mr-3">
-					<a
-						class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
-						href="/realizacje">Realizacje</a
-					>
-				</li> -->
+				
 
 
 				
 			
-					<ul class="s-4-WZKkKksjVk" style="display: none;"><li class="s-4-WZKkKksjVk"><a href="/realizacje/Back2Roots" class="mobileMenu_a s-4-WZKkKksjVk" alt="Meble i elementy wnętrz na zamówienie">Back2Roots</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Edytor-Wyswig" class="mobileMenu_a s-4-WZKkKksjVk" alt="Edytor szablonów Ebay / Allegro">Edytor Wyswig</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Pasieka-Leban" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona przedsiębiorstwa pasiecznego">Pasieka Leban</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Beskidzka-Izba-Lekarska" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona korporacyjna izby lekarskiej. ">Beskidzka Izba Lekarska</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Kameleon" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona agencji reklamowej">Kameleon</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Skup-samochodow" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona komisu samochodowego">Skup samochodów</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Growbox" class="mobileMenu_a s-4-WZKkKksjVk" alt="Szablon aukcji Allegro">Growbox</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/ASPrinters-logotyp" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp branża drukarska">ASPrinters logotyp</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/DirectParts-Logo" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp branża IT">DirectParts Logo</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Malowanie-Dachow-FJ" class="mobileMenu_a s-4-WZKkKksjVk" alt="Profesjonalne usługi malowania dachów, metodą natryskową i tradycyjnie. ">Malowanie Dachów FJ </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Opusel" class="mobileMenu_a s-4-WZKkKksjVk" alt="Identyfikacja - Oleje liturgiczne">Opusel</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Simon-Renovierungen" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp norweskiej firmy budowlanej">Simon Renovierungen</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Seve" class="mobileMenu_a s-4-WZKkKksjVk" alt="Banery reklamowe - wypożyczalnia sprzętu budowlanego ">Seve</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Projektowanie-i-pielegnacja-ogrodow" class="mobileMenu_a s-4-WZKkKksjVk" alt="usługi z zakresu architektury">Projektowanie i pielęgnacja ogrodów </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Elektrolabs" class="mobileMenu_a s-4-WZKkKksjVk" alt="Usługi - elektryk z uprawnieniami">Elektrolabs</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Branding" class="mobileMenu_a s-4-WZKkKksjVk" alt="Etykieta soku aroniowego ">Branding</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Moroccan" class="mobileMenu_a s-4-WZKkKksjVk" alt="Plakat występu zespołu baletu współczesnego Moroccan">Moroccan</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Benica" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp - naturalne kosmetyki">Benica</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Royal-Canin-Segmnet-Day" class="mobileMenu_a s-4-WZKkKksjVk" alt="Plakat spotkań integracyjnych Royal Canin">Royal Canin - Segmnet Day </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Bisico" class="mobileMenu_a s-4-WZKkKksjVk" alt="Katalog produktów">Bisico</a> </li></ul>
-					<!-- {#await _portfolios}
+					<!-- <ul class="" style="display: none;">
+						<li class=""><a href="/realizacje/Back2Roots" class="mobileMenu_a s-4-WZKkKksjVk" alt="Meble i elementy wnętrz na zamówienie">Back2Roots</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Edytor-Wyswig" class="mobileMenu_a s-4-WZKkKksjVk" alt="Edytor szablonów Ebay / Allegro">Edytor Wyswig</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Pasieka-Leban" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona przedsiębiorstwa pasiecznego">Pasieka Leban</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Beskidzka-Izba-Lekarska" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona korporacyjna izby lekarskiej. ">Beskidzka Izba Lekarska</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Kameleon" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona agencji reklamowej">Kameleon</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Skup-samochodow" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona komisu samochodowego">Skup samochodów</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Growbox" class="mobileMenu_a s-4-WZKkKksjVk" alt="Szablon aukcji Allegro">Growbox</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/ASPrinters-logotyp" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp branża drukarska">ASPrinters logotyp</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/DirectParts-Logo" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp branża IT">DirectParts Logo</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Malowanie-Dachow-FJ" class="mobileMenu_a s-4-WZKkKksjVk" alt="Profesjonalne usługi malowania dachów, metodą natryskową i tradycyjnie. ">Malowanie Dachów FJ </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Opusel" class="mobileMenu_a s-4-WZKkKksjVk" alt="Identyfikacja - Oleje liturgiczne">Opusel</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Simon-Renovierungen" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp norweskiej firmy budowlanej">Simon Renovierungen</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Seve" class="mobileMenu_a s-4-WZKkKksjVk" alt="Banery reklamowe - wypożyczalnia sprzętu budowlanego ">Seve</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Projektowanie-i-pielegnacja-ogrodow" class="mobileMenu_a s-4-WZKkKksjVk" alt="usługi z zakresu architektury">Projektowanie i pielęgnacja ogrodów </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Elektrolabs" class="mobileMenu_a s-4-WZKkKksjVk" alt="Usługi - elektryk z uprawnieniami">Elektrolabs</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Branding" class="mobileMenu_a s-4-WZKkKksjVk" alt="Etykieta soku aroniowego ">Branding</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Moroccan" class="mobileMenu_a s-4-WZKkKksjVk" alt="Plakat występu zespołu baletu współczesnego Moroccan">Moroccan</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Benica" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp - naturalne kosmetyki">Benica</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Royal-Canin-Segmnet-Day" class="mobileMenu_a s-4-WZKkKksjVk" alt="Plakat spotkań integracyjnych Royal Canin">Royal Canin - Segmnet Day </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Bisico" class="mobileMenu_a s-4-WZKkKksjVk" alt="Katalog produktów">Bisico</a> </li></ul> -->
+				
+					{#await _portfolios}
 					
 					{#each _portfolios as elem}
 					<li>
@@ -135,7 +123,7 @@
 					</li>
 						
 					{/each}
-					{/await} -->
+					{/await}
 				
 					
 
