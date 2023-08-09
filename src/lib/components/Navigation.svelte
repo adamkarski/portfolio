@@ -33,7 +33,7 @@
 	function on_key_down(event) {
         
 		
-		console.log(event);
+		// console.log(event);
         if (event.repeat) return;
 
         // In the switch-case we're updating our boolean flags whenever the
@@ -74,11 +74,11 @@
 		<div class="logo_div">
 			<a href="/realizacje" on:click={() => resetTags()}>
 				{#if !safari}
-					<img src={logotype} alt="Zbigniew Karski" width="400" height="400" />
+					<img src={logotype} alt="Zbigniew Adam Karski" width="400" height="400" />
 				{/if}
 
 				{#if safari}
-					<img src={logotype_safari} alt="Zbigniew Karski" width="400" height="400" />
+					<img src={logotype_safari} alt="Zbigniew Adam Karski" width="400" height="400" />
 				{/if}
 			</a>
 
@@ -87,17 +87,18 @@
 			</div>
 		</div>
 		<div class="block lg:hidden pr-4">
-			<button
+			<a 
 			id="nav-toggle"
+			on:keydown={() => (mobile = !mobile)}
 			on:click={() => (mobile = !mobile)}
-			class="focus:outline-none focus:shadow-outline"
-			>
+			class="button focus:outline-none focus:shadow-outline">
+
 				<div class="hamburguer {hamburger}">
 				<div class="lines line-top" />
 				<div class="lines line-mid" />
 				<div class="lines line-bottom" />
 				</div>
-			</button>
+			</a>
 		</div>
 		<div
 			class=" w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 lg:bg-opacity-0 text-black p-4 lg:p-0 z-20"
@@ -143,7 +144,7 @@
 					>
 						<img width="75" height="60" src={messageIcon} alt="wyślij wiadomość!" /></a
 					>
-					<div class="stackInfo">Kontakt</div>
+					<span class="stackInfo">Kontakt</span>
 				</li>
 			</ul>
 		</div>

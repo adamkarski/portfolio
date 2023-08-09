@@ -106,14 +106,16 @@ import { fade, scale } from 'svelte/transition';
 		function imgElements(){
 		const elements = document.querySelectorAll('#markdown_el p img');
     	
-		console.log(elements);
-		console.log("elemensts")
+		// console.log(elements);
+		// console.log("elemensts")
 			
 		for(var i = 0; i < elements.length; i++) {
 
 			elements[i].addEventListener('click', function(){
-	console.log(this.src)
-	bigImageSrc= this.src;bigImage= true
+	// console.log(this.src)
+	bigImageSrc= this.src
+	bigImage= true;
+
 
 }, false);
 }
@@ -180,11 +182,16 @@ import { fade, scale } from 'svelte/transition';
 <div id="iFrames" />
 
 {#if bigImage}
-<div class="bigImageDiv" on:click={() => (bigImage = !bigImage)} in:fade={{ delay: 150, duration: 400, easing: quintOut }} out:fade>
+<div class="bigImageDiv" 
+
+on:click={() => (bigImage = !bigImage)} in:fade={{ delay: 150, duration: 400, easing: quintOut }} out:fade
+on:keypress={() => (bigImage = !bigImage)} 
+
+>
 	
 	<div class="blur"></div>
 	
-	<img src="{bigImageSrc}" class="bigImage"/> 
+	<img src="{bigImageSrc}" class="bigImage" alt="{bigImageSrc}"/> 
 </div>
 {/if}
 

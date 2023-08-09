@@ -19,7 +19,7 @@ tag.subscribe((value) => {
 
     tag.set(val);
 
-    console.log("tagCurrent");
+    // console.log("tagCurrent");
   }
 
 // const apiURL = '//strapi.adamkarski.art/portfolios/?slug=' + $page.params.slug;
@@ -29,7 +29,7 @@ tag.subscribe((value) => {
 	async function getPortfolioItems() {
 	  	let response = await fetch(apiURL);
 	  		let tags = await response.json();
-			 console.log(tags);
+			//  console.log(tags);
 	  	return tags;
 		}
 	let data = getPortfolioItems();
@@ -77,6 +77,7 @@ tag.subscribe((value) => {
 					src="//strapi.adamkarski.art/icons/{taga.tag_name}.svg"
 					class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
 				/>
+        <p class="invisible">{taga.tag_name}</p> 
 				<!-- <button  on:click={ ()=> setTag(taga.tag_name)}>XXX</button> -->
 				<div class="countItems" >
           {countItems(taga.portfolios)}

@@ -67,14 +67,15 @@
 
 		{#each item as item}
 
+		
 
 			{#each item.tags as ls}
-
+			<div class="invisible nodisplay">
 			{#if tagCurrent =="all"}
 			{tagCurrent}
 
 			{/if}
-
+		</div>
 			{#if ls.tag_name == tagCurrent  }
 			
 
@@ -116,7 +117,7 @@
 											style="transform: none;"
 										>
 										
-										<img alt=""src={moreinfo} class="w10 h10" />
+										<img  src={moreinfo} alt="{item.title}" class="w10 h10" />
 										
 										</button>
 								</a>
