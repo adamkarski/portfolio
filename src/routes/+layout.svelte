@@ -10,34 +10,44 @@
         }
     }
 </script>
-
 <script>
-  	import {width, mobile} from '$lib/utils/device';
-    //receive whether to override and render as mobile
+  	// Device type 
+	import {width, mobile} from '$lib/utils/device';
     export let overrideMobile = true;
-    //store this in the shared stores located in '$lib/utils/device'
-    $mobile = overrideMobile;
+   	$mobile = overrideMobile;
+
+	// Modal
+	import Modal from '$lib/components/Modal.svelte';
+    import { modal } from '$lib/stores/store.js';
 
 
+	// Page elements
 	import responsive_devices from '$lib/images/responsive_devices.png';
 	import Tagsbar from '$lib/components/Tagsbar.svelte';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import HeaderIcons from '$lib/components/HeaderIcons.svelte';
-	import './css/box_ofer.css';
-	import './css/layout.scss';
+	
+	// Styles
+	import '$lib/css/box_ofer.css';
+	import '$lib/css/layout.scss';
+	
+	// App Store 
 	import { page } from '$app/stores';
 
 	let y;
 
 </script>
-<svelte:head>
-	<title>Portfolio - Zbigniew Adam Karski</title>
-	<meta name="description" content="Portfolio" />
-</svelte:head>
+{$modal.open}
+	<Modal />
+
 <div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'}">
 	<Navigation />
 	
 	<HeaderIcons />
+
+
+	
+    <button on:click={() => ($modal.open = true)}></button>
 
 	<section class="startPage">
 		
@@ -63,9 +73,17 @@
 		</div>
 	</section>
 
+	
+
 	{#if $page.url.pathname =="/realizacje" || $page.url.pathname =="/"}
+	
+	
 	<Tagsbar />
 	{/if}
+
+	
+	
+		
 </div>
 
 <svelte:window bind:scrollY={y} />

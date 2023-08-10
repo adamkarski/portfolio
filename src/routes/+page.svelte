@@ -1,6 +1,7 @@
-<script lang="ts">
+<script>
 	import Loader from '$lib/components/loader.svelte';
 	import { fade } from 'svelte/transition';
+
 	import { tag, portfolioCount, strapiPorfolios, portfolios_all } from '$lib/stores/store.js';
 	import Box from '$lib/components/realizacjeBox.svelte';
 
@@ -11,13 +12,16 @@
 		let response = await fetch(strapiPorfolios);
 		let portfolios = await response.json();
 
-		// console.log(portfolios.length);
+		
 
 		portfolioCount.set(portfolios.length);
 		portfolios_all.set(portfolios);
+		
 		return portfolios;
 	}
 	let promise = getPortfolioItems();
+
+
 
 	let tagCurrent;
 
@@ -28,11 +32,11 @@
 </script>
 
 <svelte:head>
-	<title>Portfolio - Zbigniew Adam Karski</title>
+	<title>Realizacje - Zbigniew Adam Karski</title>
 	<meta name="description" content="Portfolio" />
 </svelte:head>
 
-<section class="section" transition:fade>
+<section class="section realizacje" transition:fade>
 	<div class="mx-auto m-8 relative sm:w-auto p-20">
 		<div class="flex flex-wrap flex-table">
 			{#await promise}
@@ -43,6 +47,7 @@
 				{#each item as item}
 
 				{#if tagCurrent == 'all'}
+				
 				<Box {item} />
 				{/if}
 

@@ -250,7 +250,7 @@
 
 	
 
-	.error-message {
+	:global(.error-message) {
 		color: tomato;
 		flex: 0 0 100%;
 		margin: 0 2px;
