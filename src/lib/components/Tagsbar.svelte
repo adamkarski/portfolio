@@ -1,7 +1,6 @@
 <script script="ts">
 	import { fade } from 'svelte/transition';
-	import { tag, portfolioCount, strapiTags} from '$lib/stores/store.js';
-
+	import { tag, portfolioCount, strapiURL, strapiTags, modal } from '$lib/stores/store.js';
 
 	let tagCurrent;
 
@@ -10,10 +9,14 @@
 	});
 	
 
-	function setTag(val) {
-		tag.set(val);
-	}
 	
+	let setTag=(d)=> {
+		tag.set(d);
+	}
+	let setModal =(d)=>{
+		$modal={...d}
+	}
+
 	
 
 	let visibles = true;
@@ -30,14 +33,9 @@
 		return tags;
 	}
 	let data = getAllTags();
-	// onMount(async () => {
 
-	//   let data = getTags();
-	//   // rooms.subscribe((value) => {
-	//   //   jsonRoomsData = value;
-	//   // });
 
-	// });
+
 </script>
 
 <div class="container" in:fade out:fade>
@@ -66,7 +64,7 @@
 				<li class="tag_icon" on:click={() => setTag(taga.tag_name)}  on:keydown={() => setTag("all")} >
 					<img
 						alt="{taga.tag_name} "
-						src="//strapi.adamkarski.art/icons/{taga.tag_name}.svg"
+						src="{strapiURL}icons/{taga.tag_name}.svg"
 						class="h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 					/>
 					<div class="countItems">
@@ -76,8 +74,10 @@
 			{/each}
 		</ul>
 	{:catch error}
-		
-		<p style="color: red">{error.message}</p>
+
+	{setModal({ open: true, title: 'Wystąpił błąd', message: error, button: 'OK' , action: 'reload'})}
+
+		<!-- <p style="color: red">{error.message}</p> -->
 	{/await}
 </div>
 

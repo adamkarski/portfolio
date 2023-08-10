@@ -5,7 +5,7 @@
 	// import clientsIcon from '$lib/images/clientsIcon.svg';
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	import { tag, portfolios_all } from '$lib/stores/store.js';
+	import { tag } from '$lib/stores/store.js';
 	let mobile = false;
 	let safari = false;
 	
@@ -27,16 +27,16 @@
 
 	$: hamburger = mobile ? 'close-hamburguer' : '';
 
-	let _portfolios = {};
+	// let _portfolios = {};
 
 	function log(x) {
 		console.log(x);
 	}
 
 	onMount(() => {
-		portfolios_all.subscribe((value) => {
-			_portfolios = value;
-		});
+		// portfolios_all.subscribe((value) => {
+		// 	_portfolios = value;
+		// });
 	});
 
 	function on_key_down(event) {
@@ -51,13 +51,13 @@
 
 				// By using `preventDefault`, it tells the Browser not to handle the
 				// key stroke for its own shortcuts or text input.
-				event.preventDefault();
+				//event.preventDefault();
 				break;
 
 			case 'h':
 				is_h_down = true;
 
-				event.preventDefault();
+				//event.preventDefault();
 				break;
 		}
 
@@ -318,7 +318,7 @@
 		<div
 			class="hamburguer {hamburger}"
 			on:click={() => (mobile = !mobile)}
-			on:keydown={on_key_down()}
+			on:keydown={()=> (mobile)}
 		>
 			<div class="lines line-top white" />
 			<div class="lines line-mid white" />

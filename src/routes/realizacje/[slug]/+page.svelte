@@ -7,8 +7,12 @@
 	import { strapiURL } from '$lib/stores/store.js';
 	import { fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-
+	import {modal}	from '$lib/stores/store';	
 	// $: elementsIMG = window.querySelectorAll('#markdown_el p img');
+
+	let setModal =(d)=>{
+		$modal={...d}
+	}
 
 	let loadingDataState = true;
 	let visible = false;
@@ -172,7 +176,11 @@
 			</div>
 		</div>
 	{:catch error}
-		<p style="color: red">{error.message}</p>
+
+
+	{setModal({ open: true, title: 'Wystąpił błąd', message: error, button: 'OK' , action: 'reload'})}
+
+
 	{/await}
 </div>
 <div id="iFrames" />

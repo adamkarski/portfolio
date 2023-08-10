@@ -1,10 +1,8 @@
 
 <script context="module">
-    //the session object destructured below comes from the hooks.js file above
     export async function load({ session }) {
         return {
             props: {
-                //Add the boolean as a property of the __layout.svelte component
                 overrideMobile: session.mobile,
             }
         }
@@ -37,7 +35,7 @@
 	let y;
 
 </script>
-{$modal.open}
+<!-- {$modal.open} -->
 	<Modal />
 
 <div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'}">

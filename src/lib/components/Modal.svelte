@@ -1,36 +1,38 @@
-<script lang="ts">
+<script>
+	
+
 	import { modal } from '$lib/stores/store.js';
 	import { fade } from 'svelte/transition';
 	import { goto, invalidate } from '$app/navigation';
 
 	function reloadPage() {
 		const thisPage = window.location.pathname;
-		goto(thisPage);
+		goto('/').then(() => goto(thisPage));
 	}
 
-	const close = () => ($modal.open = false).then({
-
-
-
-            console.log('reload')        
-    }
-        // if($modal.action == 'reload'){reloadPage()}
-
-
-    ) 
-
-                            
-    
+	const close = () => {
+		$modal.open = false;
+		if ($modal.action == 'reload') {
+			reloadPage();
+			console.log('reload');
+		}
+	};
 
 	let open = () => $modal.open;
 	let openModal = () => ($modal.open = true);
 
 	const handle_keydown = (e) => {
-		// if (e.key === 'Escape') return close();
+		if (e.key === 'Escape') return close();
 	};
 
-	// import '../../lib/picocss/pico/scss/pico.scss';
+	export const setModal= (d) =>{
+		$modal= {...d}
+	}
+
+
 </script>
+
+
 
 <svelte:window on:keydown|once={handle_keydown} />
 
@@ -49,10 +51,10 @@
 {/if}
 
 <style lang="scss">
-	@import '../../lib/picocss/pico/scss/themes/default';
-	@import '../../lib/picocss/pico/scss/content/button';
-	@import '../../lib/picocss/pico/scss/components/card';
-	@import '../../lib/picocss/pico/scss/components/modal';
+	@import '../../lib/css/picocss/pico/scss/themes/default';
+	@import '../../lib/css/picocss/pico/scss/content/button';
+	@import '../../lib/css/picocss/pico/scss/components/card';
+	@import '../../lib/css/picocss/pico/scss/components/modal';
 
 	dialog {
 		z-index: 900042;

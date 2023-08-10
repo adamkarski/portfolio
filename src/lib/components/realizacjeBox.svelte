@@ -19,7 +19,6 @@
 
 	item realizacjeItems"  in:fade out:fly>
 	<div style="transform: translateY(50px) translateZ(0px);">
-		<!-- <div style="display: none;">{src="//strapi.adamkarski.art/"+item.miniatura.url}</div> -->
 
 		<div class="coverImage">
 			{#await preload(src) then _}

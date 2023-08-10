@@ -2,7 +2,7 @@
 	import Loader from '$lib/components/loader.svelte';
 	import { fade } from 'svelte/transition';
 
-	import { tag, portfolioCount, strapiPorfolios, portfolios_all } from '$lib/stores/store.js';
+	import { tag, portfolioCount, strapiPorfolios, portfolios_all, modal} from '$lib/stores/store.js';
 	import Box from '$lib/components/realizacjeBox.svelte';
 
 	let visible = false;
@@ -11,9 +11,6 @@
 	async function getPortfolioItems() {
 		let response = await fetch(strapiPorfolios);
 		let portfolios = await response.json();
-
-		
-
 		portfolioCount.set(portfolios.length);
 		portfolios_all.set(portfolios);
 		
@@ -21,14 +18,17 @@
 	}
 	let promise = getPortfolioItems();
 
-
-
 	let tagCurrent;
 
-	tag.subscribe((value) => {
-		tagCurrent = value;
+	tag.subscribe((d) => {
+		tagCurrent = d;
 	});
+	let setModal =(d)=>{
+		$modal={...d}
+	}
 	
+	
+
 </script>
 
 <svelte:head>
@@ -62,8 +62,11 @@
 					{/if}
 				{/each}
 			{:catch error}
-				<p style="color: red">{error.message}</p>
-			{/await}
+			
+	{setModal({ open: true, title: 'Wystąpił błąd', message: error, button: 'OK' , action: 'reload'})}
+
+			
+				{/await}
 		</div>
 	</div>
 </section>

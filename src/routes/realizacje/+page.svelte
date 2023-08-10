@@ -8,6 +8,7 @@
 		portfolios_all,
 		modal
 	} from '$lib/stores/store.js';
+	// import axios from 'axios';
 	import Box from '$lib/components/realizacjeBox.svelte';
 
 	
@@ -16,43 +17,48 @@
 	let visible = false;
 	let loadingDataState = true;
 
+
+
 	async function getPortfolioItems() {
-		await fetch(strapiPorfolios)
-			.then((response) => {
-				if (response.status >= 400 && response.status < 600) {
-					
-					console.log(response)
-				}
-				return response;
-			})
-			.then((returned) => {
+		const response = await fetch(strapiPorfolios);
+
+		if (response.ok) {
+
 				
-				let portfolios = returned.json();
+				let portfolios = response.json();
 				portfolioCount.set(portfolios.length);
-				portfolios_all.set(portfolios);
+				//portfolios_all.set(portfolios);
 
-				return portfolios;
-			})
-			.catch((error) => {
-				modal.set({open: true, title: 'Wystąpił błąd', message: error, button: 'Otwórz ponownie', action:'reload'});
-				console.log(error);
-				
-			});
+  		return portfolios
+			
+		} else {
 
-		
-		
+
+			modal.set({open: true, title: 'Wystąpił błąd', message: error, button: 'Otwórz ponownie', action:'reload'});
+			console.log(response);
+			// throw new Error(users);
+		}
+	}
 
 	
-
-		
-	}
 	let promise = getPortfolioItems();
 
 	let tagCurrent;
 
-	tag.subscribe((value) => {
-		tagCurrent = value;
+	tag.subscribe((d) => {
+		tagCurrent = d;
 	});
+	let setModal =(d)=>{
+		$modal={...d}
+	}
+
+let log= (e)=> {
+
+console.log(e);
+
+
+}
+
 </script>
 
 <svelte:head>
@@ -68,6 +74,10 @@
 					<Loader />
 				{/if}
 			{:then item}
+				{#if item}
+					
+			
+				<!-- {log(item)} -->
 				{#each item as item}
 					{#if tagCurrent == 'all'}
 						<Box {item} />
@@ -81,8 +91,10 @@
 						{/each}
 					{/if}
 				{/each}
+				{/if}
 			{:catch error}
-				<p style="color: red">{error.message}</p>
+			{setModal({ open: true, title: 'Wystąpił błąd', message: error, button: 'OK' , action: 'reload'})}
+
 			{/await}
 		</div>
 	</div>
