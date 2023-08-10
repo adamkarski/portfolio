@@ -3,13 +3,17 @@
 	import logotype_safari from '$lib/images/logotype_safari.svg';
 	import messageIcon from '$lib/images/messageIcon.svg';
 	// import clientsIcon from '$lib/images/clientsIcon.svg';
-	import { fade, scale } from 'svelte/transition';
-	import { quintOut } from "svelte/easing";
+	import { scale } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 	import { tag, portfolios_all } from '$lib/stores/store.js';
 	let mobile = false;
 	let safari = false;
+	
+
+
 
 	import { isMacSafari } from 'svelte-browser';
+	import { onMount } from 'svelte';
 	if (isMacSafari) {
 		safari = true;
 	} else {
@@ -19,55 +23,51 @@
 
 	function resetTags() {
 		tag.set('all');
-	};
+	}
 
-	$: hamburger = mobile ? "close-hamburguer" : "";
+	$: hamburger = mobile ? 'close-hamburguer' : '';
 
-	let _portfolios={};
-	portfolios_all.subscribe((value) => {
+	let _portfolios = {};
 
-		//console.log(_portfolios);
-		_portfolios = value;
-	
+	function log(x) {
+		console.log(x);
+	}
+
+	onMount(() => {
+		portfolios_all.subscribe((value) => {
+			_portfolios = value;
+		});
 	});
 
-
 	function on_key_down(event) {
-        
-		
 		//console.log(event);
-        if (event.repeat) return;
+		if (event.repeat) return;
 
-        // In the switch-case we're updating our boolean flags whenever the
-        // desired bound keys are pressed.
-        switch (event.key) {
-            case "Control":
-                is_ctrl_down = true;
+		// In the switch-case we're updating our boolean flags whenever the
+		// desired bound keys are pressed.
+		switch (event.key) {
+			case 'Control':
+				is_ctrl_down = true;
 
-                // By using `preventDefault`, it tells the Browser not to handle the
-                // key stroke for its own shortcuts or text input.
-                event.preventDefault();
-                break;
+				// By using `preventDefault`, it tells the Browser not to handle the
+				// key stroke for its own shortcuts or text input.
+				event.preventDefault();
+				break;
 
-            case "h":
-                is_h_down = true;
+			case 'h':
+				is_h_down = true;
 
-                event.preventDefault();
-                break;
-        }
+				event.preventDefault();
+				break;
+		}
 
-        // If both of boolean flags were truthy, that means our
-        // keybind can be activated.
-        if (is_ctrl_down && is_h_down) {
-            on_bind();
-        }
-    }
-
-
-
+		// If both of boolean flags were truthy, that means our
+		// keybind can be activated.
+		if (is_ctrl_down && is_h_down) {
+			on_bind();
+		}
+	}
 </script>
-
-
 
 <nav id="header" class="fixed w-full top-0 text-white lg:bg-opacity-100">
 	<div
@@ -90,15 +90,15 @@
 		</div>
 		<div class="block lg:hidden pr-4">
 			<a
-			id="nav-toggle"
-			on:click={() => (mobile = !mobile)}
-			on:keypress={() => (mobile = !mobile)}
-			class="button focus:outline-none focus:shadow-outline"
+				id="nav-toggle"
+				on:click={() => (mobile = !mobile)}
+				on:keypress={() => (mobile = !mobile)}
+				class="button focus:outline-none focus:shadow-outline"
 			>
 				<div class="hamburguer {hamburger}">
-				<div class="lines line-top" />
-				<div class="lines line-mid" />
-				<div class="lines line-bottom" />
+					<div class="lines line-top" />
+					<div class="lines line-mid" />
+					<div class="lines line-bottom" />
 				</div>
 			</a>
 		</div>
@@ -108,26 +108,168 @@
 		>
 			<ul class="list-reset lg:flex justify-end flex-1 items-center NavMenuIcons">
 				
-
-
+				<!-- SEO LINKS FOR SITEMAP  -->
 				
-			
-					<!-- <ul class="" style="display: none;">
-						<li class=""><a href="/realizacje/Back2Roots" class="mobileMenu_a s-4-WZKkKksjVk" alt="Meble i elementy wnętrz na zamówienie">Back2Roots</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Edytor-Wyswig" class="mobileMenu_a s-4-WZKkKksjVk" alt="Edytor szablonów Ebay / Allegro">Edytor Wyswig</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Pasieka-Leban" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona przedsiębiorstwa pasiecznego">Pasieka Leban</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Beskidzka-Izba-Lekarska" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona korporacyjna izby lekarskiej. ">Beskidzka Izba Lekarska</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Kameleon" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona agencji reklamowej">Kameleon</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Skup-samochodow" class="mobileMenu_a s-4-WZKkKksjVk" alt="Strona komisu samochodowego">Skup samochodów</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Growbox" class="mobileMenu_a s-4-WZKkKksjVk" alt="Szablon aukcji Allegro">Growbox</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/ASPrinters-logotyp" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp branża drukarska">ASPrinters logotyp</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/DirectParts-Logo" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp branża IT">DirectParts Logo</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Malowanie-Dachow-FJ" class="mobileMenu_a s-4-WZKkKksjVk" alt="Profesjonalne usługi malowania dachów, metodą natryskową i tradycyjnie. ">Malowanie Dachów FJ </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Opusel" class="mobileMenu_a s-4-WZKkKksjVk" alt="Identyfikacja - Oleje liturgiczne">Opusel</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Simon-Renovierungen" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp norweskiej firmy budowlanej">Simon Renovierungen</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Seve" class="mobileMenu_a s-4-WZKkKksjVk" alt="Banery reklamowe - wypożyczalnia sprzętu budowlanego ">Seve</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Projektowanie-i-pielegnacja-ogrodow" class="mobileMenu_a s-4-WZKkKksjVk" alt="usługi z zakresu architektury">Projektowanie i pielęgnacja ogrodów </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Elektrolabs" class="mobileMenu_a s-4-WZKkKksjVk" alt="Usługi - elektryk z uprawnieniami">Elektrolabs</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Branding" class="mobileMenu_a s-4-WZKkKksjVk" alt="Etykieta soku aroniowego ">Branding</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Moroccan" class="mobileMenu_a s-4-WZKkKksjVk" alt="Plakat występu zespołu baletu współczesnego Moroccan">Moroccan</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Benica" class="mobileMenu_a s-4-WZKkKksjVk" alt="Logotyp - naturalne kosmetyki">Benica</a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Royal-Canin-Segmnet-Day" class="mobileMenu_a s-4-WZKkKksjVk" alt="Plakat spotkań integracyjnych Royal Canin">Royal Canin - Segmnet Day </a> </li><li class="s-4-WZKkKksjVk"><a href="/realizacje/Bisico" class="mobileMenu_a s-4-WZKkKksjVk" alt="Katalog produktów">Bisico</a> </li></ul> -->
-				
-					{#await _portfolios}
-					
-					{#each _portfolios as elem}
+				<ul style="display: none;">
 					<li>
-						<a href="/realizacje/{elem.slug}" on:click={() => (mobile = !mobile)} class="mobileMenu_a" alt={elem.subtitle}>{elem.title} </a>
+						<a
+							href="/realizacje/Back2Roots"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Meble i elementy wnętrz na zamówienie">Back2Roots</a
+						>
 					</li>
-						
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Edytor-Wyswig"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Edytor szablonów Ebay / Allegro">Edytor Wyswig</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Pasieka-Leban"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Strona przedsiębiorstwa pasiecznego">Pasieka Leban</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Beskidzka-Izba-Lekarska"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Strona korporacyjna izby lekarskiej. ">Beskidzka Izba Lekarska</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Kameleon"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Strona agencji reklamowej">Kameleon</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Skup-samochodow"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Strona komisu samochodowego">Skup samochodów</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Growbox"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Szablon aukcji Allegro">Growbox</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/ASPrinters-logotyp"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Logotyp branża drukarska">ASPrinters logotyp</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/DirectParts-Logo"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Logotyp branża IT">DirectParts Logo</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Malowanie-Dachow-FJ"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Profesjonalne usługi malowania dachów, metodą natryskową i tradycyjnie. "
+							>Malowanie Dachów FJ
+						</a>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Opusel"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Identyfikacja - Oleje liturgiczne">Opusel</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Simon-Renovierungen"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Logotyp norweskiej firmy budowlanej">Simon Renovierungen</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Seve"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Banery reklamowe - wypożyczalnia sprzętu budowlanego ">Seve</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Projektowanie-i-pielegnacja-ogrodow"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="usługi z zakresu architektury"
+							>Projektowanie i pielęgnacja ogrodów
+						</a>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Elektrolabs"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Usługi - elektryk z uprawnieniami">Elektrolabs</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Branding"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Etykieta soku aroniowego ">Branding</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Moroccan"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Plakat występu zespołu baletu współczesnego Moroccan">Moroccan</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Benica"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Logotyp - naturalne kosmetyki">Benica</a
+						>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a
+							href="/realizacje/Royal-Canin-Segmnet-Day"
+							class="mobileMenu_a s-4-WZKkKksjVk"
+							alt="Plakat spotkań integracyjnych Royal Canin"
+							>Royal Canin - Segmnet Day
+						</a>
+					</li>
+					<li class="s-4-WZKkKksjVk">
+						<a href="/realizacje/Bisico" class="mobileMenu_a s-4-WZKkKksjVk" alt="Katalog produktów"
+							>Bisico</a
+						>
+					</li>
+				</ul>
+
+				<!-- <ul style="display: none;">
+				{#if _portfolios}
+					{#each Object.entries(_portfolios) as elem}
+						<li>
+							<a
+								href="realizacje/{elem[1].slug}"
+								target="_self"
+								on:click={() => (mobile = !mobile)}
+								class="mobileMenu_a"
+								alt={elem[1].subtitle}
+								>{elem[1].title}
+							</a>
+						</li>
 					{/each}
-					{/await}
-				
-					
-
-
+				{/if}
+				</ul> -->
 
 				<li class="mr-3">
 					<a
@@ -143,27 +285,25 @@
 	</div>
 </nav>
 
-
-
-
 {#if mobile == true}
-<div class="mobileMenu " transition:scale={{ delay: 150, duration: 400, easing: quintOut }}>
-			<div class="back" >
-				<div class="bg"></div>
-				<div class="bg bg2"></div>
-				<div class="bg bg3"></div>
-			</div>
-	<ul>
-		<li >
-			<a href="/realizacje" on:click={() => (mobile = !mobile)} class="mobileMenu_a">Realizacje </a>
-		</li>
-		<li>
-			<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a">Kontakt</a></li>
-	
-	
-		<ul style="display:none">
-			
-			<!-- {#await _portfolios then data}
+	<div class="mobileMenu" transition:scale={{ delay: 150, duration: 400, easing: quintOut }}>
+		<div class="back">
+			<div class="bg" />
+			<div class="bg bg2" />
+			<div class="bg bg3" />
+		</div>
+		<ul>
+			<li>
+				<a href="/realizacje" on:click={() => (mobile = !mobile)} class="mobileMenu_a"
+					>Realizacje
+				</a>
+			</li>
+			<li>
+				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a">Kontakt</a>
+			</li>
+
+			<ul style="display:none">
+				<!-- {#await _portfolios then data}
 			
 			{#each data as elem}
 			<li>
@@ -172,73 +312,56 @@
 				
 			{/each}
 			{/await} -->
-		
+			</ul>
 		</ul>
 
-
-	
-		</ul>
-	
-
-
-
-
-	
-				<div class="hamburguer {hamburger}" on:click={() => (mobile = !mobile)} on:keydown={on_key_down}>
-				<div class="lines line-top white" />
-				<div class="lines line-mid white" />
-				<div class="lines line-bottom white" />
-				</div>
-			
-</div>
+		<div
+			class="hamburguer {hamburger}"
+			on:click={() => (mobile = !mobile)}
+			on:keydown={on_key_down()}
+		>
+			<div class="lines line-top white" />
+			<div class="lines line-mid white" />
+			<div class="lines line-bottom white" />
+		</div>
+	</div>
 {/if}
 
-
-
-
 <style>
-	
-
 	.logo_div {
 		transform: scale(0.7);
 		transition: all 0.5s ease;
 	}
 
-
-
 	.bg {
-  animation:slide 7s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #016889 50%, #0095BD 50%);
-  bottom:0;
-  left:-50%;
-  opacity:.5;
-  position:fixed;
-  right:-50%;
-  top:0;
-  z-index:-1;
-}
+		animation: slide 7s ease-in-out infinite alternate;
+		background-image: linear-gradient(-60deg, #016889 50%, #0095bd 50%);
+		bottom: 0;
+		left: -50%;
+		opacity: 0.5;
+		position: fixed;
+		right: -50%;
+		top: 0;
+		z-index: -1;
+	}
 
-.bg2 {
-  animation-direction:alternate-reverse;
-  animation-duration:9s;
-  filter: blur(18px);
-}
+	.bg2 {
+		animation-direction: alternate-reverse;
+		animation-duration: 9s;
+		filter: blur(18px);
+	}
 
-.bg3 {
-	filter: blur(18px);
-  animation-duration:13s;
-}
+	.bg3 {
+		filter: blur(18px);
+		animation-duration: 13s;
+	}
 
-
-
-@keyframes slide {
-  0% {
-    transform:translateX(-25%);
-  }
-  100% {
-    transform:translateX(25%);
-	
-  }
-}
-
+	@keyframes slide {
+		0% {
+			transform: translateX(-25%);
+		}
+		100% {
+			transform: translateX(25%);
+		}
+	}
 </style>

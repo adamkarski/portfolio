@@ -1,6 +1,6 @@
 <script script="ts">
 	import { fade } from 'svelte/transition';
-	import { tag, portfolioCount, strapiTags } from '$lib/stores/store.js';
+	import { tag, portfolioCount, strapiTags} from '$lib/stores/store.js';
 
 
 	let tagCurrent;
@@ -8,10 +8,13 @@
 	tag.subscribe((value) => {
 		tagCurrent = value;
 	});
+	
 
 	function setTag(val) {
 		tag.set(val);
 	}
+	
+	
 
 	let visibles = true;
 
@@ -73,6 +76,7 @@
 			{/each}
 		</ul>
 	{:catch error}
+		
 		<p style="color: red">{error.message}</p>
 	{/await}
 </div>

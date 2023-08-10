@@ -1,33 +1,58 @@
 <script>
 	import Loader from '$lib/components/loader.svelte';
 	import { fade } from 'svelte/transition';
-	import { tag, portfolioCount, strapiPorfolios, portfolios_all } from '$lib/stores/store.js';
+	import {
+		tag,
+		portfolioCount,
+		strapiPorfolios,
+		portfolios_all,
+		modal
+	} from '$lib/stores/store.js';
 	import Box from '$lib/components/realizacjeBox.svelte';
+
+	
+	
 
 	let visible = false;
 	let loadingDataState = true;
 
 	async function getPortfolioItems() {
-		let response = await fetch(strapiPorfolios);
-		let portfolios = await response.json();
+		await fetch(strapiPorfolios)
+			.then((response) => {
+				if (response.status >= 400 && response.status < 600) {
+					
+					console.log(response)
+				}
+				return response;
+			})
+			.then((returned) => {
+				
+				let portfolios = returned.json();
+				portfolioCount.set(portfolios.length);
+				portfolios_all.set(portfolios);
+
+				return portfolios;
+			})
+			.catch((error) => {
+				modal.set({open: true, title: 'Wystąpił błąd', message: error, button: 'Otwórz ponownie', action:'reload'});
+				console.log(error);
+				
+			});
 
 		
-
-		portfolioCount.set(portfolios.length);
-		portfolios_all.set(portfolios);
 		
-		return portfolios;
+
+	
+
+		
 	}
 	let promise = getPortfolioItems();
-
-
 
 	let tagCurrent;
 
 	tag.subscribe((value) => {
 		tagCurrent = value;
 	});
-	
 </script>
 
 <svelte:head>
@@ -44,21 +69,16 @@
 				{/if}
 			{:then item}
 				{#each item as item}
+					{#if tagCurrent == 'all'}
+						<Box {item} />
+					{/if}
 
-				{#if tagCurrent == 'all'}
-
-
-				<Box {item} />
-				{/if}
-
-				{#if tagCurrent !== 'all'}
-					{#each item.tags as ls}
-					
-							
-						{#if ls.tag_name == tagCurrent}
-							<Box {item} />
-						{/if}
-					{/each}
+					{#if tagCurrent !== 'all'}
+						{#each item.tags as ls}
+							{#if ls.tag_name == tagCurrent}
+								<Box {item} />
+							{/if}
+						{/each}
 					{/if}
 				{/each}
 			{:catch error}

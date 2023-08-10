@@ -1,6 +1,7 @@
 <script>
 	import Loader from '$lib/components/loader.svelte';
 	import { fade } from 'svelte/transition';
+
 	import { tag, portfolioCount, strapiPorfolios, portfolios_all } from '$lib/stores/store.js';
 	import Box from '$lib/components/realizacjeBox.svelte';
 
