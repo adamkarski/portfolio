@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { modal } from '$lib/stores/store.js';
 	import { fade } from 'svelte/transition';
 	import { goto, invalidate } from '$app/navigation';
@@ -8,16 +8,9 @@
 		goto(thisPage);
 	}
 
-	const close = () => ($modal.open = false).then({
-
-
-
-            console.log('reload')        
-    }
+	const close = () => ($modal.open = false)
         // if($modal.action == 'reload'){reloadPage()}
 
-
-    ) 
 
                             
     
