@@ -194,24 +194,7 @@ a:focus {
         position: relative;
     }
 }
-.mobileMenu.true {
 
-
-    // opacity:1;
-
-    // visibility: visible;
-
-    // a:active{
-    //     color:red;
-
-    // }
-
-}
-
-.mobileMenu.false {
-    
-    // opacity: 0;
-}
 .coverImage {
     position: relative;
     overflow: hidden;
@@ -306,7 +289,6 @@ a:focus {
     max-height: 374px;
 }
 
-.div_mask_clip {}
 
 .backSVG {
     background-image: url("/images/backSVG.svg");
@@ -489,11 +471,6 @@ nav .NavMenuIcons{
 
 @media screen and (min-width: 1024px) {
 
-    section.pageContent .container {
-        
-
-        // width: 1400px;
-    }
     section.pageContent section.realizacje {
 
         // width: 1400px;
@@ -509,18 +486,7 @@ nav .NavMenuIcons{
 
         margin-top: 80px;
     }
-    .logo_div {
-        // display:none;
-        img {
-            
-            // display:none;
-            // transform: rotate(-6deg);
-        }
-        .text-slogan {
-            
-            // display:none;
-        }
-    }
+   
 }
 @media(max-width: 424px) {
     #markdown_el ul h1 {
@@ -673,6 +639,7 @@ nav .NavMenuIcons{
 
 }
 
+
 #iFrames {
     padding: 20px;
 
@@ -786,13 +753,9 @@ section.kontakt {
         position: relative;
         float: right;
 
-
     }
     .boxKontakt {
 
         background-color: white;
     }
-    .succesMessage {}
-
-
 }

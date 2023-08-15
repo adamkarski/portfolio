@@ -11,7 +11,7 @@ export const portfolios_all = writable({});
 export const strapiURL          = '//strapi.adamkarski.art/';
 export const strapiTags         = '//strapi.adamkarski.art/tags';
 export const strapiPorfolios    = '//strapi.adamkarski.art/portfolios/';
-
+export const three_state        = 'false';
 
 
 

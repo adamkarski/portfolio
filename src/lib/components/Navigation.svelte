@@ -5,8 +5,6 @@
 	import logotype_safari from '$lib/images/logotype_safari.svg';
 	import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
 	import { browser } from '$app/environment';
-	import messageIcon from '$lib/images/messageIcon.svg';
-	// import clientsIcon from '$lib/images/clientsIcon.svg';
 	import { scale, fade, slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { tag, visibleMessage } from '$lib/stores/store.js';
@@ -320,7 +318,6 @@
 								width={100}
 							/>
 						{/if}
-						<!-- <img width="75" height="60" src={messageIcon} alt="wyślij wiadomość!" /> -->
 					</a>
 					<div class="stackInfo">Kontakt</div>
 				</li>

@@ -13,14 +13,7 @@
 	let setTag = (d) => {
 		tag.set(d);
 
-		var ul = document.querySelectorAll("#tagsBar li");
 		
-		for (let li of ul) {
-				li.classList.remove('active');
-		}
-		
-		var ac = document.querySelector('#tagsBar li.'+d);
-				ac.classList.add('active');
 
 	};
 	let setModal = (d) => {
@@ -49,7 +42,7 @@
 		<p style="display: none;">{(visibles = true)}</p>
 	{:then item}
 		<ul id="tagsBar" class="list-none tags">
-			<li class="all" on:click={() => setTag('all')} on:keydown={() => setTag('all')}>
+			<li class={$tag === 'all' ? 'active all' : 'all'} on:click={() => setTag('all')} on:keydown={() => setTag('all')}>
 				<span></span>
 				<img
 					alt="Wszystkie prace"
@@ -62,7 +55,7 @@
 			</li>
 
 			{#each item as taga}
-				<li class="{taga.tag_name}"
+				<li class={taga.tag_name === $tag ? 'active' : ''}
 					on:click={() => {
 						setTag(taga.tag_name);
 					}}

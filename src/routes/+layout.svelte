@@ -1,4 +1,3 @@
-
 <script context="module">
     export async function load({ session }) {
         return {
@@ -16,14 +15,14 @@
 
 	// Modal
 	import Modal from '$lib/components/Modal.svelte';
-    import { modal } from '$lib/stores/store.js';
+    import { modal, three_state} from '$lib/stores/store.js';
 
+	// Tree
+	import Three from '$lib/components/Three.svelte';
 
 	// Page elements
-	import responsive_devices from '$lib/images/responsive_devices.png';
 	import Tagsbar from '$lib/components/Tagsbar.svelte';
 	import Navigation from '$lib/components/Navigation.svelte';
-	import HeaderIcons from '$lib/components/HeaderIcons.svelte';
 	
 	// Styles
 	import '$lib/css/box_ofer.css';
@@ -34,33 +33,26 @@
 
 	let y;
 
+
+
 </script>
 <!-- {$modal.open} -->
 	<Modal />
 
-<div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'}">
+<div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'} ">
+	
+	
+	<Three {three_state} />
+	
 	<Navigation />
 	
-	<HeaderIcons />
+
 
 
 	
     <button on:click={() => ($modal.open = true)}></button>
 
-	<section class="startPage">
-		
-
-		<div class="headerElements">
-			<div class="pt-24" />
-
-			<img src={responsive_devices} class="responsiveDev" alt="" />
-		</div>
-
-		<!-- {/* <Mouse /> */} -->
-	</section>
-
-
-
+	
 	<section class="content pageContent">
 		<div class="container max-w-4xl mx-auto m-8 relative">
 			<!-- {$width}, {$mobile} -->
