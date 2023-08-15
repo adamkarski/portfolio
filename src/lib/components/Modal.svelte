@@ -1,6 +1,4 @@
 <script>
-	
-
 	import { modal } from '$lib/stores/store.js';
 	import { fade } from 'svelte/transition';
 	import { goto, invalidate } from '$app/navigation';
@@ -25,14 +23,10 @@
 		if (e.key === 'Escape') return close();
 	};
 
-	export const setModal= (d) =>{
-		$modal= {...d}
-	}
-
-
+	export const setModal = (d) => {
+		$modal = { ...d };
+	};
 </script>
-
-
 
 <svelte:window on:keydown|once={handle_keydown} />
 

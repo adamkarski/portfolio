@@ -1,16 +1,34 @@
+<svelte:options accessors />
+
 <script>
 	import logotype from '$lib/images/logotype.svg';
 	import logotype_safari from '$lib/images/logotype_safari.svg';
+	import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
+	import { browser } from '$app/environment';
 	import messageIcon from '$lib/images/messageIcon.svg';
 	// import clientsIcon from '$lib/images/clientsIcon.svg';
-	import { scale } from 'svelte/transition';
+	import { scale, fade, slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	import { tag } from '$lib/stores/store.js';
+	import { tag, visibleMessage } from '$lib/stores/store.js';
+
+
+	
+	function fadeSlide(node, options) {
+		const slideTrans = slide(node, options)
+		return {
+			delay: options.delay,
+			duration: options.duration,
+			css: t => `
+				${slideTrans.css(t)}
+				opacity: ${t};
+				top:	${t};
+			`
+		};
+	}
+
+
 	let mobile = false;
 	let safari = false;
-	
-
-
 
 	import { isMacSafari } from 'svelte-browser';
 	import { onMount } from 'svelte';
@@ -32,15 +50,24 @@
 	function log(x) {
 		console.log(x);
 	}
-
+	let animation;
 	onMount(() => {
-		// portfolios_all.subscribe((value) => {
-		// 	_portfolios = value;
-		// });
+		animation.getLottie().addEventListener('complete', () => {
+			animation.setLooping(false);
+			animation.seek(195);
+		});
 	});
 
+	function mouseLeave() {
+		animation.play();
+		animation.setLooping(false);
+	}
+	function mouseEnter() {
+		animation.play();
+		animation.setLooping(true);
+	}
+
 	function on_key_down(event) {
-		//console.log(event);
 		if (event.repeat) return;
 
 		// In the switch-case we're updating our boolean flags whenever the
@@ -107,9 +134,8 @@
 			id="nav-content"
 		>
 			<ul class="list-reset lg:flex justify-end flex-1 items-center NavMenuIcons">
-				
 				<!-- SEO LINKS FOR SITEMAP  -->
-				
+
 				<ul style="display: none;">
 					<li>
 						<a
@@ -271,13 +297,31 @@
 				{/if}
 				</ul> -->
 
-				<li class="mr-3">
+				<li class="mr-3" style="display:{$visibleMessage}" in:fade out:scale>
 					<a
+						on:mouseleave={mouseLeave}
+						on:mouseenter={mouseEnter}
 						class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
 						href="/kontakt"
 					>
-						<img width="75" height="60" src={messageIcon} alt="wyślij wiadomość!" /></a
-					>
+						{#if browser}
+							<LottiePlayer
+								bind:this={animation}
+								src="images/messageIcon.json"
+								autoplay={false}
+								loop={true}
+								controlsLayout={false}
+								controls={false}
+								defaultFrame={195}
+								hover={true}
+								renderer="svg"
+								background="transparent"
+								height={100}
+								width={100}
+							/>
+						{/if}
+						<!-- <img width="75" height="60" src={messageIcon} alt="wyślij wiadomość!" /> -->
+					</a>
 					<div class="stackInfo">Kontakt</div>
 				</li>
 			</ul>
@@ -293,13 +337,56 @@
 			<div class="bg bg3" />
 		</div>
 		<ul>
-			<li>
-				<a href="/realizacje" on:click={() => (mobile = !mobile)} class="mobileMenu_a"
-					>Realizacje
+			<li class="menu_centered_mobile">
+				<a
+					href="/realizacje"
+					on:click={() => (mobile = !mobile)}
+					class="mobileMenu_a"
+					style=""
+				>
+					{#if browser}
+						<LottiePlayer
+							bind:this={animation}
+							src="images/realizacje.json"
+							autoplay={true}
+							loop={false}
+							controlsLayout={false}
+							controls={false}
+							defaultFrame={0}
+							hover={false}
+							renderer="svg"
+							background="transparent"
+							width={300}
+							height={120}
+						/>
+					{/if}
+
+					<span class="menu_title_mobile" in:fadeSlide={{delay:1700, duration:200}} out:fade>Realizacje</span>
+
 				</a>
 			</li>
-			<li>
-				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a">Kontakt</a>
+			<li class="menu_centered_mobile">
+				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a">
+				
+					{#if browser}
+						<LottiePlayer
+							bind:this={animation}
+							src="images/messageIcon.json"
+							autoplay={true}
+							loop={false}
+							controlsLayout={false}
+							controls={false}
+							defaultFrame={0}
+							hover={false}
+							renderer="svg"
+							background="transparent"
+							width={300}
+							height={120}
+						/>
+					{/if}
+				
+					<span class="menu_title_mobile" in:fadeSlide={{delay:2700, duration:150}} out:fade>Kontakt</span>
+				</a>
 			</li>
 
 			<ul style="display:none">
@@ -318,7 +405,7 @@
 		<div
 			class="hamburguer {hamburger}"
 			on:click={() => (mobile = !mobile)}
-			on:keydown={()=> (mobile)}
+			on:keydown={() => mobile}
 		>
 			<div class="lines line-top white" />
 			<div class="lines line-mid white" />
@@ -328,6 +415,19 @@
 {/if}
 
 <style>
+	.menu_title_mobile{
+
+		position: relative;
+		top:80px;
+	}
+	
+	.menu_centered_mobile {
+		text-align: center;
+		margin-bottom: 40px;
+		display: inline-flex;
+		padding:30px;
+	}
+
 	.logo_div {
 		transform: scale(0.7);
 		transition: all 0.5s ease;

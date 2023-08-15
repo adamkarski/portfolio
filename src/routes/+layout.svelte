@@ -59,15 +59,12 @@
 		<!-- {/* <Mouse /> */} -->
 	</section>
 
-	<!-- <FrontImages /> -->
 
-	<!-- <RealizacjeComponnent items={items}/> -->
 
 	<section class="content pageContent">
 		<div class="container max-w-4xl mx-auto m-8 relative">
 			<!-- {$width}, {$mobile} -->
-
-			<slot />
+			<slot></slot>
 		</div>
 	</section>
 

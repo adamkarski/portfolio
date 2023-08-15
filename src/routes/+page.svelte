@@ -2,18 +2,25 @@
 	import Loader from '$lib/components/loader.svelte';
 	import { fade } from 'svelte/transition';
 
-	import { tag, portfolioCount, strapiPorfolios, portfolios_all, modal} from '$lib/stores/store.js';
+	import {
+		tag,
+		portfolioCount,
+		strapiPorfolios,
+		portfolios_all,
+		modal
+	} from '$lib/stores/store.js';
 	import Box from '$lib/components/realizacjeBox.svelte';
 
 	let visible = false;
 	let loadingDataState = true;
 
+	// Get all items of Portfolio
 	async function getPortfolioItems() {
 		let response = await fetch(strapiPorfolios);
 		let portfolios = await response.json();
 		portfolioCount.set(portfolios.length);
 		portfolios_all.set(portfolios);
-		
+
 		return portfolios;
 	}
 	let promise = getPortfolioItems();
@@ -23,12 +30,9 @@
 	tag.subscribe((d) => {
 		tagCurrent = d;
 	});
-	let setModal =(d)=>{
-		$modal={...d}
-	}
-	
-	
-
+	let setModal = (d) => {
+		$modal = { ...d };
+	};
 </script>
 
 <svelte:head>
@@ -45,28 +49,27 @@
 				{/if}
 			{:then item}
 				{#each item as item}
+					{#if tagCurrent == 'all'}
+						<Box {item} />
+					{/if}
 
-				{#if tagCurrent == 'all'}
-				
-				<Box {item} />
-				{/if}
-
-				{#if tagCurrent !== 'all'}
-					{#each item.tags as ls}
-					
-							
-						{#if ls.tag_name == tagCurrent}
-							<Box {item} />
-						{/if}
-					{/each}
+					{#if tagCurrent !== 'all'}
+						{#each item.tags as ls}
+							{#if ls.tag_name == tagCurrent}
+								<Box {item} />
+							{/if}
+						{/each}
 					{/if}
 				{/each}
 			{:catch error}
-			
-	{setModal({ open: true, title: 'Wystąpił błąd', message: error, button: 'OK' , action: 'reload'})}
-
-			
-				{/await}
+				{setModal({
+					open: true,
+					title: 'Wystąpił błąd',
+					message: error,
+					button: 'OK',
+					action: 'reload'
+				})}
+			{/await}
 		</div>
 	</div>
 </section>

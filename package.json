@@ -27,6 +27,8 @@
 	"type": "module",
 	"dependencies": {
 		"@emailjs/browser": "^3.11.0",
+		"@lottiefiles/react-lottie-player": "^3.5.3",
+		"@lottiefiles/svelte-lottie-player": "^0.3.0",
 		"@picocss/pico": "^1.5.10",
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@vitejs/plugin-basic-ssl": "^1.0.1",
@@ -35,6 +37,7 @@
 		"emailjs": "^4.0.2",
 		"svelte-browser": "^0.4.6",
 		"svelte-exmarkdown": "^2.0.0",
-		"svelte-sitemap": "^2.6.0"
+		"svelte-sitemap": "^2.6.0",
+		"svrollbar": "^0.12.0"
 	}
 }

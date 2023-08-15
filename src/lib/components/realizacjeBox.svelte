@@ -1,11 +1,17 @@
 <script>
-	import { fade, fly } from 'svelte/transition';
-    import { strapiURL } from '$lib/stores/store.js';
-    export let item = {};
+	import { fade, slide } from 'svelte/transition';
+	import { strapiURL } from '$lib/stores/store.js';
+	export let item = {};
 	export let src = strapiURL + item.miniatura.url;
 
 	import moreinfo from '$lib/images/moreinfo.svg';
+	let visible = false
+	let delay =3000;
 
+	function set(){
+		visible=true
+
+	}
 	function preload(src) {
 		return new Promise(function (resolve) {
 			let img = new Image();
@@ -15,20 +21,24 @@
 	}
 </script>
 
-<div class="w-full p-2 rounded 
+<div
+	class="w-full p-2 rounded
 
-	item realizacjeItems"  in:fade out:fly>
-	<div style="transform: translateY(50px) translateZ(0px);">
-
+	item realizacjeItems"
+	
+>
+	<div style="transform: translateY(50px) translateZ(0px);" in:fade={{ delay: 450 }} out:fade={{duration:150}}>
 		<div class="coverImage">
 			{#await preload(src) then _}
-				<a class="" href="/realizacje/{item.slug}">
-					<img {src} in:fly alt={item.title} />
+				<a class="" href="/realizacje/{item.slug}" in:fade={{ delay: 400 }}>
+					<img {src} alt={item.title} />
 				</a>
+				<template>{set()}</template>
 			{/await}
 		</div>
 
-		<div class=" box_ofer shadow-xl rounded-xl">
+		{#if visible==true}
+		<div class=" box_ofer shadow-xl rounded-xl" in:slide={{ }}>
 			<div class=" content rounded-xl">
 				<div class=" backgr rounded-md" />
 				<div class=" texts rounded-md">
@@ -53,8 +63,11 @@
 
 					<ul class=" list-none flex">
 						{#each item.tags as tag}
+
+
+
 							<li class="tag_icon">
-								<img
+								<img in:fade={{ delay: 100+delay }|delay+100}
 									alt={tag.tag_name}
 									src="//strapi.adamkarski.art/icons/{tag.tag_name}.svg"
 									class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
@@ -65,6 +78,7 @@
 				</div>
 			</div>
 		</div>
+		{/if}
 	</div>
 </div>
 <!-- <br/><br/><br/><br/><br/><br/><br/><br/><br/>

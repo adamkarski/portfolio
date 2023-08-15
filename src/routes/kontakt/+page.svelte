@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { onMount, onDestroy } from 'svelte'
 	import emailjs from '@emailjs/browser';
-
+	import {visibleMessage} from '$lib/stores/store.js'
 	let sendemailMessage = '';
+
 
 	function sendEmail(e) {
 		emailjs.sendForm('service_cqbrb97', 'template_n68bgz9', e, 'DgeB577nZVU1TEiic').then(
@@ -77,6 +79,15 @@
 			//   console.log('Invalid Form');
 		}
 	}
+
+	onMount(()=>{
+		$visibleMessage = "none";
+	})
+	onDestroy(()=>{
+		$visibleMessage = "initial";
+	})
+
+
 </script>
 
 <svelte:head>
@@ -86,13 +97,6 @@
 
 <section class="section kontakt" transition:fade>
 	<div class="mx-auto m-8 relative sm:w-auto p-10 formContact">
-
-
-
-
-
-
-
 
 		<div>
 			<div class="w-full p-8 my-4 md:px-10 lg:w-9/12 lg:pl-20 lg:pr-20 mr-auto rounded-2xl shadow-2xl boxKontakt">

@@ -1,14 +1,15 @@
 <script>
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	import { fade, scale } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 	import Markdown from 'svelte-exmarkdown';
+	import { strapiURL, modal } from '$lib/stores/store.js';
+	
 	import backButton from '$lib/images/backButton.svg';
 	import Loader from '$lib/components/loader.svelte';
-	import { strapiURL } from '$lib/stores/store.js';
-	import { fade } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
-	import {modal}	from '$lib/stores/store';	
-	// $: elementsIMG = window.querySelectorAll('#markdown_el p img');
+	
+
 
 	let setModal =(d)=>{
 		$modal={...d}
@@ -16,26 +17,20 @@
 
 	let loadingDataState = true;
 	let visible = false;
-	let pageData;
-	let backs = '<';
 
+
+	// define API URL for single portfoloio item
 	const apiURL = strapiURL + 'portfolios/?slug=' + $page.params.slug;
 	let data = {};
 	let md = '';
 
+
+	// extract IFRAME items from MARKDOWN
 	function extractIframe(inputStr) {
 		let iFrames = inputStr.match(/(?:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))/g);
 		iFrames.forEach((element) => {
-			// substack.src = "https://www.youtube.com/embed/ycdJNxEAc44";
-			// substack.src = src_str[0];
-			// substack.width = "560";
-			// substack.height = "315";
-			// substack.title = "video player";
-			// substack.allow= "accelerometer";
-			// substack.autoplay;
-
+			
 			inputStr = inputStr.replaceAll(element, '');
-			// console.log(element);
 			let src_str = element.match(/src\s*=\s*"(.+?)"/g);
 			src_str = src_str[0].replaceAll('src="https:', '');
 			src_str = src_str.replaceAll('"', '');
@@ -43,44 +38,23 @@
 			var iFrames_div = document.getElementById('iFrames');
 
 			var substack = document.createElement('iframe');
-
-			// substack.src = '//www.youtube.com/embed/ycdJNxEAc44';
+			// set parameters of new object
 			substack.src = src_str;
 			substack.width = '560';
 			substack.height = '315';
 			substack.title = 'video player';
 			substack.allow = 'accelerometer';
 			substack.autoplay;
+			// append the object to the DOM
 			iFrames_div.appendChild(substack);
 		});
-		// iFrames.forEach((iframer) => {
-
-		// 	// var doc = new DOMParser().parseFromString(iFrames_div, "text/xml");
-		// 	// iFrames_div.appendChild(doc);
-
-		// 	// console.log(iFrames_div);
-		// 	// create iframe
-		// 	// let temp = element;
-
-		// 	// var iFrames_div = document.getElementById('iFrames');
-
-		// 	// var substack = document.createElement('iframe');
-
-		// 	// substack.src = '//www.youtube.com/embed/ycdJNxEAc44';
-		// 	// substack.width = '560';
-		// 	// substack.height = '315';
-		// 	// substack.title = 'video player';
-		// 	// substack.allow = 'accelerometer';
-		// 	// substack.autoplay;
-		// 	// iFrames_div.appendChild(substack);
-		// });
-
 		return inputStr;
 	}
 
 	let title = '';
 	let desc = '';
 
+	// get all portfolio items from API and send to extract IFRAME elements
 	async function getPortfolioItems() {
 		let response = await fetch(apiURL);
 		let portfolios = await response.json();
@@ -89,8 +63,6 @@
 		title = data.title;
 		desc = data.subtitle;
 
-		//md = data.content;
-		// console.log(data.content);
 		md = data.content.replace(/\/uploads/g, strapiURL + '/uploads');
 
 		md = extractIframe(md);
@@ -107,17 +79,17 @@
 		setTimeout(imgElements, 3000);
 		if (data.title) title = data.title;
 		if (data.subtitle) desc = data.subtitle;
+		
+		// add EventListener form images to open viewer
 		function imgElements() {
 			const elements = document.querySelectorAll('#markdown_el p img');
 
-			// console.log(elements);
-			// console.log("elemensts")
 
 			for (var i = 0; i < elements.length; i++) {
 				elements[i].addEventListener(
 					'click',
 					function () {
-						// console.log(this.src)
+					
 						bigImageSrc = this.src;
 						bigImage = true;
 					},
@@ -127,14 +99,6 @@
 		}
 	});
 
-	// 	onMount(() => {
-
-	// 		// console.log()
-	// 		// const ctx = $canvas;
-	// 		if (browser) {
-	//     const headingElement = document.querySelector('h1');
-	//     console.log(headingElement);
-	//   }
 </script>
 
 <svelte:head>
@@ -144,9 +108,11 @@
 
 <div class="container_singlePage mx-auto m-4 relative sm:w-auto p-10">
 	{#await data}
-		{#if loadingDataState === true}
+	
+	<template>	{#if loadingDataState === true}
 			<Loader />
 		{/if}
+	</template>
 
 		<div style="display:none">{(visible = true)}</div>
 	{:then item}
@@ -189,8 +155,8 @@
 	<div
 		class="bigImageDiv"
 		on:click={() => (bigImage = !bigImage)}
-		in:fade={{ delay: 150, duration: 400, easing: quintOut }}
-		out:fade
+		in:scale={{ delay: 150, duration: 600, easing: quintOut }}
+		out:scale={{ delay: 100, duration: 600, easing: quintOut }}
 		on:keypress={() => (bigImage = !bigImage)}
 	>
 		<div class="blur" />
@@ -200,6 +166,11 @@
 {/if}
 
 <style lang="scss" global>
+	#markdown_el p img{
+		user-select: none;
+		cursor:pointer;
+	}
+
 	.bigImageDiv {
 		position: fixed;
 		overflow-y: hidden;
@@ -208,6 +179,10 @@
 		top: 0px;
 		left: 0px;
 
+		.bigImage{
+ 			user-select: none;
+			cursor:pointer;
+		}
 		.blur {
 			background-color: rgba(255, 255, 255, 0.8);
 			width: 100%;
