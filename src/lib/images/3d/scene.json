@@ -1,0 +1,140 @@
+{
+	"metadata": {
+		"version": 4.6,
+		"type": "Object",
+		"generator": "Object3D.toJSON"
+	},
+	"object": {
+		"uuid": "3741222A-BD8F-401C-A5D2-5A907E891896",
+		"type": "Scene",
+		"name": "Scene",
+		"layers": 1,
+		"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+		"up": [0,1,0],
+		"background": 1127967,
+		"children": [
+			{
+				"uuid": "B7CBBC6F-EC26-49B5-8D0D-67D9C535924B",
+				"type": "Group",
+				"name": "Dummy",
+				"layers": 1,
+				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,1,4,1],
+				"up": [0,1,0]
+			},
+			{
+				"uuid": "E2939A7B-5E40-438A-8C1B-32126FBC6892",
+				"type": "PointLight",
+				"name": "PointLight 1",
+				"layers": 1,
+				"matrix": [0.9769323307564798,-0.0654770817635422,0.20326330924798602,0,0.0165214827933546,0.9721554853418133,0.23375361585680635,0,-0.21290904567213875,-0.2250032534954838,0.9508119026323901,0,-5.656365540765539,1.5186083545851592,-5.647560294624584,1],
+				"up": [0,1,0],
+				"color": 9474221,
+				"intensity": 0.75,
+				"distance": 0,
+				"decay": 1,
+				"shadow": {
+					"camera": {
+						"uuid": "EFF42F46-1E27-4B36-B9D9-CF7D879D258E",
+						"type": "PerspectiveCamera",
+						"layers": 1,
+						"up": [0,1,0],
+						"fov": 90,
+						"zoom": 1,
+						"near": 0.5,
+						"far": 500,
+						"focus": 10,
+						"aspect": 1,
+						"filmGauge": 35,
+						"filmOffset": 0
+					}
+				}
+			},
+			{
+				"uuid": "3412781E-27CC-43C3-A5DB-54C0C8E42ED6",
+				"type": "PointLight",
+				"name": "PointLight 2",
+				"layers": 1,
+				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,3.4767936821466776,7.247740941836406,-2.4608276135317073,1],
+				"up": [0,1,0],
+				"color": 12773063,
+				"intensity": 3.68,
+				"distance": 0,
+				"decay": 1,
+				"shadow": {
+					"camera": {
+						"uuid": "81E800FE-E8A7-4A9E-AFAA-4F04FD56AFE4",
+						"type": "PerspectiveCamera",
+						"layers": 1,
+						"up": [0,1,0],
+						"fov": 90,
+						"zoom": 1,
+						"near": 0.5,
+						"far": 500,
+						"focus": 10,
+						"aspect": 1,
+						"filmGauge": 35,
+						"filmOffset": 0
+					}
+				}
+			},
+			{
+				"uuid": "2d267ed6-9a2e-448f-908d-799137c44305",
+				"type": "Group",
+				"name": "samsung.obj",
+				"layers": 1,
+				"matrix": [-4.440892098500628e-17,0.0008726203218641361,-0.049992384757819586,0,1.0304257447302233e-17,0.059990861709383475,0.0010471443862369628,0,0.06000000000000004,-9.263423361716156e-18,-5.329070518200755e-17,0,-2.1338974077666304,1.0134062473214147,6.788287704265613,1],
+				"up": [0,1,0]
+			},
+			{
+				"uuid": "78a207b7-e3b3-450b-ae7b-dd6b2faf22f8",
+				"type": "AmbientLight",
+				"name": "AmbientLight",
+				"layers": 1,
+				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-18.188237563843963,3.3636061515514664,-3.060240412146456,1],
+				"up": [0,1,0],
+				"color": 2236962,
+				"intensity": 7.8
+			},
+			{
+				"uuid": "7a120d2a-07b5-4269-9fc4-d74cf91f88d8",
+				"type": "DirectionalLight",
+				"name": "DirectionalLight",
+				"layers": 1,
+				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,13.108018602256575,13.695471761259787,-12.890739307810048,1],
+				"up": [0,1,0],
+				"color": 16777215,
+				"intensity": 1.24,
+				"shadow": {
+					"camera": {
+						"uuid": "acecfca5-87c8-45af-b772-e7712c5578ff",
+						"type": "OrthographicCamera",
+						"layers": 1,
+						"up": [0,1,0],
+						"zoom": 1,
+						"left": -5,
+						"right": 5,
+						"top": 5,
+						"bottom": -5,
+						"near": 0.5,
+						"far": 500
+					}
+				}
+			},
+			{
+				"uuid": "42c36d0b-ce7b-4475-b662-506510535e98",
+				"type": "PerspectiveCamera",
+				"name": "PerspectiveCamera",
+				"layers": 1,
+				"matrix": [-0.9245460336123126,0.03983270083672072,0.37898283295657587,0,0.38107037635027424,0.09664137611370044,0.9194812737033364,0,-2.775557561562891e-16,0.9945218953682733,-0.10452846326765484,0,1.126,22.22,-6.44,1],
+				"up": [0,1,0],
+				"fov": 50.9,
+				"zoom": 1,
+				"near": 0.1,
+				"far": 1999.24,
+				"focus": 10,
+				"aspect": 1.329153605015674,
+				"filmGauge": 35,
+				"filmOffset": 0
+			}]
+	}
+}
