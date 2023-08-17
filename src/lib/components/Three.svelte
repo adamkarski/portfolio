@@ -1,195 +1,153 @@
-<script >
-import { onMount } from "svelte";
-import {three_state}  from '$lib/stores/store.js'
+<script>
+	import { onMount, onDestroy } from 'svelte';
+	import { three_state } from '$lib/stores/store.js';
+	import { browser } from '$app/environment';
 
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import {TweenMax} from "gsap";
-import Power2 from "power2";
-import Power1 from "power2";
+	import * as THREE from 'three';
+	import { TweenMax } from 'gsap';
+	import Power2 from 'power2';
+	import Power1 from 'power2';
 
+	import { getProject, types, val } from '@theatre/core';
+	// import studio from '@theatre/studio';
 
+	import projectState from '$lib/theatre/theatre-state.json';
+	import macbook from '$lib/theatre/macbook01.json';
 
+	const project = getProject('THREE', { state: projectState });
+	const sheet = project.sheet('Animated scene');
+	// project.ready.then(() => sheet.sequence.play({ iterationCount: Infinity }));
 
+	onMount(() => {
+		/**
+		 * Renderer
+		 */
+		// studio.initialize();
+		// studio.ui.hide()
+		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
-// models
-import macbook from '$lib/images/3d/macbook.json'
-import enviroment from '$lib/images/3d/scene.json'
+		const loader = new THREE.ObjectLoader();
+		THREE.Cache.enabled = false;
+		const scene = new THREE.Scene();
+		if (browser) {
+			const sequenceLength = val(sheet.sequence.pointer.length);
 
-let  w, h, container, camera, scene, renderer
+			three_state.subscribe((d) => {
+				console.log(d);
 
+				if (d === true) {
+					project.ready.then(() => sheet.sequence.play({ range: [0, 1.5] }));
+				} else {
+					if (d === false) {
+						project.ready.then(() => sheet.sequence.play({ range: [2, 4] }));
+						
+					}
+				}
+			});
 
-// animate();
+			let container = document.getElementById('vieport3d');
+			/**
+			 * Scene
+			 */
 
+			const camera = new THREE.PerspectiveCamera(
+				70,
+				window.innerWidth / window.innerHeight,
+				10,
+				700
+			);
+			camera.position.z = 50;
 
-onMount(() => {
-	// var elem = document.querySelector('#vieport3d');
-// clone.classList.add('secondary');
+			// LAPTOP
+			const laptop = loader.parse(macbook);
+			laptop.rotation.x = 0.506;
+			laptop.rotation.x = 0.3;
+			laptop.rotation.x = -2;
+			scene.add(laptop);
 
- w = window.innerWidth;
- h = window.innerHeight;
+			const animationOBJ = sheet.object('sad', {
+				rotation: types.compound({
+					x: types.number(laptop.rotation.x, { range: [-2, 2] }),
+					y: types.number(laptop.rotation.y, { range: [-2, 2] }),
+					z: types.number(laptop.rotation.z, { range: [-2, 2] })
+				}),
+				position: types.compound({
+					xx: types.number(laptop.position.x, { range: [-200, 200] }),
+					yy: types.number(laptop.position.y, { range: [-200, 200] }),
+					zz: types.number(laptop.position.z, { range: [-200, 200] })
+				})
+			});
 
-                                                                                                                                   
+			animationOBJ.onValuesChange((values) => {
+				const { x, y, z } = values.rotation;
+				const { xx, yy, zz } = values.position;
 
-function init() {
-  // renderer
-  const loader = new THREE.ObjectLoader();
-  renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(w, h);
-  container = document.getElementById("vieport3d");
-  container.appendChild(renderer.domElement);
+				laptop.rotation.set(x * Math.PI, y * Math.PI, z * Math.PI);
+				laptop.position.set(xx, yy, zz);
+			});
 
+			/*
+			 * Lights
+			 */
+			const pointLight1 = new THREE.PointLight(0x222222, 1, 100);
+			pointLight1.position.set(3.127, 4.56, 1.403);
+			scene.add(pointLight1);
 
+			const pointLight2 = new THREE.PointLight(0x222222, 0.95, 100);
+			pointLight2.position.set(3.356, 1.503, 0.802);
+			scene.add(pointLight2);
 
+			const ambientLight = new THREE.AmbientLight(0x222222, 140);
+			ambientLight.position.set(-10.124, 2.748, 2.613);
+			scene.add(ambientLight);
 
+			renderer.shadowMap.enabled = true;
+			renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  // camera
-  // camera = new THREE.PerspectiveCamera(60, w / h, 1, 1000);
-  // camera.animAngle = 0; 
-  // camera.position.x = Math.cos(camera.animAngle) * 400;
-  // camera.position.y = 180;
-  // camera.position.z = Math.sin(camera.animAngle) * 400;
+			renderer.render(scene, camera);
+			container.appendChild(renderer.domElement);
 
-  // camera
-  camera = new THREE.PerspectiveCamera(50.90, w / h, 1, 2000);
-  camera.animAngle = 0; 
+			function tick() {
+				// console.log(sheet.sequence.position);
+				// if(sheet.sequence.position>=2.566){
+				//   // sheet.sequence.pause();
+				//   console.log("stop");
+				// }
+				renderer.render(scene, camera);
 
+				window.requestAnimationFrame(tick);
+			}
 
-  // world
-  scene = new THREE.Scene();
+			tick();
+			/**
+			 * Handle `resize` events
+			 */
+			window.addEventListener(
+				'resize',
+				function () {
+					camera.aspect = window.innerWidth / window.innerHeight;
+					camera.updateProjectionMatrix();
 
-  const laptop = loader.parse( macbook );
+					renderer.setSize(window.innerWidth, window.innerHeight);
+					renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+				},
+				false
+			);
+		}
 
-  laptop.position.x = 0;
-  laptop.position.y = 0;
-  laptop.position.z = 0;
-  laptop.rotation.x = 0;
-  laptop.rotation.y = 0;
-  laptop.rotation.z = 0;
-
-//   laptop.scale.x=0.9;
-//   laptop.scale.y=0.54;
-// laptop.scale.z=0.8;
-  scene.add( laptop );
-  
-
-  // laptop.rotation.copy( camera.rotation );
-  laptop.updateMatrix();
-  laptop.translateZ(-10);
-
- 
-
-
-console.log(camera.rotation)
-console.log(camera.position)
-
-  // camera.rotation.x = -80.40;
-  // camera.rotation.y= 1.60 ;
-  // camera.rotation.z= -321.00;
-
-  camera.position.x = 1.126;
-  camera.position.y=  30.980;
-  camera.position.z= 3.704;
-
-  laptop.position.copy( camera.position );
-
-
-  scene.fog = new THREE.FogExp2(0x1e2630, 0.002);
-  renderer.setClearColor(scene.fog.color);
-
-  // helpers
-  var gridXZ = new THREE.GridHelper(600, 10);
-  scene.add(gridXZ);
-
-  // lights
-
-  var omni = new THREE.SpotLight( 0xffffff );
-  omni.position.set( 100, 1000, 100 );
-  scene.add(omni);
-
-
-  var light = new THREE.DirectionalLight(0xffffff);
-  light.position.set(1, 1, 1);
-  scene.add(light);
-  light = new THREE.DirectionalLight(0x002288);
-  light.position.set(-1, -1, -1);
-  scene.add(light);
-  light = new THREE.AmbientLight(0x222222);
-  scene.add(light);
-
-  // Dome;
-  var domeGeometry = new THREE.IcosahedronGeometry(700, 1);
-  var domeMaterial = new THREE.MeshPhongMaterial({
-    color: 0xfb3550,
-    shading: THREE.FlatShading,
-    side: THREE.BackSide
-  });
-  var dome = new THREE.Mesh(domeGeometry, domeMaterial);
-  scene.add(dome);
-
-
-  (function grow() {
-   
-    // TweenMax.to(camera, 1.5, {
-    //   animAngle: 0 + (2 * Math.random() - 1) * Math.PI,
-    //   ease: Power1.easeInOut,
-    //   onUpdate: function () {
-    //     camera.position.x = Math.cos(0) * 440;
-    //     camera.position.z = Math.sin(0) * 440;
-
-    //     camera.updateProjectionMatrix();
-    //     camera.lookAt(scene.position);
-    //   }
-    // });
-
-    // TweenMax.to(window, 3.5, {
-    //   onComplete: grow
-    // });
-  })();
-}
-
-window.addEventListener("resize", onWindowResize, false);
-
-function onWindowResize() {
-  w = window.innerWidth;
-  h = window.innerHeight;
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-  renderer.setSize(w, h);
-}
-
-function animate() {
-
-  requestAnimationFrame(animate);
-
-  renderer.render(scene, camera);
-
-}
-init()
-animate()
-
-// on mount 
-})
-
-
-
-
-
-
-
-
-
-
-
+		// on mount
+	});
 </script>
+
+<div id="vieport3d" />
+
 <style>
-#vieport3d{
-    width: 100%;
-    height: 100%;
-    background-color: gray;
-    position: absolute;
-    
-    }
+	#vieport3d {
+		width: 100%;
+		height: 100%;
+		/* background-color: gray; */
+		position: absolute;
+	}
 </style>
-<div id="vieport3d"></div>

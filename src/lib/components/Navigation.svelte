@@ -9,7 +9,7 @@
 	import { quintOut } from 'svelte/easing';
 	import { tag, visibleMessage } from '$lib/stores/store.js';
 
-
+// import messageIcon from '$lib/images/messageIcon.json'
 	
 	function fadeSlide(node, options) {
 		const slideTrans = slide(node, options)
@@ -43,7 +43,6 @@
 
 	$: hamburger = mobile ? 'close-hamburguer' : '';
 
-	// let _portfolios = {};
 
 	function log(x) {
 		console.log(x);
