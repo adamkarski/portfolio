@@ -4,15 +4,32 @@
 	import { browser } from '$app/environment';
 
 	import * as THREE from 'three';
-	import { TweenMax } from 'gsap';
-	import Power2 from 'power2';
-	import Power1 from 'power2';
+	// import { TweenMax } from 'gsap';
+	// import Power2 from 'power2';
+	// import Power1 from 'power2';
 
-	import { getProject, types, val } from '@theatre/core';
+	import { types, val } from '@theatre/core';
 	// import studio from '@theatre/studio';
+
+  import {getProject} from '@theatre/core';
+// const { getProject } = _getProject;
+
+
 
 	import projectState from '$lib/theatre/theatre-state.json';
 	import macbook from '$lib/theatre/macbook01.json';
+
+  // SHORTEN 3d coordinates 
+
+  // console.log(macbook["geometries"])
+  
+//   function strip(prec,num) {
+//     return (parseFloat(num).toPrecision(prec));
+// }   strip(4,12.12431241234123512354123412354123512341234512345)
+
+// (\d\d?)\.(\d)(\d)(\d)(\d)(\d+)
+// $1.$2$3$4
+
 
 	const project = getProject('THREE', { state: projectState });
 	const sheet = project.sheet('Animated scene');
@@ -33,7 +50,7 @@
 			const sequenceLength = val(sheet.sequence.pointer.length);
 
 			three_state.subscribe((d) => {
-				console.log(d);
+				
 
 				if (d === true) {
 					project.ready.then(() => sheet.sequence.play({ range: [0, 1.5] }));
