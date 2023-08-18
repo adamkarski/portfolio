@@ -1,15 +1,14 @@
 <script>
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { three_state } from '$lib/stores/store.js';
 	import { browser } from '$app/environment';
 
 	import * as THREE from 'three';
-	// import { TweenMax } from 'gsap';
-	// import Power2 from 'power2';
-	// import Power1 from 'power2';
+
+
 
 	import { types, val } from '@theatre/core';
-	// import studio from '@theatre/studio';
+	import studio from '@theatre/studio';
 
   import {getProject} from '@theatre/core';
 // const { getProject } = _getProject;
@@ -33,13 +32,12 @@
 
 	const project = getProject('THREE', { state: projectState });
 	const sheet = project.sheet('Animated scene');
-	// project.ready.then(() => sheet.sequence.play({ iterationCount: Infinity }));
 
 	onMount(() => {
 		/**
 		 * Renderer
 		 */
-		// studio.initialize();
+     studio.initialize();
 		// studio.ui.hide()
 		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
@@ -161,6 +159,12 @@
 <div id="vieport3d" />
 
 <style>
+
+:global(#theatrejs-studio-root){
+    position: absolute !important;
+    z-index: 100000000000 !important;
+
+  }
 	#vieport3d {
 		width: 100%;
 		height: 100%;
