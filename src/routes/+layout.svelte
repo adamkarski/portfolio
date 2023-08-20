@@ -42,7 +42,7 @@
 <div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'} ">
 	
 	
-	<Three {three_state} />
+	<Three/>
 	
 	<Navigation />
 	

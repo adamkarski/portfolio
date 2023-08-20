@@ -4,7 +4,7 @@
 	import emailjs from '@emailjs/browser';
 	import { visibleMessage } from '$lib/stores/store.js';
 	import { browser } from '$app/environment';
-	import { three_state } from '$lib/stores/store.js';
+	import { three_state,three_page } from '$lib/stores/store.js';
 	let sendemailMessage = '';
 
 	function sendEmail(e) {
@@ -82,16 +82,17 @@
 	}
 
 	onMount(() => {
-		$three_state = true;
+		
 		$visibleMessage = 'none';
 		if (browser) {
 			let body = document.querySelector('body');
 			body.classList.add('kontakt');
 		}
-		$three_state=true;
+		$three_state='play';
+		$three_page = 'kontakt';
 	});
 	onDestroy(() => {
-		$three_state = false;
+		$three_state = 'back';
 		$visibleMessage = 'initial';
 		if (browser) {
 			let body = document.querySelector('body');

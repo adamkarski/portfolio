@@ -19,6 +19,9 @@
 			img.src = src;
 		});
 	}
+	function disableDrag(){
+		return false;
+	}
 </script>
 
 <div
@@ -30,8 +33,8 @@
 	<div style="transform: translateY(50px) translateZ(0px);" in:fade={{ delay: 450 }} out:fade={{duration:150}}>
 		<div class="coverImage">
 			{#await preload(src) then _}
-				<a class="" href="/realizacje/{item.slug}" in:fade={{ delay: 400 }}>
-					<img {src} alt={item.title} />
+				<a class="" href="/realizacje/{item.slug}" in:fade={{ delay: 400 }} draggable={false}>
+					<img {src} alt={item.title} draggable={false}/>
 				</a>
 				<template>{set()}</template>
 			{/await}
@@ -51,12 +54,12 @@
 				</div>
 				<div class=" flex items-center icons">
 					<div class="button_">
-						<a href="/realizacje/{item.slug}">
+						<a href="/realizacje/{item.slug}" draggable={false} selectable={false}>
 							<button
 								class="bg-white text-black px-1 py-2 m-2 rounded-md pl-3"
 								style="transform: none;"
 							>
-								<img alt="" src={moreinfo} class="w10 h10" />
+								<img alt="" src={moreinfo} class="w10 h10" draggable={false} selectable={false}/>
 							</button>
 						</a>
 					</div>
@@ -68,7 +71,7 @@
 
 							<li class="tag_icon">
 								<img in:fade={{ delay: 100+delay }|delay+100}
-									alt={tag.tag_name}
+									alt={tag.tag_name} draggable={false} selectable={false}
 									src="//strapi.adamkarski.art/icons/{tag.tag_name}.svg"
 									class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
 								/>

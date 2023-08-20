@@ -113,6 +113,7 @@
 	}
 
 	.countItems {
+		display: none;
 		background-color: rgba(0, 0, 0, 0.35);
 		position: absolute;
 		top: 10px;

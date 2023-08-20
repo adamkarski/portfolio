@@ -1,35 +1,30 @@
 <script>
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { fade, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import Markdown from 'svelte-exmarkdown';
-	import { strapiURL, modal } from '$lib/stores/store.js';
-	
+	import { strapiURL, modal, three_state, three_page } from '$lib/stores/store.js';
+
 	import backButton from '$lib/images/backButton.svg';
 	import Loader from '$lib/components/loader.svelte';
-	
 
-
-	let setModal =(d)=>{
-		$modal={...d}
-	}
+	let setModal = (d) => {
+		$modal = { ...d };
+	};
 
 	let loadingDataState = true;
 	let visible = false;
-
 
 	// define API URL for single portfoloio item
 	const apiURL = strapiURL + 'portfolios/?slug=' + $page.params.slug;
 	let data = {};
 	let md = '';
 
-
 	// extract IFRAME items from MARKDOWN
 	function extractIframe(inputStr) {
 		let iFrames = inputStr.match(/(?:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))/g);
 		iFrames.forEach((element) => {
-			
 			inputStr = inputStr.replaceAll(element, '');
 			let src_str = element.match(/src\s*=\s*"(.+?)"/g);
 			src_str = src_str[0].replaceAll('src="https:', '');
@@ -74,22 +69,26 @@
 
 	let bigImage;
 	let bigImageSrc;
+	onDestroy(()=>{
 
+		$three_state = 'back'
+
+	})
 	onMount(() => {
+		$three_page = 'realizacje_single';
+		$three_state = 'play'
 		setTimeout(imgElements, 3000);
 		if (data.title) title = data.title;
 		if (data.subtitle) desc = data.subtitle;
-		
+
 		// add EventListener form images to open viewer
 		function imgElements() {
 			const elements = document.querySelectorAll('#markdown_el p img');
-
 
 			for (var i = 0; i < elements.length; i++) {
 				elements[i].addEventListener(
 					'click',
 					function () {
-					
 						bigImageSrc = this.src;
 						bigImage = true;
 					},
@@ -98,7 +97,6 @@
 			}
 		}
 	});
-
 </script>
 
 <svelte:head>
@@ -108,11 +106,11 @@
 
 <div class="container_singlePage mx-auto m-4 relative sm:w-auto p-10">
 	{#await data}
-	
-	<template>	{#if loadingDataState === true}
-			<Loader />
-		{/if}
-	</template>
+		<template>
+			{#if loadingDataState === true}
+				<Loader />
+			{/if}
+		</template>
 
 		<div style="display:none">{(visible = true)}</div>
 	{:then item}
@@ -142,11 +140,13 @@
 			</div>
 		</div>
 	{:catch error}
-
-
-	{setModal({ open: true, title: 'Wystąpił błąd', message: error, button: 'OK' , action: 'reload'})}
-
-
+		{setModal({
+			open: true,
+			title: 'Wystąpił błąd',
+			message: error,
+			button: 'OK',
+			action: 'reload'
+		})}
 	{/await}
 </div>
 <div id="iFrames" />
@@ -166,9 +166,9 @@
 {/if}
 
 <style lang="scss" global>
-	#markdown_el p img{
+	#markdown_el p img {
 		user-select: none;
-		cursor:pointer;
+		cursor: pointer;
 	}
 
 	.bigImageDiv {
@@ -179,9 +179,9 @@
 		top: 0px;
 		left: 0px;
 
-		.bigImage{
- 			user-select: none;
-			cursor:pointer;
+		.bigImage {
+			user-select: none;
+			cursor: pointer;
 		}
 		.blur {
 			background-color: rgba(255, 255, 255, 0.8);

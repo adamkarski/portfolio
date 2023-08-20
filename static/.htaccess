@@ -8,4 +8,5 @@
   RewriteRule . /index.html [L]
   RewriteRule ^/realizacje\/.+\/(.+)$ /$1 [R=301]
   RedirectMatch 301 ^/realizacje/$ http://zbigniew.adamkarski.art
+
 </IfModule>

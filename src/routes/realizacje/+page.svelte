@@ -7,7 +7,8 @@
 		portfolioCount,
 		strapiPorfolios,
 		portfolios_all,
-		modal
+		modal,
+		three_state, three_page
 	} from '$lib/stores/store.js';
 	// import axios from 'axios';
 	import Box from '$lib/components/realizacjeBox.svelte';
@@ -33,6 +34,8 @@
 
 	onMount(() => {
 		// Get all items of Portfolio
+		$three_state='back';
+		$three_page = 'realizacje';
 
 		async function getPortfolioItems() {
 			let response = await fetch(strapiPorfolios);
@@ -44,6 +47,7 @@
 		}
 		promise = getPortfolioItems();
 	});
+	
 
 	let tagCurrent: string;
 

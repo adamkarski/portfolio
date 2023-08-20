@@ -334,14 +334,14 @@
 		</div>
 		<ul>
 			<li class="menu_centered_mobile">
-				<a
+				<a draggable={false} selectable={false}
 					href="/realizacje"
 					on:click={() => (mobile = !mobile)}
 					class="mobileMenu_a"
 					style=""
 				>
 					{#if browser}
-						<LottiePlayer
+						<LottiePlayer draggable={false} selectable={false}
 							bind:this={animation}
 							src="images/realizacje.json"
 							autoplay={true}
@@ -362,10 +362,10 @@
 				</a>
 			</li>
 			<li class="menu_centered_mobile">
-				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a">
+				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a" draggable={false} selectable={false}>
 				
 					{#if browser}
-						<LottiePlayer
+						<LottiePlayer draggable={false} selectable={false}
 							bind:this={animation}
 							src="images/messageIcon.json"
 							autoplay={true}
@@ -381,7 +381,7 @@
 						/>
 					{/if}
 				
-					<span class="menu_title_mobile" in:fadeSlide={{delay:2700, duration:150}} out:fade>Kontakt</span>
+					<span class="menu_title_mobile" in:fadeSlide={{delay:2700, duration:150}} out:fade draggable={false} selectable={false}>Kontakt</span>
 				</a>
 			</li>
 

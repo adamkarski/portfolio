@@ -7,14 +7,18 @@
 		portfolioCount,
 		strapiPorfolios,
 		portfolios_all,
-		modal
+		modal, three_page, three_state
 	} from '$lib/stores/store.js';
 	import Box from '$lib/components/realizacjeBox.svelte';
 
 	let visible = false;
 	let loadingDataState = true;
 
-	// Get all items of Portfolio
+		// Get all items of Portfolio
+		$three_state='back';
+		$three_page = 'realizacje';
+
+
 	async function getPortfolioItems() {
 		let response = await fetch(strapiPorfolios);
 		let portfolios = await response.json();
