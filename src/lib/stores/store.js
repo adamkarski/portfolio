@@ -8,7 +8,7 @@ export const portfolioCount = writable(1);
 export const portfolios_all = writable({});
 export const three_state       = writable('play');
 export const three_page        = writable('realizacje');
-
+export const img_3d             = writable('');
 
 export const strapiURL          = '//strapi.adamkarski.art/';
 export const strapiTags         = '//strapi.adamkarski.art/tags';

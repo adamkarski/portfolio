@@ -4,7 +4,7 @@
 	import { fade, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import Markdown from 'svelte-exmarkdown';
-	import { strapiURL, modal, three_state, three_page } from '$lib/stores/store.js';
+	import { strapiURL, modal, three_state, three_page, img_3d } from '$lib/stores/store.js';
 
 	import backButton from '$lib/images/backButton.svg';
 	import Loader from '$lib/components/loader.svelte';
@@ -58,7 +58,7 @@
 		title = data.title;
 		desc = data.subtitle;
 
-		md = data.content.replace(/\/uploads/g, strapiURL + '/uploads');
+		md = data.content.replace(/\/uploads/g, strapiURL + 'uploads');
 
 		md = extractIframe(md);
 
@@ -84,13 +84,20 @@
 		// add EventListener form images to open viewer
 		function imgElements() {
 			const elements = document.querySelectorAll('#markdown_el p img');
+			if(elements[0].src){
 
+				console.log(elements[0].src);
+				$img_3d=elements[0].src
+				// $img_3d= 'https://strapi.adamkarski.art/uploads/edytor_ebay_allegro_szablon_it_Empire_54580dd0f8.jpg'
+			}
 			for (var i = 0; i < elements.length; i++) {
+				
 				elements[i].addEventListener(
 					'click',
 					function () {
 						bigImageSrc = this.src;
 						bigImage = true;
+
 					},
 					false
 				);

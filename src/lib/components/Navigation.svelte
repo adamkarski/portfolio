@@ -304,7 +304,7 @@
 						{#if browser}
 							<LottiePlayer
 								bind:this={animation}
-								src="images/messageIcon.json"
+								src="/images/messageIcon.json"
 								autoplay={false}
 								loop={true}
 								controlsLayout={false}
@@ -367,7 +367,7 @@
 					{#if browser}
 						<LottiePlayer draggable={false} selectable={false}
 							bind:this={animation}
-							src="images/messageIcon.json"
+							src="/images/messageIcon.json"
 							autoplay={true}
 							loop={false}
 							controlsLayout={false}

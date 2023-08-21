@@ -1,16 +1,18 @@
 <script>
 	import * as THREE from 'three';
 	import { onMount } from 'svelte';
-	import { three_state, three_page } from '$lib/stores/store.js';
+	import { three_state, three_page, img_3d } from '$lib/stores/store.js';
 	import { browser } from '$app/environment';
 	import { TweenMax } from 'gsap';
 
 	import { onChange, types, val } from '@theatre/core';
-	import { getProject } from '@theatre/core';
 	// import  {extension}  from '@theatre/r3f/dist/extension';
 
-	// import  _getProject  from '@theatre/core';
-	// const { getProject } = _getProject;
+	// import { getProject } from '@theatre/core';
+
+
+	import  _getProject  from '@theatre/core';
+	const { getProject } = _getProject;
 
 	// import studio from '@theatre/studio';
 
@@ -25,74 +27,33 @@
 	// $1.$2$3$4
 	// const project = getProject('THREE');
 	const project = getProject('THREE', { state: projectState });
-	
-	const sheet = project.sheet('Animated scene');
-	let stage = '';
-	let pos;
-	let _three_state;
-	onMount(() => {
-		/**
-		 * Renderer
-		 */
 
+	const sheet = project.sheet('Animated scene');
+
+	let pos;
+
+	onMount(() => {
 		// studio.extend(extension);
 		// studio.initialize();
 		// studio.ui.hide()
+		var manager = new THREE.LoadingManager();
+		const textureLoader = new THREE.TextureLoader(manager);
+		textureLoader.crossOrigin = ''
 		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-
+		THREE.Cache.enabled = true;
 		const loader = new THREE.ObjectLoader();
-		THREE.Cache.enabled = false;
+		loader.crossOrigin = ''
+		THREE.Cache.enabled = true;
 		const scene = new THREE.Scene();
 		if (browser) {
-			const sequenceLength = val(sheet.sequence.pointer.length);
-
 			onChange(sheet.sequence.pointer.position, (_pos) => {
 				pos = _pos;
-					
-				
-				if (_pos.toFixed(1) == 3.5||_pos.toFixed(1) == 3.4) {
+				// console.log(pos.toFixed(1));
+				if (pos.toFixed(1) == 3.5 || pos.toFixed(1) == 3.4) {
 					sheet.sequence.pause();
-				
 				}
 			});
 
-			
-			three_page.subscribe((d) => {
-				console.log(d);
-				if (d == 'realizacje_single') {
-					project.ready
-					.then(() => sheet.sequence.play({rate:  0.09 ,range: [3.55, 9], iterationCount: Infinity, direction: 'alternateReverse' }))
-
-					
-					// .then(() => sheet.sequence.play({ range: [3.5, 9], rate:  0.4 }))
-					// .then(() => sheet.sequence.play({ direction: 'reverse', range: [3.5, 6], rate:  0.4 }))
-					// .then(() => sheet.sequence.play({ rate:  0.4 }));
-				}
-				if (d === 'kontakt' ) {
-					if (pos == 0) {
-						project.ready.then(() => sheet.sequence.play({ range: [0, 1.4], rate: 1 }));
-					} else if (pos == 3.5) {
-						project.ready.then(() => {
-							sheet.sequence.play({ range: [0, 1.4], rate: 1 });
-						});
-					}
-				}
-				if (d === 'realizacje' && $three_state == 'back') {
-					if (pos == 1.4) {
-						project.ready.then(() => sheet.sequence.play({ range: [1.4, 3.5], rate: 2 }));
-					}
-					if(pos >= 3.5 ){
-						console.log('realizacje_ back_ backward')
-						
-						project.ready.then(()=>sheet.sequence.pause()).then(() => sheet.sequence.play({  rate: 1.5, direction: 'reverse'}));
-
-					}
-				}
-				if (d === '') {
-				}
-			});
-
-			let container = document.getElementById('vieport3d');
 			/**
 			 * Scene
 			 */
@@ -111,6 +72,86 @@
 			laptop.rotation.x = 0.3;
 			laptop.rotation.x = -2;
 			scene.add(laptop);
+
+			const pointLight1 = new THREE.PointLight(0x222222, 1, 100);
+			pointLight1.position.set(3.127, 4.56, 1.403);
+			scene.add(pointLight1);
+
+			const pointLight2 = new THREE.PointLight(0x222222, 0.95, 100);
+			pointLight2.position.set(3.356, 1.503, 0.802);
+			scene.add(pointLight2);
+
+			const ambientLight = new THREE.AmbientLight(0x222222, 140);
+			ambientLight.position.set(-10.124, 2.748, 2.613);
+			scene.add(ambientLight);
+
+			let ekranLaptop = laptop.children['0'];
+			let ekranPhone = laptop.children['3'].children['3'];
+			let ekranTablet = laptop.children['4'].children['0'];
+
+
+			img_3d.subscribe((d) => {
+
+				if(d==''){
+					
+				}else{
+					updateTexture(ekranTablet,d,2)
+					updateTexture(ekranPhone,d,3)
+					updateTexture(ekranLaptop,d,1)
+					
+					
+				}
+				
+
+			});
+
+			three_page.subscribe((d) => {
+				if (d == 'realizacje_single') {
+					// fadeObject
+
+					project.ready.then(() =>
+						sheet.sequence.play({
+							rate: 0.09,
+							range: [3.55, 9],
+							iterationCount: Infinity,
+							direction: 'alternateReverse'
+						})
+					);
+				}
+				if (d === 'kontakt') {
+					if (pos == 0) {
+						project.ready.then(() => sheet.sequence.play({ range: [0, 1.4], rate: 1 }));
+					}
+					if (pos >= 3.4 && pos <= 3.6) {
+						project.ready.then(() => {
+							sheet.sequence.play({ range: [0, 1.4], rate: 1 });
+						});
+					}
+					if (pos >= 3.6 && pos <= 9) {
+						project.ready
+							.then(() => sheet.sequence.pause())
+							.then(() => sheet.sequence.play({ rate: 2 }))
+							.then(() => {
+								sheet.sequence.play({ range: [0, 1.4], rate: 1 });
+							});
+					}
+				}
+				if (d === 'realizacje' && $three_state == 'back') {
+					if (pos == 1.4) {
+						project.ready.then(() => sheet.sequence.play({ range: [1.4, 3.5], rate: 2 }));
+					}
+					if (pos >= 3.4 && pos <= 3.6) {
+						project.ready
+							.then(() => sheet.sequence.pause())
+							.then(() => sheet.sequence.play({ rate: 2, direction: 'reverse' }));
+					}
+					if (pos >= 3.6 && pos <= 9) {
+						project.ready
+							.then(() => sheet.sequence.pause())
+							.then(() => sheet.sequence.play({ rate: 2, direction: 'reverse' }));
+					}
+				}
+			});
 
 			const animationOBJ = sheet.object('sad', {
 				rotation: types.compound({
@@ -161,23 +202,7 @@
 				);
 				laptop.rotation.set(x * Math.PI, y * Math.PI, z * Math.PI);
 				laptop.position.set(xx, yy, zz);
-			}); /////
-
-			//   let logo2= laptop.children[5].clone()
-			//   console.log(logo2)
-			//   logo2.position.x = logo2.position.x+3
-
-			const pointLight1 = new THREE.PointLight(0x222222, 1, 100);
-			pointLight1.position.set(3.127, 4.56, 1.403);
-			scene.add(pointLight1);
-
-			const pointLight2 = new THREE.PointLight(0x222222, 0.95, 100);
-			pointLight2.position.set(3.356, 1.503, 0.802);
-			scene.add(pointLight2);
-
-			const ambientLight = new THREE.AmbientLight(0x222222, 140);
-			ambientLight.position.set(-10.124, 2.748, 2.613);
-			scene.add(ambientLight);
+			});
 
 			renderer.shadowMap.enabled = true;
 			renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -186,26 +211,30 @@
 
 			renderer.render(scene, camera);
 
-			function fadeObject(obj, dir, time, delay) {
-				if ((dir = 'in')) {
-					setTimeout(() => {
-						TweenMax.to(obj.material, time, { opacity: 1 });
-					}, delay);
-				} else {
-					setTimeout(() => {
-						TweenMax.to(obj.material, time, { opacity: 0 });
-					}, delay);
-				}
-			}
+			// define objects in scene
 
-			function updateTexture(object, text) {
+			
+
+			//Update Texture
+			function updateTexture(object, text, time) {
+				object.material.transparent = true;
 				new THREE.TextureLoader().load(
 					text,
 					(texture) => {
 						//Update Texture
-						object.material.map = texture;
-						object.material.map.needsUpdate = true;
-						object.material.needsUpdate = true;
+						TweenMax.to(object.material, time, { opacity: 0 })
+							.then(() => {
+								const texture1 = textureLoader.load(srcNew);
+
+								console.log(texture1);
+								object.material.map = texture1;
+								object.material.emissiveMap = texture1;
+								object.material.needsUpdate = true;
+								object.material.transparent = true;
+							})
+							.then(() => {
+								TweenMax.to(object.material, time+1, { opacity: 1 });
+							});
 					},
 					(xhr) => {
 						//Download Progress
@@ -217,13 +246,6 @@
 					}
 				);
 			}
-
-			// 			updateTexture(laptop.children[0], 'https://threejs.org/examples/textures/uv_grid_opengl.jpg');
-
-			// 			const texture =  'https://threejs.org/examples/textures/uv_grid_opengl.jpg'
-			//   //scene.background = texture;
-
-			//   scene.background = blurTexture( texture );
 
 			function blurTexture(texture) {
 				const width = texture.image.width;
@@ -282,6 +304,7 @@
 
 				return renderTargetFinal.texture;
 			}
+			let container = document.getElementById('vieport3d');
 
 			container.appendChild(renderer.domElement);
 
@@ -312,7 +335,8 @@
 </script>
 
 <div id="vieport3d" />
-___________/ {$three_page} / {$three_state}
+
+<!-- ___________/ {$three_page} / {$three_state} -->
 
 <style>
 	:global(#theatrejs-studio-root) {
