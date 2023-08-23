@@ -4,7 +4,7 @@
 	import { fade, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import Markdown from 'svelte-exmarkdown';
-	import { strapiURL, modal, three_state, three_page, img_3d } from '$lib/stores/store.js';
+	import { strapiAPI, strapiURL, modal, three_state, three_page, img_3d } from '$lib/stores/store.js';
 
 	import backButton from '$lib/images/backButton.svg';
 	import Loader from '$lib/components/loader.svelte';
@@ -17,7 +17,7 @@
 	let visible = false;
 
 	// define API URL for single portfoloio item
-	const apiURL = strapiURL + 'portfolios/?slug=' + $page.params.slug;
+	const apiURL = strapiAPI + 'portfolios/' + $page.params.slug+"?populate=*";
 	let data = {};
 	let md = '';
 
@@ -51,15 +51,14 @@
 
 	// get all portfolio items from API and send to extract IFRAME elements
 	async function getPortfolioItems() {
+		console.log(apiURL);
 		let response = await fetch(apiURL);
 		let portfolios = await response.json();
-		data = portfolios[0];
-
+		data = portfolios.data.attributes
 		title = data.title;
 		desc = data.subtitle;
 
-		md = data.content.replace(/\/uploads/g, strapiURL + 'uploads');
-
+		md = data.content.replace(/\/uploads/g, strapiURL + '/uploads');
 		md = extractIframe(md);
 
 		return data;
@@ -131,15 +130,15 @@
 			</ul>
 
 			<ul class="flex">
-				{#each item.tags as tag}
+				<!-- {#each item.tags as tag}
 					<li class="tag_icon">
 						<img
 							alt={tag.tag_name}
-							src="//strapi.adamkarski.art/icons/{tag.tag_name}.svg"
+							src="{strapiAPI}/icons/{tag.tag_name}.svg"
 							class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
 						/>
 					</li>
-				{/each}
+				{/each} -->
 			</ul>
 			<!-- <h2>{item.subtitle}</h2> -->
 			<div class="texts">

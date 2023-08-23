@@ -224,7 +224,7 @@
 						//Update Texture
 						TweenMax.to(object.material, time, { opacity: 0 })
 							.then(() => {
-								const texture1 = textureLoader.load(srcNew);
+								const texture1 = textureLoader.load(text);
 
 								console.log(texture1);
 								object.material.map = texture1;

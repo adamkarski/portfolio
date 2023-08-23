@@ -1,7 +1,7 @@
 <script script="ts">
 	import { fade } from 'svelte/transition';
 
-	import { tag, portfolioCount, strapiURL, strapiTags, modal } from '$lib/stores/store.js';
+	import { tag, portfolioCount, strapiAPI, strapiURL, strapiTags, modal } from '$lib/stores/store.js';
 
 	let tagCurrent;
 	let clicked = true;
@@ -24,23 +24,28 @@
 	let visibles = true;
 
 	function countItems(data) {
-		let itemsS = data.length;
+		// console.log(data)
+		let itemsS = Object.values(data).length;
 		return itemsS;
 	}
 
 	async function getAllTags() {
-		let r = await fetch(strapiTags);
-		let tags = await r.json();
-
-		return tags;
+		let r={}
+		let tags ={}
+		r = await fetch(strapiTags);
+		tags = await r.json();
+		
+		return tags.data;
 	}
 	let data = getAllTags();
 </script>
 
 <div class="container" in:fade out:fade>
+
 	{#await data}
 		<p style="display: none;">{(visibles = true)}</p>
 	{:then item}
+		
 		<ul id="tagsBar" class="list-none tags">
 			<li class={$tag === 'all' ? 'active all' : 'all'} on:click={() => setTag('all')} on:keydown={() => setTag('all')}>
 				<span></span>
@@ -55,21 +60,21 @@
 			</li>
 
 			{#each item as taga}
-				<li class={taga.tag_name === $tag ? 'active' : ''}
+				<li class={taga.attributes.tag_name === $tag ? 'active' : ''}
 					on:click={() => {
-						setTag(taga.tag_name);
+						setTag(taga.attributes.tag_name);
 					}}
 					on:keydown={() => setTag('all')}
 				>	
 				<span></span>
 					<img
-						alt="{taga.tag_name} "
-						src="{strapiURL}icons/{taga.tag_name}.svg"
+						alt="{taga.attributes.tag_name} "
+						src="{strapiURL}/icons/{taga.attributes.tag_name}.svg"
 						class="h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 					/>
 
 					<div class="countItems">
-						{countItems(taga.portfolios)}
+						{countItems(taga)}
 					</div>
 				</li>
 			{/each}
@@ -85,6 +90,8 @@
 
 		<!-- <p style="color: red">{error.message}</p> -->
 	{/await}
+
+	<!-- current tag: {$tag} -->
 </div>
 
 <style lang="scss">

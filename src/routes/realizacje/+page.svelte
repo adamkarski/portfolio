@@ -40,10 +40,13 @@
 		async function getPortfolioItems() {
 			let response = await fetch(strapiPorfolios);
 			let portfolios = await response.json();
-			portfolioCount.set(portfolios.length);
-			portfolios_all.set(portfolios);
 
-			return portfolios;
+			
+
+			portfolioCount.set(portfolios.data.length);
+			portfolios_all.set(portfolios.data);
+	
+			return portfolios.data;
 		}
 		promise = getPortfolioItems();
 	});
@@ -86,13 +89,17 @@
 			{:then item}
 				{#if item}
 					{#each item as item}
+					
 						{#if tagCurrent == 'all'}
 						<Box {item} />
+						
 						{/if}
 
 						{#if tagCurrent !== 'all'}
-							{#each item.tags as ls}
-								{#if ls.tag_name == tagCurrent}
+						
+							{#each item.attributes.tags.data as ls}
+							
+								{#if ls.attributes.tag_name == tagCurrent}
 								<Box {item} />
 								{/if}
 							{/each}
