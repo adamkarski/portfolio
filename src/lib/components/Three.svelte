@@ -8,11 +8,10 @@
 	import { onChange, types, val } from '@theatre/core';
 	// import  {extension}  from '@theatre/r3f/dist/extension';
 
-	// import { getProject } from '@theatre/core';
+	import { getProject } from '@theatre/core';
 
-
-	import  _getProject  from '@theatre/core';
-	const { getProject } = _getProject;
+	// import _getProject from '@theatre/core';
+	// const { getProject } = _getProject;
 
 	// import studio from '@theatre/studio';
 
@@ -22,9 +21,11 @@
 	// SHORTEN 3d coordinates
 
 	// console.log(macbook["geometries"])
-
+	//
 	// (\d\d?)\.(\d)(\d)(\d)(\d)(\d+)
 	// $1.$2$3$4
+
+	// Project without TheatreJS preset
 	// const project = getProject('THREE');
 	const project = getProject('THREE', { state: projectState });
 
@@ -37,13 +38,19 @@
 		// studio.initialize();
 		// studio.ui.hide()
 		var manager = new THREE.LoadingManager();
-		const textureLoader = new THREE.TextureLoader(manager);
-		textureLoader.crossOrigin = ''
+
 		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 		THREE.Cache.enabled = true;
 		const loader = new THREE.ObjectLoader();
-		loader.crossOrigin = ''
-		THREE.Cache.enabled = true;
+		loader.crossOrigin = '';
+		
+
+
+		
+
+const textureLoader = new THREE.TextureLoader(manager)
+
+
 		const scene = new THREE.Scene();
 		if (browser) {
 			onChange(sheet.sequence.pointer.position, (_pos) => {
@@ -89,20 +96,17 @@
 			let ekranPhone = laptop.children['3'].children['3'];
 			let ekranTablet = laptop.children['4'].children['0'];
 
+			img_3d.subscribe((m,a,t) => {
 
-			img_3d.subscribe((d) => {
-
-				if(d==''){
+				
+				if (typeof m[0] !== 'undefined') {
 					
-				}else{
-					updateTexture(ekranTablet,d,2)
-					updateTexture(ekranPhone,d,3)
-					updateTexture(ekranLaptop,d,1)
+					updateTexture(ekranTablet, m[0].m, 2);
+					updateTexture(ekranPhone,  m[0].a, 3);
+					updateTexture(ekranLaptop, m[0].t, 1);
 					
 					
 				}
-				
-
 			});
 
 			three_page.subscribe((d) => {
@@ -213,39 +217,41 @@
 
 			// define objects in scene
 
-			
-
 			//Update Texture
 			function updateTexture(object, text, time) {
-				object.material.transparent = true;
-				new THREE.TextureLoader().load(
-					text,
-					(texture) => {
-						//Update Texture
-						TweenMax.to(object.material, time, { opacity: 0 })
-							.then(() => {
-								const texture1 = textureLoader.load(text);
-
-								console.log(texture1);
-								object.material.map = texture1;
-								object.material.emissiveMap = texture1;
-								object.material.needsUpdate = true;
-								object.material.transparent = true;
-							})
-							.then(() => {
-								TweenMax.to(object.material, time+1, { opacity: 1 });
-							});
-					},
-					(xhr) => {
-						//Download Progress
-						console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-					},
-					(error) => {
-						//Error CallBack
-						console.log('An error happened' + error);
-					}
-				);
+				
+				
+				
+				// loader.setCrossOrigin("use-credentials");
+					manager.crossOrigin = '*';
+					textureLoader.crossOrigin = '*';
+					object.material.transparent = true;
+					TweenMax.to(object.material, time, { opacity: 0 })
+						.then(() => {
+							textureLoader.load(
+								'//proxy.adamkarski.art/'+text,
+								(texture) => {
+									object.material.map = texture;
+									object.material.emissiveMap = texture;
+									object.material.needsUpdate = true;
+									object.material.transparent = true;
+								},
+								null,
+								(err)=>{
+									console.log('failed to load ');
+									// console.log(err);
+								}
+							);
+						})
+						.then(() => {
+							TweenMax.to(object.material, time + 1, { opacity: 1 });
+						});
+				
 			}
+
+
+
+
 
 			function blurTexture(texture) {
 				const width = texture.image.width;

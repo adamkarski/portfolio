@@ -4,7 +4,14 @@
 	import { fade, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import Markdown from 'svelte-exmarkdown';
-	import { strapiAPI, strapiURL, modal, three_state, three_page, img_3d } from '$lib/stores/store.js';
+	import {
+		strapiAPI,
+		strapiURL,
+		modal,
+		three_state,
+		three_page,
+		img_3d
+	} from '$lib/stores/store.js';
 
 	import backButton from '$lib/images/backButton.svg';
 	import Loader from '$lib/components/loader.svelte';
@@ -17,7 +24,7 @@
 	let visible = false;
 
 	// define API URL for single portfoloio item
-	const apiURL = strapiAPI + 'portfolios/' + $page.params.slug+"?populate=*";
+	const apiURL = strapiAPI + 'portfolios/' + $page.params.slug + '?populate=*';
 	let data = {};
 	let md = '';
 
@@ -54,7 +61,7 @@
 		console.log(apiURL);
 		let response = await fetch(apiURL);
 		let portfolios = await response.json();
-		data = portfolios.data.attributes
+		data = portfolios.data.attributes;
 		title = data.title;
 		desc = data.subtitle;
 
@@ -68,14 +75,12 @@
 
 	let bigImage;
 	let bigImageSrc;
-	onDestroy(()=>{
-
-		$three_state = 'back'
-
-	})
+	onDestroy(() => {
+		$three_state = 'back';
+	});
 	onMount(() => {
 		$three_page = 'realizacje_single';
-		$three_state = 'play'
+		$three_state = 'play';
 		setTimeout(imgElements, 3000);
 		if (data.title) title = data.title;
 		if (data.subtitle) desc = data.subtitle;
@@ -83,20 +88,26 @@
 		// add EventListener form images to open viewer
 		function imgElements() {
 			const elements = document.querySelectorAll('#markdown_el p img');
-			if(elements[0].src){
+			if (elements[0].src) {
+				$img_3d = [
+					// ...$img_3d,
+					{
+						m: elements[0].src,
+						a: elements[0].src,
+						t: elements[0].src,
+					}
+				];
 
-				console.log(elements[0].src);
-				$img_3d=elements[0].src
+				console.log($img_3d);
+				// $img_3d.m = elements[0].src;
 				// $img_3d= 'https://strapi.adamkarski.art/uploads/edytor_ebay_allegro_szablon_it_Empire_54580dd0f8.jpg'
 			}
 			for (var i = 0; i < elements.length; i++) {
-				
 				elements[i].addEventListener(
 					'click',
 					function () {
 						bigImageSrc = this.src;
 						bigImage = true;
-
 					},
 					false
 				);
