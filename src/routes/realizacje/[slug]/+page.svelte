@@ -24,7 +24,14 @@
 	let visible = false;
 
 	// define API URL for single portfoloio item
-	const apiURL = strapiAPI + 'portfolios/' + $page.params.slug + '?populate=*';
+
+	///
+	const apiURL =
+		strapiAPI +
+		'portfolios?pagination[withCount]=false&populate=Laptop_Tablet_Mobile&filters[slug]=' +
+		$page.params.slug;
+
+	// const apiURL = strapiAPI + 'portfolios/' + $page.params.slug + '?populate=*';
 	let data = {};
 	let md = '';
 
@@ -56,22 +63,41 @@
 	let title = '';
 	let desc = '';
 
+	function log(x) {
+		console.log(x);
+	}
+
 	// get all portfolio items from API and send to extract IFRAME elements
-	async function getPortfolioItems() {
-		console.log(apiURL);
+	async function getPortfolio() {
 		let response = await fetch(apiURL);
 		let portfolios = await response.json();
-		data = portfolios.data.attributes;
+	
+		data = portfolios.data[0].attributes;
+		
 		title = data.title;
 		desc = data.subtitle;
-
+		// console.log(data)
+	
+	if (data.Laptop_Tablet_Mobile.data !== null) {
+			// UPDATE TEXTURE
+			$img_3d = [
+					{
+						l: data.Laptop_Tablet_Mobile.data[0].attributes.url,
+						t: data.Laptop_Tablet_Mobile.data[2].attributes.url,
+						p: data.Laptop_Tablet_Mobile.data[1].attributes.url,
+					}
+				];
+		}
 		md = data.content.replace(/\/uploads/g, strapiURL + '/uploads');
 		md = extractIframe(md);
+
+	
+		
 
 		return data;
 	}
 
-	data = getPortfolioItems();
+	data = getPortfolio();
 
 	let bigImage;
 	let bigImageSrc;
@@ -85,23 +111,14 @@
 		if (data.title) title = data.title;
 		if (data.subtitle) desc = data.subtitle;
 
+		
+
+		
+
 		// add EventListener form images to open viewer
 		function imgElements() {
 			const elements = document.querySelectorAll('#markdown_el p img');
-			if (elements[0].src) {
-				$img_3d = [
-					// ...$img_3d,
-					{
-						m: elements[0].src,
-						a: elements[0].src,
-						t: elements[0].src,
-					}
-				];
 
-				console.log($img_3d);
-				// $img_3d.m = elements[0].src;
-				// $img_3d= 'https://strapi.adamkarski.art/uploads/edytor_ebay_allegro_szablon_it_Empire_54580dd0f8.jpg'
-			}
 			for (var i = 0; i < elements.length; i++) {
 				elements[i].addEventListener(
 					'click',
@@ -141,15 +158,17 @@
 			</ul>
 
 			<ul class="flex">
-				<!-- {#each item.tags as tag}
-					<li class="tag_icon">
-						<img
-							alt={tag.tag_name}
-							src="{strapiAPI}/icons/{tag.tag_name}.svg"
-							class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
-						/>
-					</li>
-				{/each} -->
+				{#if item.attributes}
+					{#each item.attributes.tags.data as tag}
+						<li class="tag_icon">
+							<img
+								alt={item.attributes.tag_name}
+								src="{strapiURL}/icons/{item.attributes.tag_name}.svg"
+								class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
+							/>
+						</li>
+					{/each}
+				{/if}
 			</ul>
 			<!-- <h2>{item.subtitle}</h2> -->
 			<div class="texts">

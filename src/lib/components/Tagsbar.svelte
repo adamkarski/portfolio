@@ -24,8 +24,7 @@
 	let visibles = true;
 
 	function countItems(data) {
-		// console.log(data)
-		let itemsS = Object.values(data).length;
+		let itemsS = data.attributes.portfolios.data.length;
 		return itemsS;
 	}
 
@@ -120,7 +119,7 @@
 	}
 
 	.countItems {
-		display: none;
+		
 		background-color: rgba(0, 0, 0, 0.35);
 		position: absolute;
 		top: 10px;
