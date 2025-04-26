@@ -1,7 +1,7 @@
 <script script="ts">
 	import { fade } from 'svelte/transition';
 
-	import { tag, portfolioCount, strapiAPI, strapiURL, strapiTags, modal } from '$lib/stores/store.js';
+	import { tag, portfolioCount, strapiAPI, strapiURL, strapiTags, modal, host } from '$lib/stores/store.js';
 
 	let tagCurrent;
 	let clicked = true;
@@ -24,7 +24,8 @@
 	let visibles = true;
 
 	function countItems(data) {
-		let itemsS = data.attributes.portfolios.data.length;
+		console.log(data);	
+		let itemsS = data.portfolios.data.length;
 		return itemsS;
 	}
 
@@ -59,22 +60,22 @@
 			</li>
 
 			{#each item as taga}
-				<li class={taga.attributes.tag_name === $tag ? 'active' : ''}
+				<li class={taga.tag_name === $tag ? 'active' : ''}
 					on:click={() => {
-						setTag(taga.attributes.tag_name);
+						setTag(taga.tag_name);
 					}}
 					on:keydown={() => setTag('all')}
 				>	
 				<span></span>
 					<img
-						alt="{taga.attributes.tag_name} "
-						src="{strapiURL}/icons/{taga.attributes.tag_name}.svg"
+						alt="{taga.tag_name} "
+						src="{host}/icons/{taga.tag_name}.svg"
 						class="h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 					/>
 
-					<div class="countItems">
+					<!-- <div class="countItems">
 						{countItems(taga)}
-					</div>
+					</div> -->
 				</li>
 			{/each}
 		</ul>

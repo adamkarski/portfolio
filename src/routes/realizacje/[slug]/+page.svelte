@@ -5,9 +5,9 @@
 	import { quintOut } from 'svelte/easing';
 	import Markdown from 'svelte-exmarkdown';
 	import {
-		strapiAPI,
 		strapiURL,
 		modal,
+		host,
 		three_state,
 		three_page,
 		img_3d
@@ -27,9 +27,10 @@
 
 	///
 	const apiURL =
-		strapiAPI +
-		'portfolios?pagination[withCount]=false&populate=Laptop_Tablet_Mobile&filters[slug]=' +
+		host +
+		'/api/portfolios?pagination[withCount]=false&populate=Laptop_Tablet_Mobile&filters[slug]=' +
 		$page.params.slug;
+	console.log(apiURL);
 
 	// const apiURL = strapiAPI + 'portfolios/' + $page.params.slug + '?populate=*';
 	let data = {};
@@ -71,28 +72,24 @@
 	async function getPortfolio() {
 		let response = await fetch(apiURL);
 		let portfolios = await response.json();
-	
-		data = portfolios.data[0].attributes;
-		
+
+		data = portfolios.data[0];
+
 		title = data.title;
 		desc = data.subtitle;
-		// console.log(data)
-	
-	if (data.Laptop_Tablet_Mobile.data !== null) {
+		
+		if (data.Laptop_Tablet_Mobile.data !== null) {
 			// UPDATE TEXTURE
 			$img_3d = [
-					{
-						l: data.Laptop_Tablet_Mobile.data[0].attributes.url,
-						t: data.Laptop_Tablet_Mobile.data[2].attributes.url,
-						p: data.Laptop_Tablet_Mobile.data[1].attributes.url,
-					}
-				];
+				{
+					l: data.Laptop_Tablet_Mobile.data[0].attributes.url,
+					t: data.Laptop_Tablet_Mobile.data[2].attributes.url,
+					p: data.Laptop_Tablet_Mobile.data[1].attributes.url
+				}
+			];
 		}
 		md = data.content.replace(/\/uploads/g, strapiURL + '/uploads');
 		md = extractIframe(md);
-
-	
-		
 
 		return data;
 	}
@@ -110,10 +107,6 @@
 		setTimeout(imgElements, 3000);
 		if (data.title) title = data.title;
 		if (data.subtitle) desc = data.subtitle;
-
-		
-
-		
 
 		// add EventListener form images to open viewer
 		function imgElements() {
@@ -158,12 +151,12 @@
 			</ul>
 
 			<ul class="flex">
-				{#if item.attributes}
-					{#each item.attributes.tags.data as tag}
+				{#if item && item.tags && Array.isArray(item.tags)}
+					{#each item.tags as tag}
 						<li class="tag_icon">
 							<img
-								alt={item.attributes.tag_name}
-								src="{strapiURL}/icons/{item.attributes.tag_name}.svg"
+								alt={tag.tag_name}
+								src="{strapiURL}/icons/{tag.tag_name}.svg"
 								class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
 							/>
 						</li>
@@ -172,7 +165,8 @@
 			</ul>
 			<!-- <h2>{item.subtitle}</h2> -->
 			<div class="texts">
-				<Markdown {md} />
+				<!-- 	<Markdown {md} /> -->
+				{item.content}
 			</div>
 		</div>
 	{:catch error}

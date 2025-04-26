@@ -11,7 +11,7 @@
 		three_state, three_page
 	} from '$lib/stores/store.js';
 	// import axios from 'axios';
-	import Box from '$lib/components/realizacjeBox.svelte';
+	import Box from '$lib/components/RealizacjeBox.svelte';
 
 	// Scrollbar
 	// import { crossfade, scale, fly } from 'svelte/transition';
@@ -39,6 +39,8 @@
 
 		async function getPortfolioItems() {
 			let response = await fetch(strapiPorfolios);
+			
+			console.log(response);
 			let portfolios = await response.json();
 
 			
@@ -97,9 +99,9 @@
 
 						{#if tagCurrent !== 'all'}
 						
-							{#each item.attributes.tags.data as ls}
+							{#each item.tags as ls}
 							
-								{#if ls.attributes.tag_name == tagCurrent}
+								{#if ls.tag_name == tagCurrent}
 								<Box {item} />
 								{/if}
 							{/each}

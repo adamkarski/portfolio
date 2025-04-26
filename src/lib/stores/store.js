@@ -10,11 +10,12 @@ export const three_state       = writable('play');
 export const three_page        = writable('realizacje');
 export const img_3d             = writable([]);
 
-// export const strapiURL       = '//localhost:3001'
-export const strapiURL       = '//strapi.adamkarski.art'
-export const strapiAPI          = strapiURL+'/api/';
-export const strapiTags         = strapiURL+'/api/tags?populate=*';
-export const strapiPorfolios    = strapiURL+'/api/portfolios?populate=*';
+
+// export const host = '//localhost:1337';
+export const host            = '//strapi.adamkarski.art';
+export const strapiURL       = host+'/api'
+export const strapiTags         = strapiURL+'/tags?populate=*';
+export const strapiPorfolios    = strapiURL+'/portfolios?populate=*';
 
 
 

@@ -33,6 +33,10 @@
 	let promise: any;
 
 	onMount(() => {
+
+
+		console.log("realizacje / +page.svelte");
+
 		// Get all items of Portfolio
 		$three_state='back';
 		$three_page = 'realizacje';
@@ -46,9 +50,12 @@
 			portfolioCount.set(portfolios.data.length);
 			portfolios_all.set(portfolios.data);
 	
+			console.log("Portfolio data:", portfolios.data);
 			return portfolios.data;
 		}
+
 		promise = getPortfolioItems();
+		
 	});
 	
 
@@ -81,26 +88,23 @@
 > -->
 <section class="section realizacje" transition:fade>
 	<div class="mx-auto m-8 relative sm:w-auto p-20">
+		{tagCurrent}
 		<div class="flex flex-wrap flex-table">
 			{#await promise}
 				{#if loadingDataState}
 					<Loader />
 				{/if}
-			{:then item}
-				{#if item}
-					{#each item as item}
-					
+			{:then items}
+				{#if items && Array.isArray(items)}
+					{#each items as item}
 						{#if tagCurrent == 'all'}
-						<Box {item} />
-						
+							<Box {item} />
 						{/if}
 
-						{#if tagCurrent !== 'all'}
-						
-							{#each item.attributes.tags.data as ls}
-							
-								{#if ls.attributes.tag_name == tagCurrent}
-								<Box {item} />
+						{#if tagCurrent !== 'all' && item.tags && Array.isArray(item.tags.data)}
+							{#each item.tags.data as tag}
+								{#if tag.tag_name == tagCurrent}
+									<Box {item} />
 								{/if}
 							{/each}
 						{/if}
