@@ -1,76 +1,21 @@
 <script lang="ts">
-	import Loader from '$lib/components/loader.svelte';
-	import { fade, scale } from 'svelte/transition';
+	import Tagsbar from '$lib/components/tagsbar.svelte';
+	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import {
-		tag,
-		portfolioCount,
-		strapiPorfolios,
-		portfolios_all,
-		modal,
-		three_state, three_page
+		three_state,
+		three_page
 	} from '$lib/stores/store.js';
-	// import axios from 'axios';
-	import Box from '$lib/components/realizacjeBox.svelte';
-
-	// Scrollbar
-	// import { crossfade, scale, fly } from 'svelte/transition';
-	// import { Svrollbar, Svroller } from 'svrollbar';
-	//
-	// let visiblescroll = true;
-	// const [send, receive] = crossfade({
-	// 	duration: 300,
-	// 	fallback: scale
-	// });
-
-	// const opt = { key: 'fab' };
-
-	// const vThumbIn = (node: HTMLElement) => receive(node, opt);
-	// const vThumbOut = (node: HTMLElement) => send(node, opt);
-
-	let visible = false;
-	let loadingDataState = true;
-	let promise: any;
+	import PortfolioGrid from '$lib/components/PortfolioGrid.svelte';
 
 	onMount(() => {
-
-
-		console.log("realizacje / +page.svelte");
-
-		// Get all items of Portfolio
-		$three_state='back';
+		// Ustawienia dla strony realizacji
+		$three_state = 'back';
 		$three_page = 'realizacje';
-
-		async function getPortfolioItems() {
-			let response = await fetch(strapiPorfolios);
-			let portfolios = await response.json();
-
-			
-
-			portfolioCount.set(portfolios.data.length);
-			portfolios_all.set(portfolios.data);
-	
-			console.log("Portfolio data:", portfolios.data);
-			return portfolios.data;
-		}
-
-		promise = getPortfolioItems();
-		
 	});
-	
 
-	let tagCurrent: string;
 
-	tag.subscribe((d: any) => {
-		tagCurrent = d;
-	});
-	let setModal = (d: any) => {
-		$modal = { ...d };
-	};
 
-	let log = (e: any) => {
-		console.log(e);
-	};
 </script>
 
 <svelte:head>
@@ -78,62 +23,24 @@
 	<meta name="description" content="Portfolio" />
 </svelte:head>
 
-<!-- <Svroller
-	width="100%"
-	height="100em"
-	hideAfter={300}
-	on:show={() => (visible = false)}
-	on:hide={() => (visible = true)}
-	
-> -->
+
+
+
 <section class="section realizacje" transition:fade>
 	<div class="mx-auto m-8 relative sm:w-auto p-20">
-		{tagCurrent}
-		<div class="flex flex-wrap flex-table">
-			{#await promise}
-				{#if loadingDataState}
-					<Loader />
-				{/if}
-			{:then items}
-				{#if items && Array.isArray(items)}
-					{#each items as item}
-						{#if tagCurrent == 'all'}
-							<Box {item} />
-						{/if}
+		<Tagsbar />
+		<PortfolioGrid showTagsBar={false} />
+	
 
-						{#if tagCurrent !== 'all' && item.tags && Array.isArray(item.tags.data)}
-							{#each item.tags.data as tag}
-								{#if tag.tag_name == tagCurrent}
-									<Box {item} />
-								{/if}
-							{/each}
-						{/if}
-					{/each}
-				{/if}
-			{:catch error}
-				{setModal({
-					open: true,
-					title: 'Wystąpił błąd',
-					message: error,
-					button: 'OK',
-					action: 'reload'
-				})}
-			{/await}
-		</div>
+	
+	
+	
 	</div>
 </section>
 
-<!-- </Svroller> -->
-
-<!-- {#if visible}
-	<button class="fab" in:receive={opt} out:send={opt}>+</button>
-{/if} -->
-
 <style>
-	.box{
-
+	.box {
 		float: left;
-
 	}
 	.realizacje {
 		--svrollbar-track-width: 2px;

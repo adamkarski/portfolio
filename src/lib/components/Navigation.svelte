@@ -100,11 +100,11 @@
 		<div class="logo_div">
 			<a href="/realizacje" on:click={() => resetTags()}>
 				{#if !safari}
-					<img src={logotype} alt="Zbigniew Adam Karski" width="400" height="400" />
+					<img src={logotype} alt="Zbigniew Adam Karski" width="400" height="400" class="logo_animated" />
 				{/if}
 
 				{#if safari}
-					<img src={logotype_safari} alt="Zbigniew Adam Karski" width="400" height="400" />
+					<img src={logotype_safari} alt="Zbigniew Adam Karski" width="400" height="400" class="logo_animated" />
 				{/if}
 			</a>
 
@@ -411,6 +411,13 @@
 {/if}
 
 <style>
+
+
+
+
+	
+
+
 	.menu_title_mobile{
 
 		position: relative;

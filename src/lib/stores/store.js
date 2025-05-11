@@ -9,13 +9,15 @@ export const portfolios_all = writable({});
 export const three_state       = writable('play');
 export const three_page        = writable('realizacje');
 export const img_3d             = writable([]);
+export const tagsAll = writable(null); // globalny dostęp
 
 
 // export const host = '//localhost:1337';
-export const host            = '//strapi.adamkarski.art';
-export const strapiURL       = host+'/api'
-export const strapiTags         = strapiURL+'/tags?populate=*';
-export const strapiPorfolios    = strapiURL+'/portfolios?populate=*';
+export const host            = 'xx';
+export const strapiURL       = 'https://railwayapp-strapi-production-fd05.up.railway.app'
+export const strapiTags         = strapiURL+'/api/tags?populate=*';
+export const strapiPorfolios    = strapiURL+'/api/portfolios?populate=*';
+
 
 
 

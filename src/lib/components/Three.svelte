@@ -2,20 +2,21 @@
 	import * as THREE from 'three';
 	import { onMount } from 'svelte';
 	import { three_state, three_page, img_3d, strapiURL } from '$lib/stores/store.js';
-	import { browser } from '$app/environment';
+	import { browser, dev } from '$app/environment';
 	import { TweenMax } from 'gsap';
 
 	import { onChange, types, val } from '@theatre/core';
 	// import  {extension}  from '@theatre/r3f/dist/extension';
 
-	// import { dev } from '$app/environment';
 
-	// import { getProject } from '@theatre/core';
-
+//dev wersion
+		// import { getProject } from '@theatre/core';
+	
+	
 	import _getProject from '@theatre/core';
 	const { getProject } = _getProject;
-
-	// import studio from '@theatre/studio';
+	
+	import studio from '@theatre/studio';
 
 	import projectState from '$lib/theatre/theatre-state.json';
 	// import macbook from '$lib/theatre/model.json';
@@ -38,8 +39,8 @@
 
 	onMount(() => {
 		// studio.extend(extension);
-		// studio.initialize();
-		// studio.ui.hide()
+		studio.initialize();
+		 studio.ui.hide()
 		var manager = new THREE.LoadingManager();
 
 		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -295,7 +296,7 @@
 				TweenMax.to(object.material, time, { opacity: 0 })
 					.then(() => {
 						textureLoader.load(
-							'//proxy.adamkarski.art/https:' + strapiURL + text,
+							strapiURL + text,
 							(texture) => {
 								object.material.map = texture;
 								object.material.emissiveMap = texture;

@@ -2,244 +2,240 @@
 	import { fade } from 'svelte/transition';
 	import { onMount, onDestroy } from 'svelte';
 	import emailjs from '@emailjs/browser';
-	import { visibleMessage } from '$lib/stores/store.js';
 	import { browser } from '$app/environment';
-	import { three_state,three_page } from '$lib/stores/store.js';
+	import { visibleMessage, three_state, three_page } from '$lib/stores/store.js';
+	import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
+
 	let sendemailMessage = '';
+	let isRecording = false;
+	let mediaRecorder;
+	let audioBlob: Blob | null = null;
+	let audioUrl: string | null = null;
 
-	function sendEmail(e) {
-		emailjs.sendForm('service_cqbrb97', 'template_n68bgz9', e, 'DgeB577nZVU1TEiic').then(
-			(result) => {
-				// console.log('SUCCESS!', result.text);
-				sendemailMessage = 'Wysłano pomyślnie';
-			},
-			(error) => {
-				// console.log('FAILED...', error.text);
-				sendemailMessage = 'Wystąpił błąd : <br>skontaktuj się ze mną pod numerem  883 689 132';
-			}
-		);
+	let animation;
+	let lottiePlayerInstance; // Do przechowywania instancji Lottie
+	let handleLottieComplete; // Do przechowywania funkcji obsługi zdarzenia 'complete'
+
+	function mouseLeave() {
+		if (animation && typeof animation.play === 'function') animation.play();
+		if (animation && typeof animation.setLooping === 'function') animation.setLooping(false);
+	}
+	function mouseEnter() {
+		if (animation && typeof animation.play === 'function') animation.play();
+		if (animation && typeof animation.setLooping === 'function') animation.setLooping(true);
 	}
 
-	let errors: { [inputName: string]: any } = {};
-
-	function isFormValid(data: { [inputName: string]: any }): boolean {
-		return !Object.keys(errors).some((inputName) =>
-			Object.keys(errors[inputName]).some((errorName) => errors[inputName][errorName])
-		);
-	}
-
-	function validateForm(data: { [inputName: string]: any }): void {
-		if (!isRequiredFieldValid(data.email)) {
-			errors['email'] = { ...errors['email'], required: true };
+	async function toggleRecording() {
+		if (isRecording) {
+			mediaRecorder.stop();
+			isRecording = false;
 		} else {
-			errors['email'] = { ...errors['email'], required: false };
-		}
+			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+			mediaRecorder = new MediaRecorder(stream);
+			mediaRecorder.start();
+			isRecording = true;
 
-		if (!isRequiredFieldValid(data.Nazwisko)) {
-			errors['Nazwisko'] = { ...errors['Nazwisko'], required: true };
-		} else {
-			errors['Nazwisko'] = { ...errors['Nazwisko'], required: false };
-		}
-
-		if (!isRequiredFieldValid(data.Imie)) {
-			errors['Imie'] = { ...errors['Imie'], required: true };
-		} else {
-			errors['Imie'] = { ...errors['Imie'], required: false };
-		}
-		if (!isRequiredFieldValid(data.message)) {
-			errors['message'] = { ...errors['message'], required: true };
-		} else {
-			errors['message'] = { ...errors['message'], required: false };
-		}
-	}
-
-	function isRequiredFieldValid(value) {
-		return value != null && value !== '';
-	}
-
-	function onSubmit(e) {
-		const formData = new FormData(e.target);
-
-		const data: any = {};
-		for (let field of formData) {
-			const [key, value] = field;
-			data[key] = value;
-		}
-
-		// console.log(data);
-
-		validateForm(data);
-
-		if (isFormValid(data)) {
-			//   console.log(data, "sending valid message");
-			const elem = document.getElementById('emailForm');
-
-			//   console.log(elem);
-			sendEmail('#emailForm');
-		} else {
-			//   console.log('Invalid Form');
+			mediaRecorder.ondataavailable = (e) => {
+				audioBlob = e.data;
+				audioUrl = URL.createObjectURL(audioBlob);
+			};
 		}
 	}
 
 	onMount(() => {
-		
+		// Konfiguracja animacji Lottie
+		if (animation && typeof animation.getLottie === 'function') {
+			lottiePlayerInstance = animation.getLottie();
+			if (lottiePlayerInstance) {
+				handleLottieComplete = () => {
+					if (animation && typeof animation.setLooping === 'function') {
+						animation.setLooping(false);
+					}
+					if (animation && typeof animation.seek === 'function') {
+						animation.seek(195);
+					}
+				};
+				lottiePlayerInstance.addEventListener('complete', handleLottieComplete);
+
+				// Odtwórz animację raz po załadowaniu strony
+				if (animation && typeof animation.setLooping === 'function') animation.setLooping(false);
+				if (animation && typeof animation.play === 'function') animation.play();
+
+			}
+		}
+
+		// Pozostała logika onMount
 		$visibleMessage = 'none';
 		if (browser) {
-			let body = document.querySelector('body');
-			body.classList.add('kontakt');
+			document.body.classList.add('kontakt');
 		}
-		$three_state='play';
+		$three_state = 'play';
 		$three_page = 'kontakt';
 	});
+
 	onDestroy(() => {
+		// Czyszczenie event listenera Lottie
+		if (lottiePlayerInstance && handleLottieComplete) {
+			lottiePlayerInstance.removeEventListener('complete', handleLottieComplete);
+			lottiePlayerInstance = null;
+			handleLottieComplete = null;
+		}
+
+		// Pozostała logika onDestroy
 		$three_state = 'back';
 		$visibleMessage = 'initial';
 		if (browser) {
-			let body = document.querySelector('body');
-			body.classList.remove('kontakt');
+			document.body.classList.remove('kontakt');
 		}
-		$three_state = false;
 	});
+
+	function sendEmail(e) {
+		emailjs.sendForm('service_cqbrb97', 'template_n68bgz9', e.target, 'DgeB577nZVU1TEiic').then(
+			(result) => {
+				sendemailMessage = 'Wysłano pomyślnie. Dzięki za wiadomość!';
+			},
+			(error) => {
+				sendemailMessage = 'Błąd wysyłki. Zadzwoń: 883 689 132';
+			}
+		);
+	}
+
+	// Uwaga: walidacja formularza nie jest tutaj w pełni zaimplementowana do użytku z sendEmail.
+	// Poniższe funkcje validateForm i isFormValid nie są obecnie połączone z logiką wysyłania.
+	// Funkcja onSubmit również nie jest używana w formularzu. Formularz nie ma on:submit={onSubmit}.
+	let errors: { [inputName: string]: any } = {};
+	function validateForm(data: { [inputName: string]: any }) {
+		const requiredFields = ['Imie', 'Nazwisko', 'email', 'message'];
+		for (const field of requiredFields) {
+			errors[field] = { required: !data[field] };
+		}
+	}
+
+	function isFormValid(data) {
+		return !Object.values(errors).some((e) => e.required);
+	}
+
+	function onSubmit(e) {
+		const formData = new FormData(e.target);
+		validateForm(Object.fromEntries(formData));
+
+		if (isFormValid(Object.fromEntries(formData))) {
+			sendEmail(e); // Przekazujemy event, a nie e.target, jeśli sendEmail oczekuje eventu
+		}
+	}
+
+
+  let audioChunks = [];
+
+  async function startRecording() {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+    isRecording = true;
+
+    mediaRecorder.addEventListener('dataavailable', event => {
+      audioChunks.push(event.data);
+    });
+
+    mediaRecorder.addEventListener('stop', () => {
+      const audioBlob = new Blob(audioChunks);
+      audioUrl = URL.createObjectURL(audioBlob);
+      audioChunks = [];
+    });
+  }
+
+  function stopRecording() {
+    mediaRecorder.stop();
+    isRecording = false;
+  }
+
 </script>
 
 <svelte:head>
 	<title>Kontakt - Zbigniew Adam Karski</title>
-	<meta name="description" content="Informacje kontaktowe" />
+	<meta name="description" content="Masz pytanie? Nagraj wiadomość lub napisz do mnie. Bez spiny." />
 </svelte:head>
 
-<section class="section kontakt" transition:fade>
-	<div class="mx-auto m-8 relative sm:w-auto p-10 formContact">
-		<div>
-			<div
-				class="w-full p-8 my-4 md:px-10 lg:w-9/12 lg:pl-20 lg:pr-20 mr-auto rounded-2xl shadow-2xl boxKontakt"
-			>
-				<div class="flex">
-					<h1 class="text-gray-600 text-lg italic">
-						Podoba się?<br /><span class="text-sm">Zostaw wiadomość!</span>
-					</h1>
-				</div>
-
-				<br /><br />
-
-				<form
-					id="emailForm"
-					class="w-full max-w-lg"
-					on:submit|preventDefault={onSubmit}
-					transition:fade
-				>
-					<div class="flex flex-wrap -mx-3 mb-6">
-						<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-							<!-- <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-					  Imię
-					</label> -->
-							<input
-								class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-								type="text"
-								id="Imie"
-								name="Imie"
-								value=""
-								placeholder="Imie"
-							/>
-
-							<p class="text-red-500 text-xs italic" transition:fade>
-								{#if errors.Imie && errors.Imie.required}
-									Imie wymagane
-								{/if}
-							</p>
-						</div>
-						<div class="w-full md:w-1/2 px-3">
-							<input
-								class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-								type="text"
-								id="Nazwisko"
-								name="Nazwisko"
-								value=""
-								placeholder="Nazwisko"
-							/>
-
-							<p class="text-red-500 text-xs italic" transition:fade>
-								{#if errors.Nazwisko && errors.Nazwisko.required}
-									Nazwisko wymagane
-								{/if}
-							</p>
-						</div>
-					</div>
-					<div class="flex flex-wrap -mx-3 mb-6">
-						<div class="w-full px-3">
-							<!-- <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-					  Email
-					</label> -->
-							<input
-								class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-								type="email"
-								id="email"
-								name="email"
-								value=""
-								placeholder="Email"
-							/>
-
-							<p class="text-red-500 text-xs italic" transition:fade>
-								{#if errors.email && errors.email.required}
-									adres email konieczny
-								{/if}
-							</p>
-
-							<p class="text-gray-600 text-xs italic">
-								Podaj proszę adres email. Będzie łatwiej o kontakt
-							</p>
-						</div>
-					</div>
-					<div class="flex flex-wrap -mx-3 mb-6">
-						<div class="w-full px-3">
-							<textarea
-								placeholder="Wiadomość"
-								id="message"
-								name="message"
-								value=""
-								class="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-							/>
-
-							<p class="text-red-500 text-xs italic" transition:fade>
-								{#if errors.message && errors.message.required}
-									Wiadomość jest pusta!
-								{/if}
-							</p>
-
-							<!-- <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque"> -->
-						</div>
-						<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" />
-						<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-							<button
-								type="submit"
-								class="uppercase text-sm font-bold tracking-wide text-gray-100 p-3 rounded-lg w-full
-					  focus:outline-none focus:shadow-outline backgr_primary"
-							>
-								Wyślij
-							</button>
-						</div>
-					</div>
-					<div class="text-gray-600 text-lg italic succesMessage" transition:fade>
-						{sendemailMessage}
-					</div>
-				</form>
-
-				<!-- <div class="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5"> -->
-			</div>
+<br><br><br><br><br><br><br><br>
+<div class="max-w-3xl mx-auto bg-white p-10 rounded-xl shadow-lg">
+	<h1 class="text-3xl font-bold mb-6 flex items-center gap-3">
+		<a
+		on:mouseleave={mouseLeave}
+		on:mouseenter={mouseEnter}
+		class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
+		href="/kontakt"
+	>
+		{#if browser}
+			<LottiePlayer
+				bind:this={animation}
+				src="/images/messageIcon.json"
+				autoplay={false}
+				loop={true}
+				controlsLayout={false}
+				controls={false}
+				defaultFrame={195}
+				hover={true}
+				renderer="svg"
+				background="transparent"
+				height={100}
+				width={100}
+			/>
+		{/if}
+	</a>  <span class="text-sm font-light italic"><!-- (nie musisz pisać jak w CV) --></span>
+	</h1>
+  
+	<form on:submit|preventDefault={onSubmit} class="space-y-6">
+	  <div class="flex gap-4">
+		<div class="w-1/2">
+		  <label class="block text-sm mb-1">Imię</label>
+		  <input name="Imie" placeholder="Twoje imię" class="w-full p-2 rounded bg-gray-800 text-white" />
 		</div>
-	</div>
-</section>
+		<div class="w-1/2">
+		  <label class="block text-sm mb-1">Nazwisko</label>
+		  <input name="Nazwisko" placeholder="Twoje nazwisko" class="w-full p-2 rounded bg-gray-800 text-white" />
+		</div>
+	  </div>
+  
+	  <div>
+		<label class="block text-sm mb-1">Email</label>
+		<input type="email" name="email" placeholder="Twój email" class="w-full p-2 rounded bg-gray-800 text-white" />
+	  </div>
+  
+	  <div>
+		<label class="block text-sm mb-1">Temat</label>
+		<select name="subject" class="w-full p-2 rounded bg-gray-800 text-white">
+		  <option>Współpraca</option>
+		  <option>Zapytanie ofertowe</option>
+		  <option>Inne</option>
+		</select>
+	  </div>
+  
+	  <div>
+		<label class="block text-sm mb-1">Wiadomość</label>
+		<textarea name="message" placeholder="O co chodzi?" rows="4" class="w-full p-2 rounded bg-gray-800 text-white"></textarea>
+	  </div>
+  
+	  <div class="flex justify-between items-center mt-4">
+		<button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded font-semibold transition">
+		  Wyślij
+		</button>
+  
+		<button type="button" on:click={isRecording ? stopRecording : startRecording}
+		  class="bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded transition font-medium text-white">
+		  🎤 {isRecording ? 'Zatrzymaj nagrywanie' : 'Nagraj notatkę głosową'}
+		</button>
+	  </div>
+  
+	  {#if audioUrl}
+		<audio controls src={audioUrl} class="w-full mt-2 rounded" />
+	  {/if}
+	</form>
+  </div>
 
 <style>
-	form > div {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-	}
-
-	:global(.error-message) {
-		color: tomato;
-		flex: 0 0 100%;
-		margin: 0 2px;
-		font-size: 0.8em;
+	audio {
+		background-color: #111827;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
 	}
 </style>

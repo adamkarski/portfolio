@@ -1,11 +1,10 @@
 <script>
+	
 	import { fade, slide } from 'svelte/transition';
-	import { strapiAPI, strapiURL, host } from '$lib/stores/store.js';
+	import { strapiURL, tagsAll, tag } from '$lib/stores/store.js';
 	export let item = {};
 
 	let src = '';
-
-	// export let src = strapiAPI + item.attributes.miniatura.data.attributes.formats.attributes.url;
 
 	import moreinfo from '$lib/images/moreinfo.svg';
 	let visible = false;
@@ -14,48 +13,72 @@
 	function set() {
 		visible = true;
 	}
+	let allTags = $tagsAll;
+	let tagCurrent = $tag;
+	
 	function preload(src) {
 		return new Promise(function (resolve) {
 			let img = new Image();
 			img.onload = resolve;
 			img.src = src;
+		/* 	console.log(src); */
 		});
 	}
 	function log(x) {
 		console.log(x);
 	}
-	function getUrlImage(url) {
-		// console.log(url)
-		let src = '';
-		if (url.url) {
-			src = strapiURL + url.url;
-		} else {
-			src = strapiURL + url.formats.thumbnail.url;
-		}
-		return src;
-	}
+	
+function gettagData(id){
+	
+
+	/* 	console.log(id); */
+
+		// find the object with the matching id
+		const result = allTags.find(obj => obj.id === id);
+		/* console.log(result.icon.url); */
+		return result.icon.url;
+
+	 	/* if(allTags[id]){
+			console.log(allTags[id])
+		} */
+			
+		
+
+				/* let ls = {};
+		for(let i=0; i<allTags.length;i++){
+			if(allTags[i].id==id){
+				ls=allTags[i];
+			}
+		} */
+		
+		// return ls.icon.url; 
+		
+
+}
 
 	visible = true;
-	console.log(item)
+
 </script>
+
+
+
+<!-- <pre>{JSON.stringify(allTags)}</pre> -->
+
+
 
 {#if item.miniatura}
 <div class="w-full p-2 rounded item realizacjeItems">
-	<div
+	<div class="boxoutline"
 		style="transform: translateY(50px) translateZ(0px);"
 		in:fade={{ delay: 450 }}
 		out:fade={{ duration: 150 }}
 	>
 		<div class="coverImage">
-			{#if !item.miniatura[0]}
+		
 			
-			No cover image
-
-			{/if}
+			{#if item.miniatura[0].url}
 			
-			{#if item.miniatura[0]}
-			
-				{#await preload(host + item.miniatura[0].url) then _}
+				{#await preload(strapiURL + item.miniatura[0].url) then _}
 					<a
 						class=""
 						href="/realizacje/{item.slug}"
@@ -63,18 +86,19 @@
 						draggable={false}
 					>
 						<img
-							src={host + item.miniatura[0].url}
+							src={strapiURL + item.miniatura[0].url}
 							alt={item.title}
 							draggable={false}
 						/>
 					</a>
 
-					<template>{set()}</template>
+					<!-- <template>{set()}</template> -->
 				{/await}
+
 			{/if}
 		</div>
 
-		{#if visible == true}
+		{#if allTags && item.tags}
 			<div class=" box_ofer shadow-xl rounded-xl" in:slide={{}}>
 				<div class=" content rounded-xl">
 					<div class=" backgr rounded-md" />
@@ -106,11 +130,13 @@
 											alt={tag.tag_name} 
 											draggable={false} 
 											selectable={false}
-											src="{host}/icons/{tag.tag_name}.svg"
+											src="{strapiURL}{ gettagData(tag.id) }" 
 											class="h-10 w-10 m-0 p-1 hover:bg-gray-100"
 										/>
+										
 									</li>
 								{/each}
+								
 							</ul>
 						{/if}
 					</div>
@@ -121,5 +147,4 @@
 	</div>
 </div>
 {/if}
-<!-- <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-{tagCurrent} / {ls.tag_name} -->
+

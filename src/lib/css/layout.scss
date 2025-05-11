@@ -318,7 +318,11 @@ a:focus {
     // -webkit-mask-image: url(#mask);
     clip-path: "#mask";
 }
-
+img{
+	user-drag: none;
+	-webkit-user-drag: none;
+	-moz-user-select: none;
+}
 .anim-oferta-image {
     margin: 0;
     padding: 0;
@@ -395,17 +399,29 @@ a.navlink.active {
 .logo_div {
 
 
-    transform: scale(0.7);
+    transform: scale(1.7);
     /* margin-left: -200px; */
     transition: all ease 0.5s;
-
+ 
 
 }
+body.kontakt .logo_animated 
+    {
+       transition: all ease 0.5s;
+       filter: invert(100%) sepia(0%) saturate(100%) hue-rotate(190deg) brightness(80%) contrast(142%) !important;
+   }
 
 .item_link {
 
     position: absolute;
 
+
+}
+
+.realizacjeItems .boxoutline{
+
+    border: 2px solid #3333330d;
+    border-radius: 12px;
 
 }
 
@@ -441,7 +457,7 @@ a.navlink.active {
 
 nav .container{
 
-  max-width: 75rem;
+  max-width: 90rem;
 }
 nav .NavMenuIcons{
 
@@ -492,7 +508,8 @@ nav .NavMenuIcons{
     }
     section.realizacje {
 
-        margin-top: 80px;
+        margin-top: 160px;
+        margin-left: -30px;
     }
    
 }
@@ -660,7 +677,11 @@ nav .NavMenuIcons{
 
 }
 #markdown_el {
+    img{
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
 
+    }
     background-color: rgba(255, 255, 255, 0.9);
     padding: 21px;
 

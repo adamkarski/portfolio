@@ -10,8 +10,7 @@
 		modal,
 		three_state, three_page
 	} from '$lib/stores/store.js';
-	// import axios from 'axios';
-	import Box from '$lib/components/RealizacjeBox.svelte';
+	import Box from '$lib/components/realizacjeBox.svelte';
 
 	// Scrollbar
 	// import { crossfade, scale, fly } from 'svelte/transition';
@@ -33,14 +32,16 @@
 	let promise: any;
 
 	onMount(() => {
+
+
+		// console.log("realizacje / +page.svelte");
+
 		// Get all items of Portfolio
 		$three_state='back';
 		$three_page = 'realizacje';
 
 		async function getPortfolioItems() {
 			let response = await fetch(strapiPorfolios);
-			
-			console.log(response);
 			let portfolios = await response.json();
 
 			
@@ -48,9 +49,12 @@
 			portfolioCount.set(portfolios.data.length);
 			portfolios_all.set(portfolios.data);
 	
+			// console.log("Portfolio data:", portfolios.data);
 			return portfolios.data;
 		}
+
 		promise = getPortfolioItems();
+		
 	});
 	
 
@@ -63,9 +67,9 @@
 		$modal = { ...d };
 	};
 
-	let log = (e: any) => {
-		console.log(e);
-	};
+	// let log = (e: any) => {
+	// 	console.log(e);
+	// };
 </script>
 
 <svelte:head>
@@ -83,26 +87,23 @@
 > -->
 <section class="section realizacje" transition:fade>
 	<div class="mx-auto m-8 relative sm:w-auto p-20">
+		
 		<div class="flex flex-wrap flex-table">
 			{#await promise}
 				{#if loadingDataState}
 					<Loader />
 				{/if}
-			{:then item}
-				{#if item}
-					{#each item as item}
-					
+			{:then items}
+				{#if items && Array.isArray(items)}
+					{#each items as item}
 						{#if tagCurrent == 'all'}
-						<Box {item} />
-						
+							<Box {item} />
 						{/if}
 
-						{#if tagCurrent !== 'all'}
-						
-							{#each item.tags as ls}
-							
-								{#if ls.tag_name == tagCurrent}
-								<Box {item} />
+						{#if tagCurrent !== 'all' && item.tags && Array.isArray(item.tags.data)}
+							{#each item.tags.data as tag}
+								{#if tag.tag_name == tagCurrent}
+									<Box {item} />
 								{/if}
 							{/each}
 						{/if}
