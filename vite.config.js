@@ -1,8 +1,11 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+import TurboConsole from "vite-plugin-turbo-console";
+
+
 
 export default defineConfig({
-	plugins: [sveltekit()]
+	plugins: [sveltekit(),TurboConsole()]
 });
 
 

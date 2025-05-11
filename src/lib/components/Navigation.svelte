@@ -5,13 +5,11 @@
 	import logotype_safari from '$lib/images/logotype_safari.svg';
 	import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
 	import { browser } from '$app/environment';
-	import messageIcon from '$lib/images/messageIcon.svg';
-	// import clientsIcon from '$lib/images/clientsIcon.svg';
 	import { scale, fade, slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { tag, visibleMessage } from '$lib/stores/store.js';
 
-
+// import messageIcon from '$lib/images/messageIcon.json'
 	
 	function fadeSlide(node, options) {
 		const slideTrans = slide(node, options)
@@ -45,7 +43,6 @@
 
 	$: hamburger = mobile ? 'close-hamburguer' : '';
 
-	// let _portfolios = {};
 
 	function log(x) {
 		console.log(x);
@@ -103,11 +100,11 @@
 		<div class="logo_div">
 			<a href="/realizacje" on:click={() => resetTags()}>
 				{#if !safari}
-					<img src={logotype} alt="Zbigniew Adam Karski" width="400" height="400" />
+					<img src={logotype} alt="Zbigniew Adam Karski" width="400" height="400" class="logo_animated" />
 				{/if}
 
 				{#if safari}
-					<img src={logotype_safari} alt="Zbigniew Adam Karski" width="400" height="400" />
+					<img src={logotype_safari} alt="Zbigniew Adam Karski" width="400" height="400" class="logo_animated" />
 				{/if}
 			</a>
 
@@ -307,7 +304,7 @@
 						{#if browser}
 							<LottiePlayer
 								bind:this={animation}
-								src="images/messageIcon.json"
+								src="/images/messageIcon.json"
 								autoplay={false}
 								loop={true}
 								controlsLayout={false}
@@ -320,7 +317,6 @@
 								width={100}
 							/>
 						{/if}
-						<!-- <img width="75" height="60" src={messageIcon} alt="wyślij wiadomość!" /> -->
 					</a>
 					<div class="stackInfo">Kontakt</div>
 				</li>
@@ -338,14 +334,14 @@
 		</div>
 		<ul>
 			<li class="menu_centered_mobile">
-				<a
+				<a draggable={false} selectable={false}
 					href="/realizacje"
 					on:click={() => (mobile = !mobile)}
 					class="mobileMenu_a"
 					style=""
 				>
 					{#if browser}
-						<LottiePlayer
+						<LottiePlayer draggable={false} selectable={false}
 							bind:this={animation}
 							src="images/realizacje.json"
 							autoplay={true}
@@ -366,12 +362,12 @@
 				</a>
 			</li>
 			<li class="menu_centered_mobile">
-				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a">
+				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a" draggable={false} selectable={false}>
 				
 					{#if browser}
-						<LottiePlayer
+						<LottiePlayer draggable={false} selectable={false}
 							bind:this={animation}
-							src="images/messageIcon.json"
+							src="/images/messageIcon.json"
 							autoplay={true}
 							loop={false}
 							controlsLayout={false}
@@ -385,7 +381,7 @@
 						/>
 					{/if}
 				
-					<span class="menu_title_mobile" in:fadeSlide={{delay:2700, duration:150}} out:fade>Kontakt</span>
+					<span class="menu_title_mobile" in:fadeSlide={{delay:2700, duration:150}} out:fade draggable={false} selectable={false}>Kontakt</span>
 				</a>
 			</li>
 
@@ -415,6 +411,13 @@
 {/if}
 
 <style>
+
+
+
+
+	
+
+
 	.menu_title_mobile{
 
 		position: relative;
