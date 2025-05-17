@@ -45,10 +45,10 @@
 {/if}
 
 <style lang="scss">
-	@import '../../lib/css/picocss/pico/scss/themes/default';
-	@import '../../lib/css/picocss/pico/scss/content/button';
-	@import '../../lib/css/picocss/pico/scss/components/card';
-	@import '../../lib/css/picocss/pico/scss/components/modal';
+@use '../../lib/css/picocss/pico/scss/themes/_default';
+@use '../../lib/css/picocss/pico/scss/content/_button';
+@use '../../lib/css/picocss/pico/scss/components/_card';
+@use '../../lib/css/picocss/pico/scss/components/_modal';
 
 	dialog {
 		z-index: 900042;

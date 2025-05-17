@@ -133,166 +133,25 @@
 			<ul class="list-reset lg:flex justify-end flex-1 items-center NavMenuIcons">
 				<!-- SEO LINKS FOR SITEMAP  -->
 
-				<ul style="display: none;">
-					<li>
-						<a
-							href="/realizacje/Back2Roots"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Meble i elementy wnętrz na zamówienie">Back2Roots</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Edytor-Wyswig"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Edytor szablonów Ebay / Allegro">Edytor Wyswig</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Pasieka-Leban"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Strona przedsiębiorstwa pasiecznego">Pasieka Leban</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Beskidzka-Izba-Lekarska"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Strona korporacyjna izby lekarskiej. ">Beskidzka Izba Lekarska</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Kameleon"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Strona agencji reklamowej">Kameleon</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Skup-samochodow"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Strona komisu samochodowego">Skup samochodów</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Growbox"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Szablon aukcji Allegro">Growbox</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/ASPrinters-logotyp"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Logotyp branża drukarska">ASPrinters logotyp</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/DirectParts-Logo"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Logotyp branża IT">DirectParts Logo</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Malowanie-Dachow-FJ"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Profesjonalne usługi malowania dachów, metodą natryskową i tradycyjnie. "
-							>Malowanie Dachów FJ
-						</a>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Opusel"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Identyfikacja - Oleje liturgiczne">Opusel</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Simon-Renovierungen"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Logotyp norweskiej firmy budowlanej">Simon Renovierungen</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Seve"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Banery reklamowe - wypożyczalnia sprzętu budowlanego ">Seve</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Projektowanie-i-pielegnacja-ogrodow"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="usługi z zakresu architektury"
-							>Projektowanie i pielęgnacja ogrodów
-						</a>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Elektrolabs"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Usługi - elektryk z uprawnieniami">Elektrolabs</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Branding"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Etykieta soku aroniowego ">Branding</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Moroccan"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Plakat występu zespołu baletu współczesnego Moroccan">Moroccan</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Benica"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Logotyp - naturalne kosmetyki">Benica</a
-						>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a
-							href="/realizacje/Royal-Canin-Segmnet-Day"
-							class="mobileMenu_a s-4-WZKkKksjVk"
-							alt="Plakat spotkań integracyjnych Royal Canin"
-							>Royal Canin - Segmnet Day
-						</a>
-					</li>
-					<li class="s-4-WZKkKksjVk">
-						<a href="/realizacje/Bisico" class="mobileMenu_a s-4-WZKkKksjVk" alt="Katalog produktów"
-							>Bisico</a
-						>
-					</li>
-				</ul>
+			
+				
 
-				<!-- <ul style="display: none;">
-				{#if _portfolios}
-					{#each Object.entries(_portfolios) as elem}
+				<ul style="display: none;">
+				<!-- {#if portfolios_all}
+					{#each Object.entries(portfolios_all) as elem}
 						<li>
 							<a
-								href="realizacje/{elem[1].slug}"
+								href="realizacje/{elem.slug}"
 								target="_self"
 								on:click={() => (mobile = !mobile)}
 								class="mobileMenu_a"
-								alt={elem[1].subtitle}
-								>{elem[1].title}
+								alt={elem.subtitle}
+								>{elem.title}
 							</a>
 						</li>
 					{/each}
-				{/if}
-				</ul> -->
+				{/if} -->
+				</ul>
 
 				<li class="mr-3" style="display:{$visibleMessage}" in:fade out:scale>
 					<a
@@ -385,17 +244,7 @@
 				</a>
 			</li>
 
-			<ul style="display:none">
-				<!-- {#await _portfolios then data}
 			
-			{#each data as elem}
-			<li>
-				<a href="/realizacje/{elem.slug}" on:click={() => (mobile = !mobile)} class="mobileMenu_a" alt={elem.subtitle}>{elem.title} </a>
-			</li>
-				
-			{/each}
-			{/await} -->
-			</ul>
 		</ul>
 
 		<div

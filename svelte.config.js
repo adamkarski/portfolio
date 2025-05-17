@@ -6,12 +6,7 @@ import { vitePreprocess } from '@sveltejs/kit/vite'
 const config = {
   preprocess: preprocess({ }),
   kit: {
-    // vite: {
-    //   optimizeDeps: {
-    //     include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep']
-    //   }
-    //   // plugins: []
-    // },
+    
     adapter: adapter({
       pages: 'build',
       assets: 'build',

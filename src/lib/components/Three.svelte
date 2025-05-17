@@ -8,15 +8,13 @@
 	import { onChange, types, val } from '@theatre/core';
 	// import  {extension}  from '@theatre/r3f/dist/extension';
 
+	//dev version
+	// import { getProject } from '@theatre/core';
 
-//dev wersion
-		// import { getProject } from '@theatre/core';
-	
-	
 	import _getProject from '@theatre/core';
 	const { getProject } = _getProject;
-	
-	import studio from '@theatre/studio';
+
+	// import studio from '@theatre/studio';
 
 	import projectState from '$lib/theatre/theatre-state.json';
 	// import macbook from '$lib/theatre/model.json';
@@ -39,8 +37,8 @@
 
 	onMount(() => {
 		// studio.extend(extension);
-		studio.initialize();
-		 studio.ui.hide()
+		/* studio.initialize(); */
+		// studio.ui.hide();
 		var manager = new THREE.LoadingManager();
 
 		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -95,14 +93,12 @@
 					let bodyPhone = laptop.children['3'].children['0'];
 					let bodyTablet = laptop.children['4'].children['1'];
 
-					
 					bodyPhone.castShadow = true;
 					bodyPhone.receiveShadow = true;
 					bodyLaptop.castShadow = true;
 					bodyLaptop.receiveShadow = true;
 					bodyTablet.castShadow = true;
 					bodyTablet.receiveShadow = true;
-		
 
 					// .castShadow = true;
 
@@ -417,7 +413,6 @@
 
 <div id="vieport3d" />
 
-<!-- ___________/ {$three_page} / {$three_state} -->
 
 <style>
 	:global(#theatrejs-studio-root) {

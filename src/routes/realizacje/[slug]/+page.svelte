@@ -14,91 +14,90 @@
 
 	import Loader from '$lib/components/loader.svelte';
 	import PortfolioGrid from '$lib/components/PortfolioGrid.svelte';
+	import ScrollImage from '$lib/components/scrollImage.svelte';
+
+	// Pobieramy dane z SSR
+	export let data;
+
 
 	let setModal = (d) => {
 		$modal = { ...d };
 	};
 
-	let loadingDataState = true;
-	let visible = false;
-	let currentSlug = '';
-	let data = {};
-	let md = '';
-	let title = '';
-	let desc = '';
+	let loadingDataState = false;
+	let visible = true;
 	let bigImage;
 	let bigImageSrc;
-	let processedContent = '';
+	let container;
 	
-
-	import ScrollImage from '$lib/components/scrollImage.svelte';
-
-
-
-
-
-
-
-
-	// Funkcja do pobierania danych projektu
-	async function getPortfolio(slug) {
-		loadingDataState = true;
-		
-		// Czyścimy div z iFrame'ami przy zmianie projektu
-		const iFramesDiv = document.getElementById('iFrames');
-		if (iFramesDiv) {
-			iFramesDiv.innerHTML = '';
+	// Przetwarzamy dane z SSR
+	$: portfolio = data?.portfolio || {};
+	$: otherProjects = data?.otherProjects || [];
+	$: title = portfolio?.title || '';
+	$: desc = portfolio?.subtitle || '';
+	
+	// Przetwarzamy zawartość projektu
+	$: if (portfolio && portfolio.content) {
+		// Przetwarzamy zawartość, aby wyodrębnić obrazy strony
+		const processed = extractWebpage(portfolio.content);
+		portfolio.content = processed.content;
+		if (processed.webpageURL) {
+			portfolio.webpageURL = processed.webpageURL;
 		}
 		
-		const apiURL = `${strapiURL}/api/portfolios?pagination[withCount]=false&populate=Laptop_Tablet_Mobile&filters[slug]=${slug}`;
-		/* console.log('Fetching data for:', apiURL); */
-		
-		try {
-			let response = await fetch(apiURL);
-			let portfolios = await response.json();
-				
-			if (portfolios.data && portfolios.data.length > 0) {
-				data = portfolios.data[0];
-				
-				title = data.title;
-				desc = data.subtitle;
-				
-				if (data.Laptop_Tablet_Mobile !== null) {
-					console.log("// UPDATE TEXTURE");
-					console.log(data); 
-					$img_3d = [
-						{
-							l: data.Laptop_Tablet_Mobile[0].url,
-							t: data.Laptop_Tablet_Mobile[2].url,
-							p: data.Laptop_Tablet_Mobile[1].url
-						}
-					];
-				}else	{console.log("// NO ADDITIONAL 3D TEXTURE");}
-				
-				// extract from data.content html img class="webpage"
-				let cont =  extractWebpage(data.content);
-				data.content = cont.content
-				if(cont.webpageURL){
-					data.webpageURL = cont.webpageURL;
-				}
-				
-
-				loadingDataState = false;
-				return data;
-			} else {
-				console.error('No data found for slug:', slug);
-				return {};
+		// Przetwarzamy zawartość, aby wyodrębnić iframe'y
+		setTimeout(() => {
+			if (portfolio.content) {
+				extractIframe(portfolio.content);
 			}
-		} catch (error) {
-			console.error('Error fetching portfolio data:', error);
-			loadingDataState = false;
-			return {};
-		}
+		}, 100);
+	}
+	
+	// Ustawiamy tekstury 3D, jeśli są dostępne
+	$: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
+		$img_3d = [{
+			l: portfolio.Laptop_Tablet_Mobile[0].url,
+			t: portfolio.Laptop_Tablet_Mobile[2].url,
+			p: portfolio.Laptop_Tablet_Mobile[1].url
+		}];
 	}
 
+		// extract .webpage from MARKDOWN
+
+		
+	
+	// Przetwarzamy dane z SSR
+
+	
+	// Przetwarzamy zawartość projektu
+	$: if (portfolio && portfolio.content) {
+		// Przetwarzamy zawartość, aby wyodrębnić obrazy strony
+		const processed = extractWebpage(portfolio.content);
+		portfolio.content = processed.content;
+		if (processed.webpageURL) {
+			portfolio.webpageURL = processed.webpageURL;
+		}
+		
+		// Przetwarzamy zawartość, aby wyodrębnić iframe'y
+		setTimeout(() => {
+			if (portfolio.content) {
+				extractIframe(portfolio.content);
+			}
+		}, 100);
+	}
+	
+	// Ustawiamy tekstury 3D, jeśli są dostępne
+	$: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
+		$img_3d = [{
+			l: portfolio.Laptop_Tablet_Mobile[0].url,
+			t: portfolio.Laptop_Tablet_Mobile[2].url,
+			p: portfolio.Laptop_Tablet_Mobile[1].url
+		}];
+	}
 
 	// extract .webpage from MARKDOWN
 	function extractWebpage(inputStr) {
+		if (!inputStr) return { content: '' };
 
 		const webpageRegex = /<img class="webpage".*?>/g;
 		const matches = inputStr.match(webpageRegex);
@@ -106,37 +105,22 @@
 		inputStr = inputStr.replace(webpageRegex, '');
 		let srcMatch;
 		let srcIMG;
-		// extract src of img and delete from inputStr img element
 
 		if (matches) {
 			matches.forEach((match) => {
 				srcMatch = match.match(/src="(.*?)"/);
-				console.log( "SRC MATCH", srcMatch[1] );
 				if (srcMatch && srcMatch[1]) {
 					srcIMG = srcMatch[1]; // Extract the source URL
-					console.log(srcIMG)
-				}	else {
-					console.log("NO SRC FOUND");
 				}
-				
-			}
-		);
+			});
 		}
 
 		// jesli srcIMG jest niepusty to dodaj go do return jako kolejny obiekt
 		if (srcIMG) {
-			return {"content" : inputStr, "webpageURL" : srcIMG };
+			return {"content": inputStr, "webpageURL": srcIMG};
+		} else {
+			return {"content": inputStr};
 		}
-		else {
-			return {"content" : inputStr,};
-		}
-		
-		
-		
-		
-			
-		
-
 	}
 
 	// extract IFRAME items from MARKDOWN
@@ -171,12 +155,6 @@
 		return inputStr;
 	}
 
-	function log(x) {
-		console.log(x);
-	}
-
-
-
 	// Funkcja do dodawania event listenerów do obrazków
 	function setupImageViewers() {
 		setTimeout(() => {
@@ -196,121 +174,97 @@
 		}, 500);
 	}
 	
-	// Reaguj na zmiany w URL
-	$: if ($page.params.slug && $page.params.slug !== currentSlug) {
-		currentSlug = $page.params.slug;
-		console.log('Slug changed to:', currentSlug);
-		data = getPortfolio(currentSlug);
-	}
-	let container;
-	// Inicjalne pobranie danych
 	onMount(() => {
-		currentSlug = $page.params.slug;
-		data = getPortfolio(currentSlug);
-		
 		$three_page = 'realizacje_single';
 		$three_state = 'play';
 		
+		// Czyścimy div z iFrame'ami przy zmianie projektu
+		const iFramesDiv = document.getElementById('iFrames');
+		if (iFramesDiv) {
+			iFramesDiv.innerHTML = '';
+		}
+		
+		// Przetwarzamy iframe'y
+		if (portfolio && portfolio.content) {
+			extractIframe(portfolio.content);
+		}
 	});
 	
 	// Po aktualizacji komponentu
 	afterUpdate(() => {
-		
 		setupImageViewers();
 	});
 	
 	onDestroy(() => {
 		$three_state = 'back';
 	});
-
-
-
-	
-
-
-
-
 </script>
 
 <svelte:head>
 	<title>{title} Portfolio - Zbigniew Adam Karski</title>
 	<meta name="description" content={desc} />
+
+	<!-- Dodatkowe meta tagi dla lepszego SEO -->
+	{#if portfolio}
+		<meta property="og:title" content="{title} - Portfolio Zbigniew Adam Karski" />
+		<meta property="og:description" content={desc} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://zbigniew.adamkarski.art/realizacje/{portfolio.slug}" />
+		{#if portfolio.Laptop_Tablet_Mobile && portfolio.Laptop_Tablet_Mobile.length > 0}
+			<meta property="og:image" content={portfolio.Laptop_Tablet_Mobile[0].url} />
+		{/if}
+	{/if}
 </svelte:head>
 
 <div class="container_singlePage mx-auto m-4 relative sm:w-auto p-10">
-	{#await data}
-		<template>
-			{#if loadingDataState === true}
-				<Loader />
-			{/if}
-		</template>
-
-		<div style="display:none">{(visible = true)}</div>
-	{:then item}
+	
+		<!-- Wyświetlamy loader podczas ładowania danych -->
+	<!-- 	 {#if $three_state == 'play'}
+			<Loader />
+		{/if} -->
+	{#if portfolio}
 		<div id="markdown_el">
-			<ul class=" list-none flex titleBanner">
+			<ul class="list-none flex titleBanner">
 				<a href="/realizacje" class="backButton">
 					<img src="/images/backButton.svg" alt="wstecz" width="25" height="25" />
 				</a>
 
-				<h1>{item.title}</h1>
+				<h1>{portfolio.title}</h1>
 			</ul>
 
 			<ul class="flex">
-				{#if item && item.tags && Array.isArray(item.tags)}
-					{#each item.tags as tag}
+				{#if portfolio && portfolio.tags && Array.isArray(portfolio.tags)}
+					{#each portfolio.tags as tag}
 						<li class="tag_icon">
 							<img
 								alt={tag.tag_name}
 								src="{strapiURL}/icons/{tag.tag_name}.svg"
-								class=" h-10 w-10 m-0 p-1 hover:bg-gray-100"
+								class="h-10 w-10 m-0 p-1 hover:bg-gray-100"
 							/>
 						</li>
 					{/each}
 				{/if}
 			</ul>
-			<!-- <h2>{item.subtitle}</h2> -->
+
 			<div class="texts">
-				<!-- 	<Markdown {md} /> -->
-
 				<div bind:this={container}>
-					{@html item.content}
-				
+					{@html portfolio.content || ''}
 
-					{#if item.webpageURL}
+					{#if portfolio.webpageURL}
 						<ScrollImage
 							height="600px"
 							minSteps={5}
 							maxSteps={10}
 							scrollIntervalMin={5}
 							scrollIntervalMax={10}
-							src="{item.webpageURL}"
+							src={portfolio.webpageURL}
 							restartDelay={7000}
 						/>
 					{/if}
-				<!-- 	<ScrollImage
-					height="600px"
-					minSteps={5} 
-					maxSteps={10} 
-					scrollIntervalMin={5} 
-					scrollIntervalMax={10} 
-					src="https://strapi.adamkarski.art/uploads/Pielegnacja_ogrodow_webpage_f47aaf23e4.jpg"
-					restartDelay={7000} 
-				/> -->
 				</div>
-
-				
 			</div>
 		</div>
-	{:catch error}
-		{setModal({
-			open: true,
-			title: 'Wystąpił błąd',
-			message: error,
-			button: 'OK',
-			action: 'reload'
-		})}
-	{/await}
+	{/if}
 </div>
 <div id="iFrames" />
 
@@ -330,10 +284,9 @@
 
 <!-- Dodajemy sekcję z innymi projektami -->
 <div class="other-projects-section">
-	<PortfolioGrid 
-		title="Zobacz również inne projekty" 
-		excludeCurrentSlug={$page.params.slug} 
-		limit={6} 
+	<PortfolioGrid
+		title="Zobacz również inne projekty"
+		customItems={otherProjects}
 		forceAllTag={true}
 	/>
 </div>
@@ -341,7 +294,7 @@
 <style lang="scss" global>
 	.scroll-image {
 
-		border-radius: 5px !important;
+		
 	}
 	#markdown_el p img {
 		user-select: none;

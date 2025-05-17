@@ -21,7 +21,6 @@
 			let img = new Image();
 			img.onload = resolve;
 			img.src = src;
-		/* 	console.log(src); */
 		});
 	}
 	function log(x) {
@@ -29,34 +28,15 @@
 	}
 	
 function gettagData(id){
-	
-
-	/* 	console.log(id); */
-
-		// find the object with the matching id
-		const result = allTags.find(obj => obj.id === id);
-		/* console.log(result.icon.url); */
+			const result = allTags.find(obj => obj.id === id);
 		return result.icon.url;
-
-	 	/* if(allTags[id]){
-			console.log(allTags[id])
-		} */
-			
-		
-
-				/* let ls = {};
-		for(let i=0; i<allTags.length;i++){
-			if(allTags[i].id==id){
-				ls=allTags[i];
-			}
-		} */
-		
-		// return ls.icon.url; 
-		
-
 }
 
 	visible = true;
+
+function ahref(slug){
+	window.location.href='/realizacje/'+slug;
+}
 
 </script>
 
@@ -99,7 +79,10 @@ function gettagData(id){
 		</div>
 
 		{#if allTags && item.tags}
-			<div class=" box_ofer shadow-xl rounded-xl" in:slide={{}}>
+
+
+	    
+		<div class=" box_ofer shadow-xl rounded-xl" in:slide={{}}  on:click={() => ahref(item.slug)} on:keydown on:keypress on:keyup>
 				<div class=" content rounded-xl">
 					<div class=" backgr rounded-md" />
 					<div class=" texts rounded-md">
@@ -147,4 +130,15 @@ function gettagData(id){
 	</div>
 </div>
 {/if}
+
+<style>
+
+.box_ofer{
+
+	cursor: pointer !important;
+}
+
+</style>
+
+
 
