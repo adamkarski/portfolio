@@ -203,7 +203,7 @@
 					{#if browser}
 						<LottiePlayer draggable={false} selectable={false}
 							bind:this={animation}
-							src="{base}images/realizacje.json"
+							src="images/realizacje.json"
 							autoplay={true}
 							loop={false}
 							controlsLayout={false}
@@ -222,7 +222,7 @@
 				</a>
 			</li>
 			<li class="menu_centered_mobile">
-				<a href="{base}/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a" draggable={false} selectable={false}>
+				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a" draggable={false} selectable={false}>
 				
 					{#if browser}
 						<LottiePlayer draggable={false} selectable={false}
