@@ -71,7 +71,7 @@
 				<span></span>
 					<img
 						alt="{taga.icon.name} {taga.icon.alternativeText} "
-						src="{strapiURL}{taga.icon.url}"
+						src="{taga.icon.url}"
 						class="h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 					/>
 

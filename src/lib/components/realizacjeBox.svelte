@@ -37,7 +37,7 @@ function gettagData(id){
 	visible = true;
 
 function ahref(slug){
-	window.location.href={base}+'/realizacje/'+slug;
+	window.location.href='/realizacje/'+slug;
 }
 
 </script>
@@ -58,9 +58,10 @@ function ahref(slug){
 		<div class="coverImage">
 		
 			
+			
 			{#if item.miniatura[0].url}
 			
-				{#await preload(strapiURL + item.miniatura[0].url) then _}
+				{#await preload(item.miniatura[0].url) then _}
 					<a
 						class=""
 						href="{base}/realizacje/{item.slug}"
@@ -68,7 +69,7 @@ function ahref(slug){
 						draggable={false}
 					>
 						<img
-							src={strapiURL + item.miniatura[0].url}
+							src={item.miniatura[0].url}
 							alt={item.title}
 							draggable={false}
 						/>
@@ -115,7 +116,7 @@ function ahref(slug){
 											alt={tag.tag_name} 
 											draggable={false} 
 											selectable={false}
-											src="{strapiURL}{ gettagData(tag.id) }" 
+											src="{ gettagData(tag.id) }" 
 											class="h-10 w-10 m-0 p-1 hover:bg-gray-100"
 										/>
 										

@@ -18,20 +18,17 @@ export async function load({ fetch }) {
         // console.log(tags)
         return {
             // Dane będą dostępne w komponentach child i w potomnych `load` funkcjach przez `await parent()`
-            data: {
-                satus: 'success',
-                portfolios: portfolios.data || [], // portfolios.data jeśli API tak zwraca
-                tags: tags.data || [] // tags.data jeśli API tak zwraca
-            }
+            status: 'success', // Poprawiona literówka satus -> status
+            portfolios: portfolios.data || [],
+            tags: tags.data || []
         };
     } catch (error) {
         console.error("Błąd podczas ładowania danych layoutu:", error);
         return {
-            data: {
-                error: error,
-                portfolios: [],
-                tags: []
-            },
+            status: 'error',
+            error: error.message, // Przekazujemy komunikat błędu dla lepszego debugowania
+            portfolios: [],
+            tags: [],
             // Możesz też zwrócić status błędu, jeśli chcesz go obsłużyć globalnie
             // error: new Error('Nie udało się załadować danych layoutu'),
             // status: 500
