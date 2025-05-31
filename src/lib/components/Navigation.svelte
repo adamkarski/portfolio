@@ -8,6 +8,7 @@
 	import { scale, fade, slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { tag, visibleMessage } from '$lib/stores/store.js';
+    import { base } from '$app/paths';
 
 // import messageIcon from '$lib/images/messageIcon.json'
 	
@@ -98,7 +99,7 @@
 		class="visible_false w-full max-w-4xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2"
 	>
 		<div class="logo_div">
-			<a href="/realizacje" on:click={() => resetTags()}>
+			<a href="{base}/realizacje" on:click={() => resetTags()}>
 				{#if !safari}
 					<img src={logotype} alt="Zbigniew Adam Karski" width="400" height="400" class="logo_animated" />
 				{/if}
@@ -158,7 +159,7 @@
 						on:mouseleave={mouseLeave}
 						on:mouseenter={mouseEnter}
 						class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
-						href="/kontakt"
+						href="{base}/kontakt"
 					>
 						{#if browser}
 							<LottiePlayer
@@ -194,7 +195,7 @@
 		<ul>
 			<li class="menu_centered_mobile">
 				<a draggable={false} selectable={false}
-					href="/realizacje"
+					href="{base}/realizacje"
 					on:click={() => (mobile = !mobile)}
 					class="mobileMenu_a"
 					style=""

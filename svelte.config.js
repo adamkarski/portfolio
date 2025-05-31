@@ -8,13 +8,14 @@ const config = {
   kit: {
     
     adapter: adapter({
-      pages: 'build',
-      assets: 'build',
+      // pages: 'build',
+      // assets: 'build',
       fallback: 'index.html',
       precompress: false,
       strict: true,
-      outDir: 'build',
+     /*  outDir: 'build', */
       prerender: { enabled: true, handleHttpError: 'ignore'},
+      
 	  ssr: true,
       vite: {
         build: {
@@ -28,6 +29,9 @@ const config = {
         },
       },
     }),
+    paths: {
+      base: process.env.NODE_ENV === 'production' ? '/portfolio' : '',
+  },
   },
   preprocess: vitePreprocess(),
 }

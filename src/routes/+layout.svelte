@@ -13,6 +13,8 @@
 	import { width, mobile } from '$lib/utils/device';
 	export let overrideMobile = true;
 	$mobile = overrideMobile;
+    import { base } from '$app/paths';
+
 
 	// Modal
 	import Modal from '$lib/components/Modal.svelte';
@@ -86,7 +88,7 @@
 
 					
 					
-					<a href="/realizacje/{elem.attributes.slug}" alt={elem.attributes.subtitle || ''}>{elem.attributes.title || 'Untitled'}</a>
+					<a href="{base}/realizacje/{elem.attributes.slug}" alt={elem.attributes.subtitle || ''}>{elem.attributes.title || 'Untitled'}</a>
 				</li>
 			{:else}
 				<!-- Możesz tu dodać logowanie lub obsługę niepoprawnego elementu, jeśli to konieczne -->

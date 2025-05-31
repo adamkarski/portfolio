@@ -6,6 +6,9 @@
 	import { visibleMessage, three_state, three_page } from '$lib/stores/store.js';
 	import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
 
+    import { base } from '$app/paths';
+
+
 	let sendemailMessage = '';
 	let isRecording = false;
 	let mediaRecorder;
@@ -163,7 +166,7 @@
 		on:mouseleave={mouseLeave}
 		on:mouseenter={mouseEnter}
 		class="navlink mx-auto lg:mx-0 text-gray-500 font-bold mt-4 lg:mt-0 py-3 px-5 focus:outline-none"
-		href="/kontakt"
+		href="{base}/kontakt"
 	>
 		{#if browser}
 			<LottiePlayer

@@ -3,6 +3,8 @@
 	import { fade, slide } from 'svelte/transition';
 	import { strapiURL, tagsAll, tag } from '$lib/stores/store.js';
 	export let item = {};
+    import { base } from '$app/paths';
+
 
 	let src = '';
 
@@ -35,7 +37,7 @@ function gettagData(id){
 	visible = true;
 
 function ahref(slug){
-	window.location.href='/realizacje/'+slug;
+	window.location.href={base}+'/realizacje/'+slug;
 }
 
 </script>
@@ -61,7 +63,7 @@ function ahref(slug){
 				{#await preload(strapiURL + item.miniatura[0].url) then _}
 					<a
 						class=""
-						href="/realizacje/{item.slug}"
+						href="{base}/realizacje/{item.slug}"
 						in:fade={{ delay: 400 }}
 						draggable={false}
 					>
@@ -96,7 +98,7 @@ function ahref(slug){
 					<div class=" flex items-center icons">
 						{#if item.tags && Array.isArray(item.tags)}
 							<div class="button_">
-								<a href="/realizacje/{item.slug}" draggable={false} selectable={false}>
+								<a href="{base}/realizacje/{item.slug}" draggable={false} selectable={false}>
 									<button
 										class="bg-white text-black px-1 py-2 m-2 rounded-md pl-3"
 										style="transform: none;"
