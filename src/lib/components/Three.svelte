@@ -9,10 +9,10 @@
 	// import  {extension}  from '@theatre/r3f/dist/extension';
 
 	//dev version
-	// import { getProject } from '@theatre/core';
+	import { getProject } from '@theatre/core';
 
-	import _getProject from '@theatre/core';
-	const { getProject } = _getProject;
+	// import _getProject from '@theatre/core';
+	// const { getProject } = _getProject;
 
 	// import studio from '@theatre/studio';
 

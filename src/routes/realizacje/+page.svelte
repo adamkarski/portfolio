@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Tagsbar from '$lib/components/tagsbar.svelte';
+	import PortfolioGrid from '$lib/components/PortfolioGrid.svelte';
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import {
@@ -7,13 +8,15 @@
 		three_page,
 		portfolios_all
 	} from '$lib/stores/store.js';
-	import PortfolioGrid from '$lib/components/PortfolioGrid.svelte';
+
 	
 	// Pobieramy dane z SSR
 	export let data;
 	
 	// Ustawiamy dane w store, aby były dostępne dla innych komponentów
 	$: if (data && data.portfolios) {
+
+		console.log(data);
 		portfolios_all.set(data.portfolios);
 	}
 

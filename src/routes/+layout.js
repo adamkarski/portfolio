@@ -3,9 +3,9 @@ import { strapiTags, portfolios_all, strapiURL } from '$lib/stores/store.js';
 
 
 /** @type {import('./$types').LayoutLoad} */
-export async function load({ fetch }) {
+// export async function load({ fetch }) {
 
-    try {
+ /*    try {
         const res = await fetch(strapiURL + '/api/tags?populate=*');
         const json = await res.json();
             return {
@@ -38,5 +38,5 @@ export async function load({ fetch }) {
                 portfolios_all: []
             }
         };
-    }
-}
+    } */
+// }

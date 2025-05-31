@@ -16,10 +16,10 @@
 
 	// Modal
 	import Modal from '$lib/components/Modal.svelte';
-	import { modal, three_state, portfolios_all } from '$lib/stores/store.js';
+	import { modal, three_state } from '$lib/stores/store.js';
 
 	// Tree
-	import Three from '$lib/components/Three.svelte';
+	// import Three from '$lib/components/Three.svelte';
 
 	// Page elements
 	import Tagsbar from '$lib/components/Tagsbar.svelte';
@@ -31,31 +31,31 @@
 
 	// App Store
 	import { page } from '$app/stores';
-	import { tagsAll } from '$lib/stores/store.js';
+	import { tagsAll,portfolios_all } from '$lib/stores/store.js';
 
 	export let data; // Odbieramy dane z `load()` w `+layout.js`
-	/* console.log('Data from layout', data); */
-	// Sprawdzamy, czy dane tags są dostępne
-	if (data && data.data && data.data.tags) {
-		tagsAll.set(data.data.tags);
+
+	// Sprawdzamy, czy dane są dostępne i mają oczekiwaną strukturę
+	if (data && data.data) {
+		// console.log('Dane w layout:', data.data); // Możesz odkomentować do debugowania
+		if (data.data.tags) {
+			tagsAll.set(data.data.tags);
+		}
+		// Sprawdzamy, czy portfolios są dostępne przed ich ustawieniem
+		if (data.data.portfolios) {
+			portfolios_all.set(data.data.portfolios);
+		}
 	}
-	//portfolios_all
-	if (data && data.data && data.data.portfolios) {
-		portfolios_all.set(data.data.portfolios);
-	}
-	// log portfolios_all.get()
-	console.log($portfolios_all);
 	
-
-
 	let y;
+
 </script>
 
 <!-- {$modal.open} -->
 <Modal />
 <!-- <Cange> -->
 <div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'} ">
-	<Three />
+	<!-- <Three /> -->
 
 	<Navigation />
 
@@ -78,7 +78,7 @@
 <ul class="menuinvisible">
 	{#if $portfolios_all && Array.isArray($portfolios_all)}
 		{#each $portfolios_all as elem}
-			{#if elem && typeof elem === 'object' && elem.slug}
+			{#if elem && typeof elem === 'object' && elem.attributes && elem.attributes.slug}
 				<li>
 
 					
@@ -86,7 +86,7 @@
 
 					
 					
-					<a href="/realizacje/{elem.slug}" alt={elem.subtitle || ''}>{elem.title || 'Untitled'}</a>
+					<a href="/realizacje/{elem.attributes.slug}" alt={elem.attributes.subtitle || ''}>{elem.attributes.title || 'Untitled'}</a>
 				</li>
 			{:else}
 				<!-- Możesz tu dodać logowanie lub obsługę niepoprawnego elementu, jeśli to konieczne -->

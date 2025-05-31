@@ -20,6 +20,13 @@
 	export let data;
 
 
+// 	$: if (data && data.portfolios) {
+
+// console.log(data);
+// portfolios_all.set(data.portfolios);
+// }
+
+
 	let setModal = (d) => {
 		$modal = { ...d };
 	};
@@ -37,7 +44,7 @@
 	$: desc = portfolio?.subtitle || '';
 	
 	// Przetwarzamy zawartość projektu
-	$: if (portfolio && portfolio.content) {
+	/* $: if (portfolio && portfolio.content) {
 		// Przetwarzamy zawartość, aby wyodrębnić obrazy strony
 		const processed = extractWebpage(portfolio.content);
 		portfolio.content = processed.content;
@@ -51,16 +58,16 @@
 				extractIframe(portfolio.content);
 			}
 		}, 100);
-	}
+	} */
 	
 	// Ustawiamy tekstury 3D, jeśli są dostępne
-	$: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
+	/* $: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
 		$img_3d = [{
 			l: portfolio.Laptop_Tablet_Mobile[0].url,
 			t: portfolio.Laptop_Tablet_Mobile[2].url,
 			p: portfolio.Laptop_Tablet_Mobile[1].url
 		}];
-	}
+	} */
 
 		// extract .webpage from MARKDOWN
 
@@ -70,7 +77,7 @@
 
 	
 	// Przetwarzamy zawartość projektu
-	$: if (portfolio && portfolio.content) {
+	/* $: if (portfolio && portfolio.content) {
 		// Przetwarzamy zawartość, aby wyodrębnić obrazy strony
 		const processed = extractWebpage(portfolio.content);
 		portfolio.content = processed.content;
@@ -84,79 +91,79 @@
 				extractIframe(portfolio.content);
 			}
 		}, 100);
-	}
+	} */
 	
 	// Ustawiamy tekstury 3D, jeśli są dostępne
-	$: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
+	/* $: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
 		$img_3d = [{
 			l: portfolio.Laptop_Tablet_Mobile[0].url,
 			t: portfolio.Laptop_Tablet_Mobile[2].url,
 			p: portfolio.Laptop_Tablet_Mobile[1].url
 		}];
 	}
-
+ */
 	// extract .webpage from MARKDOWN
-	function extractWebpage(inputStr) {
-		if (!inputStr) return { content: '' };
+	// function extractWebpage(inputStr) {
+	// 	if (!inputStr) return { content: '' };
 
-		const webpageRegex = /<img class="webpage".*?>/g;
-		const matches = inputStr.match(webpageRegex);
-		// usun z inputStr wszystkie znalezione img class="webpage"
-		inputStr = inputStr.replace(webpageRegex, '');
-		let srcMatch;
-		let srcIMG;
+	// 	const webpageRegex = /<img class="webpage".*?>/g;
+	// 	const matches = inputStr.match(webpageRegex);
+	// 	// usun z inputStr wszystkie znalezione img class="webpage"
+	// 	inputStr = inputStr.replace(webpageRegex, '');
+	// 	let srcMatch;
+	// 	let srcIMG;
 
-		if (matches) {
-			matches.forEach((match) => {
-				srcMatch = match.match(/src="(.*?)"/);
-				if (srcMatch && srcMatch[1]) {
-					srcIMG = srcMatch[1]; // Extract the source URL
-				}
-			});
-		}
+	// 	if (matches) {
+	// 		matches.forEach((match) => {
+	// 			srcMatch = match.match(/src="(.*?)"/);
+	// 			if (srcMatch && srcMatch[1]) {
+	// 				srcIMG = srcMatch[1]; // Extract the source URL
+	// 			}
+	// 		});
+	// 	}
 
-		// jesli srcIMG jest niepusty to dodaj go do return jako kolejny obiekt
-		if (srcIMG) {
-			return {"content": inputStr, "webpageURL": srcIMG};
-		} else {
-			return {"content": inputStr};
-		}
-	}
+	// 	// jesli srcIMG jest niepusty to dodaj go do return jako kolejny obiekt
+	// 	if (srcIMG) {
+	// 		return {"content": inputStr, "webpageURL": srcIMG};
+	// 	} else {
+	// 		return {"content": inputStr};
+	// 	}
+	// }
 
 	// extract IFRAME items from MARKDOWN
-	function extractIframe(inputStr) {
-		if (!inputStr) return '';
+	// function extractIframe(inputStr) {
+	// 	if (!inputStr) return '';
 		
-		const iFrameMatches = inputStr.match(/(?:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))/g);
-		if (!iFrameMatches) return inputStr;
+	// 	const iFrameMatches = inputStr.match(/(?:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))/g);
+	// 	if (!iFrameMatches) return inputStr;
 		
-		iFrameMatches.forEach((element) => {
-			inputStr = inputStr.replaceAll(element, '');
-			let src_str = element.match(/src\s*=\s*"(.+?)"/g);
-			if (!src_str || src_str.length === 0) return;
+	// 	iFrameMatches.forEach((element) => {
+	// 		inputStr = inputStr.replaceAll(element, '');
+	// 		let src_str = element.match(/src\s*=\s*"(.+?)"/g);
+	// 		if (!src_str || src_str.length === 0) return;
 			
-			src_str = src_str[0].replaceAll('src="https:', '');
-			src_str = src_str.replaceAll('"', '');
+	// 		src_str = src_str[0].replaceAll('src="https:', '');
+	// 		src_str = src_str.replaceAll('"', '');
 
-			var iFrames_div = document.getElementById('iFrames');
-			if (!iFrames_div) return;
+	// 		var iFrames_div = document.getElementById('iFrames');
+	// 		if (!iFrames_div) return;
 
-			var substack = document.createElement('iframe');
-			// set parameters of new object
-			substack.src = src_str;
-			substack.width = '560';
-			substack.height = '315';
-			substack.title = 'video player';
-			substack.allow = 'accelerometer';
-			substack.autoplay;
-			// append the object to the DOM
-			iFrames_div.appendChild(substack);
-		});
-		return inputStr;
-	}
+	// 		var substack = document.createElement('iframe');
+	// 		// set parameters of new object
+	// 		substack.src = src_str;
+	// 		substack.width = '560';
+	// 		substack.height = '315';
+	// 		substack.title = 'video player';
+	// 		substack.allow = 'accelerometer';
+	// 		substack.autoplay;
+	// 		// append the object to the DOM
+	// 		iFrames_div.appendChild(substack);
+	// 	});
+	// 	return inputStr;
+	// }
 
 	// Funkcja do dodawania event listenerów do obrazków
-	function setupImageViewers() {
+	/* function setupImageViewers() {
 		setTimeout(() => {
 			// Dodajemy event listenery do wszystkich obrazków w treści
 			const elements = document.querySelectorAll('#markdown_el img');
@@ -172,48 +179,49 @@
 				);
 			}
 		}, 500);
-	}
+	} */
 	
-	onMount(() => {
+	 onMount(() => {
 		$three_page = 'realizacje_single';
 		$three_state = 'play';
 		
+
+
+console.log("DATA Single Page Realizacje", data);
+
 		// Czyścimy div z iFrame'ami przy zmianie projektu
-		const iFramesDiv = document.getElementById('iFrames');
+	/* 	const iFramesDiv = document.getElementById('iFrames');
 		if (iFramesDiv) {
 			iFramesDiv.innerHTML = '';
-		}
+		} */
 		
 		// Przetwarzamy iframe'y
-		if (portfolio && portfolio.content) {
+		/* if (portfolio && portfolio.content) {
 			extractIframe(portfolio.content);
-		}
-	});
+		} */
+	}); 
 	
 	// Po aktualizacji komponentu
-	afterUpdate(() => {
-		setupImageViewers();
-	});
+	// afterUpdate(() => {
+	// 	setupImageViewers();
+	// });
 	
-	onDestroy(() => {
-		$three_state = 'back';
-	});
+	// onDestroy(() => {
+	// 	$three_state = 'back';
+	// });
 </script>
 
 <svelte:head>
-	<title>{title} Portfolio - Zbigniew Adam Karski</title>
-	<meta name="description" content={desc} />
+	<!-- <title>{title} Portfolio - Zbigniew Adam Karski</title>
+	<meta name="description" content={desc} /> -->
 
 	<!-- Dodatkowe meta tagi dla lepszego SEO -->
-	{#if portfolio}
+	<!-- {#if portfolio}
 		<meta property="og:title" content="{title} - Portfolio Zbigniew Adam Karski" />
 		<meta property="og:description" content={desc} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://zbigniew.adamkarski.art/realizacje/{portfolio.slug}" />
-		{#if portfolio.Laptop_Tablet_Mobile && portfolio.Laptop_Tablet_Mobile.length > 0}
-			<meta property="og:image" content={portfolio.Laptop_Tablet_Mobile[0].url} />
-		{/if}
-	{/if}
+		{/if} -->
 </svelte:head>
 
 <div class="container_singlePage mx-auto m-4 relative sm:w-auto p-10">
@@ -222,7 +230,7 @@
 	<!-- 	 {#if $three_state == 'play'}
 			<Loader />
 		{/if} -->
-	{#if portfolio}
+	<!-- {#if portfolio}
 		<div id="markdown_el">
 			<ul class="list-none flex titleBanner">
 				<a href="/realizacje" class="backButton">
@@ -264,11 +272,11 @@
 				</div>
 			</div>
 		</div>
-	{/if}
+	{/if} -->
 </div>
 <div id="iFrames" />
 
-{#if bigImage}
+<!-- {#if bigImage}
 	<div
 		class="bigImageDiv"
 		on:click={() => (bigImage = !bigImage)}
@@ -280,15 +288,15 @@
 
 		<img src={bigImageSrc} class="bigImage" alt={bigImageSrc} />
 	</div>
-{/if}
+{/if} -->
 
 <!-- Dodajemy sekcję z innymi projektami -->
 <div class="other-projects-section">
-	<PortfolioGrid
+	<!-- <PortfolioGrid
 		title="Zobacz również inne projekty"
 		customItems={otherProjects}
 		forceAllTag={true}
-	/>
+	/> -->
 </div>
 
 <style lang="scss" global>

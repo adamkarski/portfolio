@@ -33,7 +33,7 @@
 	tagsAll.subscribe(value => {
 		allTags = value;
 
-		console.log("data", value);
+		// console.log("data", value);
 	});
 
 

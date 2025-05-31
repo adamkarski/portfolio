@@ -5,7 +5,7 @@
 	import {
 		tag,
 		portfolioCount,
-		strapiPorfolios,
+		strapiPorfolios, // URL do pobierania wszystkich portfolio
 		portfolios_all,
 		modal
 	} from '$lib/stores/store.js';
@@ -19,11 +19,10 @@
 	export let title = ""; // Opcjonalny tytuł sekcji
 	export let forceAllTag = false; // Wymuszenie wyświetlania wszystkich projektów (tag "all")
 
-	let visible = false;
 	let loadingDataState = true;
-	let promise: any;
+	let itemsToRender: any[] = []; // Elementy do wyświetlenia
 	let tagCurrent: string = "all"; // Domyślnie ustawiamy na "all"
-	let previousSlug = null;
+	let previousCustomItems = null; // Do śledzenia zmian w customItems
 
 	// Jeśli nie wymuszamy tagu "all", subskrybujemy zmiany tagu
 	if (!forceAllTag) {
@@ -36,10 +35,13 @@
 		$modal = { ...d };
 	};
 
-	// Funkcja do pobierania danych projektów
+	// Funkcja do pobierania danych projektów, jeśli nie zostały dostarczone
 	async function getPortfolioItems() {
 		loadingDataState = true;
-		
+		// Jeśli customItems są dostępne, nie pobieraj ponownie.
+		// Ta funkcja powinna być wywoływana tylko, gdy customItems nie ma.
+		// Jednak obecna logika w onMount i $: refreshData() może to komplikować.
+		// Najlepiej, aby ta funkcja była wywoływana tylko jako ostateczność.
 		try {
 			let response = await fetch(strapiPorfolios);
 			let portfolios = await response.json();
@@ -55,8 +57,10 @@
 				filteredData = filteredData.slice(0, limit);
 			}
 
+			// Ustawiamy licznik, ale NIE nadpisujemy globalnego $portfolios_all
+			// Globalny $portfolios_all powinien być zarządzany przez +layout.js
 			portfolioCount.set(filteredData.length);
-			portfolios_all.set(filteredData);
+			// portfolios_all.set(filteredData); // USUWAMY - niech layout zarządza globalnym stanem
 			
 			loadingDataState = false;
 			return filteredData;
@@ -67,24 +71,45 @@
 		}
 	}
 
-	// Funkcja do odświeżania danych
-	function refreshData() {
-		if (!customItems) {
-			promise = getPortfolioItems();
+	async function loadDisplayItems() {
+		loadingDataState = true;
+		let sourceItems = [];
+
+		if (customItems && customItems.length > 0) {
+			sourceItems = customItems;
+		} else if ($portfolios_all && $portfolios_all.length > 0 && !customItems) {
+			// Jeśli nie ma customItems, ale są dane w globalnym store, użyj ich
+			sourceItems = $portfolios_all;
 		} else {
-			// Jeśli przekazano własne elementy, użyj ich
-			promise = Promise.resolve(customItems);
+			// Ostateczność: pobierz dane, jeśli nic innego nie jest dostępne
+			// To może się zdarzyć, jeśli PortfolioGrid jest używany na stronie bez layoutu ładującego $portfolios_all
+			sourceItems = await getPortfolioItems();
 		}
+
+		// Filtrowanie i limitowanie na podstawie sourceItems
+		let filteredData = sourceItems;
+		if (excludeCurrentSlug) {
+			filteredData = sourceItems.filter(item => (item.slug || item.attributes?.slug) !== excludeCurrentSlug);
+		}
+
+		if (limit > 0 && filteredData.length > limit) {
+			itemsToRender = filteredData.slice(0, limit);
+		} else {
+			itemsToRender = filteredData;
+		}
+		
+		portfolioCount.set(itemsToRender.length); // Ustawiamy licznik na podstawie faktycznie renderowanych elementów
+		loadingDataState = false;
 	}
 
-	// Reaguj na zmiany w excludeCurrentSlug
-	$: if (excludeCurrentSlug !== previousSlug) {
-		previousSlug = excludeCurrentSlug;
-		refreshData();
-	}
+	// Reaguj na zmiany w `customItems` lub `excludeCurrentSlug` lub `$portfolios_all`
+	$: if (customItems !== previousCustomItems || excludeCurrentSlug || ($portfolios_all && !customItems)) {
+		previousCustomItems = customItems;
+		loadDisplayItems();
+	} 
 
 	onMount(() => {
-		refreshData();
+		loadDisplayItems(); // Załaduj elementy przy pierwszym montowaniu
 	});
 </script>
 
@@ -92,16 +117,16 @@
 	{#if title}
 		<h2 class="portfolio-grid-title">{title}</h2>
 	{/if}
-	
 	<div class="mx-auto relative sm:w-auto p-4">
 		<b class="flex flex-wrap flex-table">
-			{#await promise}
-				{#if loadingDataState}
-					<Loader />
-				{/if}
-			{:then items}
-				{#if items && Array.isArray(items)}
-					{#each items as item}
+			{#if loadingDataState}
+				<Loader />
+			{:else if itemsToRender && Array.isArray(itemsToRender) && itemsToRender.length > 0}
+				{#each itemsToRender as item (item.id || item.slug)} 
+					<!-- Używamy item.id lub item.slug jako klucza -->
+					<!-- Upewnij się, że `item` ma strukturę oczekiwaną przez `Box` -->
+					<!-- Jeśli `item` to { id, attributes: {...} }, to Box musi być dostosowany lub mapuj `item` -->
+					<!-- Zakładając, że `item` ma właściwości na pierwszym poziomie (np. po mapowaniu w +page.js) -->
 						{#if forceAllTag || tagCurrent == 'all'}
 							<Box {item} />
 						{/if}
@@ -113,16 +138,10 @@
 							{/each}
 						{/if}
 					{/each}
-				{/if}
-			{:catch error}
-				{setModal({
-					open: true,
-					title: 'Wystąpił błąd',
-					message: error,
-					button: 'OK',
-					action: 'reload'
-				})}
-			{/await}
+			{:else if !loadingDataState && itemsToRender && itemsToRender.length === 0}
+				<p>Brak projektów do wyświetlenia.</p>
+			{/if}
+			<!-- Można dodać obsługę błędów, jeśli getPortfolioItems() może rzucić błąd -->
 		</b>
 	</div>
 </section>
