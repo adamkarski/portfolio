@@ -30,7 +30,7 @@ const config = {
       },
     }),
     paths: {
-      base: process.env.NODE_ENV === 'production' ? '/portfolio' : '',
+      base: process.env.NODE_ENV === 'production' ? '' : '',
   },
   },
   preprocess: vitePreprocess(),
