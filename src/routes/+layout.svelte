@@ -21,7 +21,7 @@
 	import { modal, three_state } from '$lib/stores/store.js';
 
 	// Tree
-	// import Three from '$lib/components/Three.svelte';
+	import Three from '$lib/components/Three.svelte';
 
 	// Page elements
 	import Tagsbar from '$lib/components/Tagsbar.svelte';
@@ -41,10 +41,12 @@
 	if (data && data.data) {
 		// console.log('Dane w layout:', data.data); // Możesz odkomentować do debugowania
 		if (data.data.tags) {
+			// console.log("tags",data.data.tags);
 			tagsAll.set(data.data.tags);
 		}
 		// Sprawdzamy, czy portfolios są dostępne przed ich ustawieniem
 		if (data.data.portfolios) {
+			// console.log("portfolios",data.data.portfolios);
 			portfolios_all.set(data.data.portfolios);
 		}
 	}
@@ -57,7 +59,7 @@
 <Modal />
 <!-- <Cange> -->
 <div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'} ">
-	<!-- <Three /> -->
+	<Three />
 
 	<Navigation />
 

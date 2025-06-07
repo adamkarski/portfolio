@@ -9,16 +9,15 @@
 	// import  {extension}  from '@theatre/r3f/dist/extension';
 
 	//dev version
-	import { getProject } from '@theatre/core';
+//	import { getProject } from '@theatre/core';
 
-	// import _getProject from '@theatre/core';
-	// const { getProject } = _getProject;
+	 import _getProject from '@theatre/core';
+	 const { getProject } = _getProject;
 
 	// import studio from '@theatre/studio';
 
 	import projectState from '$lib/theatre/theatre-state.json';
-	// import macbook from '$lib/theatre/model.json';
-	// import macbook from 'http://localhost:5173/images/model.json';
+
 
 	// SHORTEN 3d coordinates
 
@@ -34,15 +33,17 @@
 	const sheet = project.sheet('Animated scene');
 
 	let pos;
-
+	//  studio.extend(extension);
+	// 	 studio.initialize();
 	onMount(() => {
-		// studio.extend(extension);
-		/* studio.initialize(); */
+	
 		// studio.ui.hide();
 		var manager = new THREE.LoadingManager();
 
-		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true , useLegacyLights: false});
 		THREE.Cache.enabled = false;
+		// renderer.outputColorSpace = THREE.SRGBColorSpace;
+		
 		const loader = new THREE.ObjectLoader();
 		// loader.crossOrigin = '';
 
@@ -109,21 +110,30 @@
 					// updateTexture(ekranLaptop, '/uploads/laptop_16bb13ba2a.jpg', 0.1);
 
 					textureLoader.crossOrigin = 'Anonymous';
-					const ekranPhoneTexture = textureLoader.load('/uploads/iphone_68c7a03567.jpg');
-					const ekranTabletTexture = textureLoader.load('/uploads/iphone_tablet_d09870d8de.jpg');
-					const ekranLaptopTexture = textureLoader.load('/uploads/laptop_16bb13ba2a.jpg');
+					const ekranPhoneTexture = textureLoader.load('https://res.cloudinary.com/adam-portfolio/image/upload/v1749200608/iphone3d_cce160d8b8.jpg', (texture) => {
+						texture.colorSpace = THREE.SRGBColorSpace;
+					});
+					const ekranTabletTexture = textureLoader.load('https://res.cloudinary.com/adam-portfolio/image/upload/v1749200610/itablet3d_19df957ecc.jpg', (texture) => {
+						texture.colorSpace = THREE.SRGBColorSpace;
+					});
+					const ekranLaptopTexture = textureLoader.load('https://res.cloudinary.com/adam-portfolio/image/upload/v1749200609/laptop3d_063952d263.jpg', (texture) => {
+						texture.colorSpace = THREE.SRGBColorSpace;
+					});
 
-					// ekranLaptop.material.map = ekranLaptopTexture;
-					ekranLaptop.material.emissiveMap = ekranLaptopTexture;
-					ekranLaptop.material.needsUpdate = true;
+					function ustawMaterialEkranu(obiekt, tekstura, intensywnoscEmisji = 4) {
+    obiekt.material.map = tekstura;
+    obiekt.material.emissiveMap = tekstura;
+    obiekt.material.emissive = new THREE.Color(0x787878);
+    obiekt.material.emissiveIntensity = intensywnoscEmisji;
+    obiekt.material.roughness = 1;
+    obiekt.material.metalness = 0.8;
+    obiekt.material.needsUpdate = true;
+}
 
-					// ekranPhone.material.map = ekranPhoneTexture;
-					ekranPhone.material.emissiveMap = ekranPhoneTexture;
-					ekranPhone.material.needsUpdate = true;
-
-					// ekranTablet.material.map = ekranTabletTexture;
-					ekranTablet.material.emissiveMap = ekranTabletTexture;
-					ekranTablet.material.needsUpdate = true;
+// Użycie funkcji
+ustawMaterialEkranu(ekranLaptop, ekranLaptopTexture, 4);
+ustawMaterialEkranu(ekranPhone, ekranPhoneTexture, 4);
+ustawMaterialEkranu(ekranTablet, ekranTabletTexture, 4);
 				},
 				// called when loading is in progresses
 				function (xhr) {
@@ -137,10 +147,10 @@
 
 			img_3d.subscribe((m) => {
 				// SUBSCRIBE MOCKUP IMAGES IN POST
-
+					console.log(m);
 				if (typeof m[0] !== 'undefined') {
-					updateTexture(ekranTablet, m[0].t, 2);
-					updateTexture(ekranPhone, m[0].p, 3);
+					updateTexture(ekranTablet, m[0].t, 3);
+					updateTexture(ekranPhone, m[0].p, 2);
 					updateTexture(ekranLaptop, m[0].l, 1);
 				}
 			});
@@ -292,16 +302,19 @@
 				TweenMax.to(object.material, time, { opacity: 0 })
 					.then(() => {
 						textureLoader.load(
-							strapiURL + text,
+							text,
 							(texture) => {
+								texture.colorSpace = THREE.SRGBColorSpace; // Poprawka przestrzeni kolorów
+
 								object.material.map = texture;
 								object.material.emissiveMap = texture;
+								object.material.emissive = new THREE.Color(0x787878); // Upewnij się, że emisyjność jest biała
 
-								object.material.transparent = true;
+								// object.material.transparent = true; // Już ustawione wyżej
 								// object.material.flipY = true;
 
 								if (object['name'] == 'ekran_tablet') {
-									console.log('ekran tabletu flipped');
+									// console.log('ekran tabletu flipped');
 									// object.material.map.flipY = false;
 									// object.material.emissiveMap.flipY = false;
 

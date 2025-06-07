@@ -4,13 +4,7 @@
 	import { fade, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import Markdown from 'svelte-exmarkdown';
-	import {
-		strapiURL,
-		modal,
-		three_state,
-		three_page,
-		img_3d
-	} from '$lib/stores/store.js';
+	import { strapiURL, modal, three_state, three_page, img_3d } from '$lib/stores/store.js';
 
 	import Loader from '$lib/components/loader.svelte';
 	import PortfolioGrid from '$lib/components/PortfolioGrid.svelte';
@@ -19,12 +13,7 @@
 	// Pobieramy dane z SSR
 	export let data;
 
-
-// 	$: if (data && data.portfolios) {
-
-// console.log(data);
-// portfolios_all.set(data.portfolios);
-// }
+	console.log(data.data)
 
 
 	let setModal = (d) => {
@@ -36,15 +25,27 @@
 	let bigImage;
 	let bigImageSrc;
 	let container;
+
+
+
+	// extract from data.data.portfolios element that contains slug with data.slug 
 	
+	
+
+
 	// Przetwarzamy dane z SSR
-	$: portfolio = data?.portfolio || {};
-	$: otherProjects = data?.otherProjects || [];
+	$: portfolio = data?.data?.portfolios?.find(p => p?.slug === data.slug) || {};
+	$: otherProjects = data?.data?.portfolios || [];
 	$: title = portfolio?.title || '';
 	$: desc = portfolio?.subtitle || '';
-	
+
+
+	//  z tagsAll trzeba wyciagnąc wszystkie tagi które zapisane są pod aresem portfolio.tags
+
+
+
 	// Przetwarzamy zawartość projektu
-	/* $: if (portfolio && portfolio.content) {
+	 $: if (portfolio && portfolio.content) {
 		// Przetwarzamy zawartość, aby wyodrębnić obrazy strony
 		const processed = extractWebpage(portfolio.content);
 		portfolio.content = processed.content;
@@ -58,8 +59,8 @@
 				extractIframe(portfolio.content);
 			}
 		}, 100);
-	} */
-	
+	} 
+
 	// Ustawiamy tekstury 3D, jeśli są dostępne
 	/* $: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
 		$img_3d = [{
@@ -69,13 +70,10 @@
 		}];
 	} */
 
-		// extract .webpage from MARKDOWN
+	// extract .webpage from MARKDOWN
 
-		
-	
 	// Przetwarzamy dane z SSR
 
-	
 	// Przetwarzamy zawartość projektu
 	/* $: if (portfolio && portfolio.content) {
 		// Przetwarzamy zawartość, aby wyodrębnić obrazy strony
@@ -84,7 +82,7 @@
 		if (processed.webpageURL) {
 			portfolio.webpageURL = processed.webpageURL;
 		}
-		
+
 		// Przetwarzamy zawartość, aby wyodrębnić iframe'y
 		setTimeout(() => {
 			if (portfolio.content) {
@@ -92,81 +90,83 @@
 			}
 		}, 100);
 	} */
-	
+
 	// Ustawiamy tekstury 3D, jeśli są dostępne
-	/* $: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
+	$: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
 		$img_3d = [{
 			l: portfolio.Laptop_Tablet_Mobile[0].url,
 			t: portfolio.Laptop_Tablet_Mobile[2].url,
 			p: portfolio.Laptop_Tablet_Mobile[1].url
 		}];
 	}
- */
+ 
 	// extract .webpage from MARKDOWN
-	// function extractWebpage(inputStr) {
-	// 	if (!inputStr) return { content: '' };
+	 function extractWebpage(inputStr) {
+	 	if (!inputStr) return { content: '' };
 
-	// 	const webpageRegex = /<img class="webpage".*?>/g;
-	// 	const matches = inputStr.match(webpageRegex);
-	// 	// usun z inputStr wszystkie znalezione img class="webpage"
-	// 	inputStr = inputStr.replace(webpageRegex, '');
-	// 	let srcMatch;
-	// 	let srcIMG;
+	 	const webpageRegex = /<img class="webpage".*?>/g;
+	 	const matches = inputStr.match(webpageRegex);
+	 	// usun z inputStr wszystkie znalezione img class="webpage"
+	 	inputStr = inputStr.replace(webpageRegex, '');
+	 	let srcMatch;
+	 	let srcIMG;
 
-	// 	if (matches) {
-	// 		matches.forEach((match) => {
-	// 			srcMatch = match.match(/src="(.*?)"/);
-	// 			if (srcMatch && srcMatch[1]) {
-	// 				srcIMG = srcMatch[1]; // Extract the source URL
-	// 			}
-	// 		});
-	// 	}
+	 	if (matches) {
+	 		matches.forEach((match) => {
+	 			srcMatch = match.match(/src="(.*?)"/);
+	 			if (srcMatch && srcMatch[1]) {
+	 				srcIMG = srcMatch[1]; // Extract the source URL
+	 			}
+	 		});
+	 	}
 
-	// 	// jesli srcIMG jest niepusty to dodaj go do return jako kolejny obiekt
-	// 	if (srcIMG) {
-	// 		return {"content": inputStr, "webpageURL": srcIMG};
-	// 	} else {
-	// 		return {"content": inputStr};
-	// 	}
-	// }
+	 	// jesli srcIMG jest niepusty to dodaj go do return jako kolejny obiekt
+	 	if (srcIMG) {
+	 		return {"content": inputStr, "webpageURL": srcIMG};
+	 	} else {
+	 		return {"content": inputStr};
+	 	}
+	 }
 
 	// extract IFRAME items from MARKDOWN
-	// function extractIframe(inputStr) {
-	// 	if (!inputStr) return '';
-		
-	// 	const iFrameMatches = inputStr.match(/(?:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))/g);
-	// 	if (!iFrameMatches) return inputStr;
-		
-	// 	iFrameMatches.forEach((element) => {
-	// 		inputStr = inputStr.replaceAll(element, '');
-	// 		let src_str = element.match(/src\s*=\s*"(.+?)"/g);
-	// 		if (!src_str || src_str.length === 0) return;
-			
-	// 		src_str = src_str[0].replaceAll('src="https:', '');
-	// 		src_str = src_str.replaceAll('"', '');
+	 function extractIframe(inputStr) {
+	 	if (!inputStr) return '';
 
-	// 		var iFrames_div = document.getElementById('iFrames');
-	// 		if (!iFrames_div) return;
+	 	const iFrameMatches = inputStr.match(/(?:<iframe[^>]*)(?:(?:\/>)|(?:>.*?<\/iframe>))/g);
+	 	if (!iFrameMatches) return inputStr;
 
-	// 		var substack = document.createElement('iframe');
-	// 		// set parameters of new object
-	// 		substack.src = src_str;
-	// 		substack.width = '560';
-	// 		substack.height = '315';
-	// 		substack.title = 'video player';
-	// 		substack.allow = 'accelerometer';
-	// 		substack.autoplay;
-	// 		// append the object to the DOM
-	// 		iFrames_div.appendChild(substack);
-	// 	});
-	// 	return inputStr;
-	// }
+	 	iFrameMatches.forEach((element) => {
+	 		inputStr = inputStr.replaceAll(element, '');
+	 		let src_str = element.match(/src\s*=\s*"(.+?)"/g);
+	 		if (!src_str || src_str.length === 0) return;
+
+	 		src_str = src_str[0].replaceAll('src="https:', '');
+	 		src_str = src_str.replaceAll('"', '');
+
+	 		var iFrames_div = document.getElementById('iFrames');
+	 		if (!iFrames_div) return;
+
+	 		var substack = document.createElement('iframe');
+	 		// set parameters of new object
+	 		substack.src = src_str;
+	 		substack.width = '560';
+	 		substack.height = '315';
+	 		substack.title = 'video player';
+	 		substack.allow = 'accelerometer';
+	 		substack.autoplay;
+	 		// append the object to the DOM
+	 		iFrames_div.appendChild(substack);
+	 	});
+	 	return inputStr;
+	 }
 
 	// Funkcja do dodawania event listenerów do obrazków
-	/* function setupImageViewers() {
+	function setupImageViewers() {
 		setTimeout(() => {
-			// Dodajemy event listenery do wszystkich obrazków w treści
-			const elements = document.querySelectorAll('#markdown_el img');
+			// Dodajemy event listenery do wszystkich obrazków w treści ale bez clasy tagg
+
+			// Wybieramy wszystkie obrazki w #markdown_el, które NIE mają klasy 'tagg'
+			const elements = document.querySelectorAll('#markdown_el img:not(.tagg)');
 			
 			for (var i = 0; i < elements.length; i++) {
 				elements[i].addEventListener(
@@ -179,58 +179,60 @@
 				);
 			}
 		}, 500);
-	} */
-	
-	 onMount(() => {
+	} 
+
+	onMount(() => {
 		$three_page = 'realizacje_single';
 		$three_state = 'play';
+		console.log(portfolio.tags)
 		
 
+	/* 	console.log('DATA Single Page Realizacje', data.data.portfolios);
+		portfolio = data.data.portfolios; */
 
-console.log("DATA Single Page Realizacje", data);
-
+		
 		// Czyścimy div z iFrame'ami przy zmianie projektu
-	/* 	const iFramesDiv = document.getElementById('iFrames');
+		/* 	const iFramesDiv = document.getElementById('iFrames');
 		if (iFramesDiv) {
 			iFramesDiv.innerHTML = '';
 		} */
-		
+
 		// Przetwarzamy iframe'y
 		/* if (portfolio && portfolio.content) {
 			extractIframe(portfolio.content);
 		} */
-	}); 
-	
+	});
+
 	// Po aktualizacji komponentu
-	// afterUpdate(() => {
-	// 	setupImageViewers();
-	// });
-	
-	// onDestroy(() => {
-	// 	$three_state = 'back';
-	// });
+	afterUpdate(() => {
+		setupImageViewers();
+	});
+
+	onDestroy(() => {
+		$three_state = 'back';
+	});
 </script>
 
 <svelte:head>
-	<!-- <title>{title} Portfolio - Zbigniew Adam Karski</title>
-	<meta name="description" content={desc} /> -->
+	<title>{title} Portfolio - Zbigniew Adam Karski</title>
+	<meta name="description" content={desc} /> 
 
-	<!-- Dodatkowe meta tagi dla lepszego SEO -->
-	<!-- {#if portfolio}
+	{#if portfolio}
 		<meta property="og:title" content="{title} - Portfolio Zbigniew Adam Karski" />
 		<meta property="og:description" content={desc} />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://zbigniew.adamkarski.art/realizacje/{portfolio.slug}" />
-		{/if} -->
+		<meta property="og:url" content="https://adamkarski.github.io/realizacje/{portfolio.slug}" />
+		{/if}
 </svelte:head>
 
+
 <div class="container_singlePage mx-auto m-4 relative sm:w-auto p-10">
+	<!-- Wyświetlamy loader podczas ładowania danych -->
+	<!-- {#if $three_state == 'play'}
+		<Loader />
+	{/if} -->
 	
-		<!-- Wyświetlamy loader podczas ładowania danych -->
-	<!-- 	 {#if $three_state == 'play'}
-			<Loader />
-		{/if} -->
-	<!-- {#if portfolio}
+	{#if portfolio}
 		<div id="markdown_el">
 			<ul class="list-none flex titleBanner">
 				<a href="/realizacje" class="backButton">
@@ -244,10 +246,12 @@ console.log("DATA Single Page Realizacje", data);
 				{#if portfolio && portfolio.tags && Array.isArray(portfolio.tags)}
 					{#each portfolio.tags as tag}
 						<li class="tag_icon">
-							<img
+							<img 
 								alt={tag.tag_name}
-								src="{strapiURL}/icons/{tag.tag_name}.svg"
-								class="h-10 w-10 m-0 p-1 hover:bg-gray-100"
+
+							
+								src={data?.data?.tags?.find(t => t?.id === tag.id)?.icon.url }
+								class="h-10 w-10 m-0 p-1 hover:bg-gray-100 tagg"
 							/>
 						</li>
 					{/each}
@@ -272,11 +276,11 @@ console.log("DATA Single Page Realizacje", data);
 				</div>
 			</div>
 		</div>
-	{/if} -->
+	{/if} 
 </div>
 <div id="iFrames" />
 
-<!-- {#if bigImage}
+ {#if bigImage}
 	<div
 		class="bigImageDiv"
 		on:click={() => (bigImage = !bigImage)}
@@ -288,21 +292,19 @@ console.log("DATA Single Page Realizacje", data);
 
 		<img src={bigImageSrc} class="bigImage" alt={bigImageSrc} />
 	</div>
-{/if} -->
+{/if} 
 
 <!-- Dodajemy sekcję z innymi projektami -->
 <div class="other-projects-section">
-	<!-- <PortfolioGrid
+	 <PortfolioGrid
 		title="Zobacz również inne projekty"
 		customItems={otherProjects}
 		forceAllTag={true}
-	/> -->
+	/> 
 </div>
 
 <style lang="scss" global>
 	.scroll-image {
-
-		
 	}
 	#markdown_el p img {
 		user-select: none;

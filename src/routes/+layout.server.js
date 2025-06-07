@@ -14,7 +14,6 @@ export async function load({ fetch }) {
         const tags = await tagsResponse.json();
 
         
-        console.log(portfolios)
         // console.log(tags)
         return {
             // Dane będą dostępne w komponentach child i w potomnych `load` funkcjach przez `await parent()`

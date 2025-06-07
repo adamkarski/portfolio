@@ -52,7 +52,7 @@
 				<span></span>
 				<img
 					alt="Wszystkie prace"
-					src= {strapiURL+"/uploads/all_fe3d46a0a5.svg"}
+					src= {"https://res.cloudinary.com/adam-portfolio/image/upload/v1748361190/all_fe3d46a0a5.svg"}
 					class=" h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 				/>
 				<!-- <div class="countItems"> -->
@@ -71,7 +71,7 @@
 				<span></span>
 					<img
 						alt="{taga.icon.name} {taga.icon.alternativeText} "
-						src="{strapiURL}{taga.icon.url}"
+						src="{taga.icon.url}"
 						class="h-10 w-10 m-0 p-1 hover:bg-gray-100 tagsImage"
 					/>
 
