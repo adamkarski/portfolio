@@ -1,18 +1,8 @@
-<script context="module">
-	export async function load({ session }) {
-		return {
-			props: {
-				overrideMobile: session.mobile
-			}
-		};
-	}
-</script>
+
 
 <script>
 	// Device type
 	import { width, mobile } from '$lib/utils/device';
-	export let overrideMobile = true;
-	$mobile = overrideMobile;
     import { base } from '$app/paths';
 
 
@@ -61,7 +51,18 @@
 <div class="layout-wrapper {y < 50 ? 'xvisible' : 'xhidden'} ">
 	<Three />
 
-	<Navigation />
+	<!-- <Navigation /> -->
+
+
+
+	<section class="content pageContent">
+		<div class="container max-w-4xl mx-auto m-8 relative NavWrap">
+			<Navigation />
+		</div>
+	</section>
+
+
+
 
 	<button on:click={() => ($modal.open = true)} />
 

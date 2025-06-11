@@ -1,39 +1,27 @@
-import adapter from '@sveltejs/adapter-static'
+import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 import { vitePreprocess } from '@sveltejs/kit/vite'
 
+const dev = process.argv.includes('dev');
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  preprocess: preprocess({ }),
+  preprocess: [preprocess({}), vitePreprocess()],
   kit: {
-    
     adapter: adapter({
-      // pages: 'build',
-      // assets: 'build',
-      fallback: 'index.html',
+      pages: 'docs',
+      assets: 'docs',
+      fallback: null,
       precompress: false,
-      strict: true,
-     /*  outDir: 'build', */
-      prerender: { enabled: true, handleHttpError: 'ignore'},
-      
-	  ssr: true,
-      vite: {
-        build: {
-          rollupOptions: {
-            output: {
-              manualChunks: undefined,
-              cssCodeSplit: false,
-              outDir: 'build',
-            },
-          },
-        },
-      },
+      strict: true
     }),
     paths: {
-      base: process.env.NODE_ENV === 'production' ? '' : '',
-  },
-  },
-  preprocess: vitePreprocess(),
+      base: dev ? '' : process.env.NODE_ENV === 'production' ? '/portfolio' : '',
+    },
+    prerender: {
+      handleHttpError: 'ignore'
+    }
+  }
 }
 
 export default config

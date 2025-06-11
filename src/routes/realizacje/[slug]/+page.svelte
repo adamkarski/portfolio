@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 	import { onMount, onDestroy, afterUpdate } from 'svelte';
 	import { fade, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
@@ -61,14 +62,7 @@
 		}, 100);
 	} 
 
-	// Ustawiamy tekstury 3D, jeśli są dostępne
-	/* $: if (portfolio && portfolio.Laptop_Tablet_Mobile !== null) {
-		$img_3d = [{
-			l: portfolio.Laptop_Tablet_Mobile[0].url,
-			t: portfolio.Laptop_Tablet_Mobile[2].url,
-			p: portfolio.Laptop_Tablet_Mobile[1].url
-		}];
-	} */
+
 
 	// extract .webpage from MARKDOWN
 
@@ -235,7 +229,7 @@
 	{#if portfolio}
 		<div id="markdown_el">
 			<ul class="list-none flex titleBanner">
-				<a href="/realizacje" class="backButton">
+				<a href="{base}/realizacje" class="backButton">
 					<img src="/images/backButton.svg" alt="wstecz" width="25" height="25" />
 				</a>
 

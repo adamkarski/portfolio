@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsywna strona z przypiętym menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <h1 class="text-2xl font-bold text-gray-900">Portfolio</h1>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-blue-600">
+                            Strona główna
+                        </a>
+                        <a href="#about" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-blue-600">
+                            O mnie
+                        </a>
+                        <a href="#portfolio" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-blue-600">
+                            Realizacje
+                        </a>
+                        <a href="#services" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-blue-600">
+                            Usługi
+                        </a>
+                        <a href="#contact" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-blue-600">
+                            Kontakt
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <span class="sr-only">Otwórz menu</span>
+                        <i data-lucide="menu" class="h-6 w-6" id="menu-icon"></i>
+                        <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
+                <a href="#home" class="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">
+                    Strona główna
+                </a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">
+                    O mnie
+                </a>
+                <a href="#portfolio" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">
+                    Realizacje
+                </a>
+                <a href="#services" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">
+                    Usługi
+                </a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">
+                    Kontakt
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content - Te same marginesy boczne co menu -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section -->
+        <section id="home" class="py-20">
+            <div class="text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                    Tworzę nowoczesne 
+                    <span class="text-blue-600">rozwiązania</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Specjalizuję się w projektowaniu i rozwijaniu aplikacji webowych, które łączą funkcjonalność z pięknym designem.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#portfolio" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
+                        Zobacz moje prace
+                    </a>
+                    <a href="#contact" class="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200">
+                        Skontaktuj się
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 border-t border-gray-200">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">O mnie</h2>
+                    <p class="text-gray-600 mb-4">
+                        Jestem pasjonatem technologii z ponad 5-letnim doświadczeniem w tworzeniu aplikacji webowych. 
+                        Specjalizuję się w nowoczesnych frameworkach i bibliotekach JavaScript.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Moja filozofia to połączenie funkcjonalności z estetyką, tworząc rozwiązania, które nie tylko działają 
+                        perfekcyjnie, ale także wyglądają świetnie.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">React</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Vue.js</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Svelte</span>
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Node.js</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="w-80 h-80 mx-auto bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
+                        <i data-lucide="code" class="h-32 w-32 text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-20 border-t border-gray-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Realizacje</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Oto wybrane projekty, które pokazują moje umiejętności i podejście do rozwiązywania problemów.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <i data-lucide="shopping-cart" class="h-16 w-16 text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">
+                            Kompleksowa platforma sprzedażowa z systemem płatności i zarządzania produktami.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">React</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Node.js</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">MongoDB</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium text-sm">Kod</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                        <i data-lucide="bar-chart-3" class="h-16 w-16 text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Analytics Dashboard</h3>
+                        <p class="text-gray-600 mb-4">
+                            Interaktywny dashboard do wizualizacji danych biznesowych z zaawansowanymi wykresami.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Vue.js</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">D3.js</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Python</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium text-sm">Kod</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center">
+                        <i data-lucide="smartphone" class="h-16 w-16 text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Mobile App</h3>
+                        <p class="text-gray-600 mb-4">
+                            Cross-platform aplikacja mobilna do zarządzania zadaniami z synchronizacją w chmurze.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-cyan-100 text-cyan-800 px-2 py-1 rounded text-xs">React Native</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Firebase</span>
+                            <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs">Redux</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium text-sm">Kod</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+                        <i data-lucide="globe" class="h-16 w-16 text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Corporate Website</h3>
+                        <p class="text-gray-600 mb-4">
+                            Responsywna strona firmowa z systemem CMS i zaawansowanymi animacjami.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Svelte</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">GSAP</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Tailwind</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium text-sm">Kod</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center">
+                        <i data-lucide="server" class="h-16 w-16 text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">REST API</h3>
+                        <p class="text-gray-600 mb-4">
+                            Skalowalne API z autentyfikacją, dokumentacją i systemem cache'owania.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Express.js</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Docker</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Redis</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium text-sm">Kod</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+                        <i data-lucide="database" class="h-16 w-16 text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Data Visualization</h3>
+                        <p class="text-gray-600 mb-4">
+                            Narzędzie do wizualizacji danych z możliwością exportu i integracji z API.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">React</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Chart.js</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">PostgreSQL</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">Demo</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium text-sm">Kod</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 border-t border-gray-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Usługi</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Oferuję kompleksowe usługi w zakresie tworzenia nowoczesnych aplikacji webowych.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="code" class="h-8 w-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Frontend Development</h3>
+                    <p class="text-gray-600">
+                        Tworzę responsywne interfejsy użytkownika z wykorzystaniem najnowszych technologii.
+                    </p>
+                </div>
+
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="server" class="h-8 w-8 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Backend Development</h3>
+                    <p class="text-gray-600">
+                        Rozwijam skalowalne API i systemy backend z bazami danych i mikrousługami.
+                    </p>
+                </div>
+
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="smartphone" class="h-8 w-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Mobile Apps</h3>
+                    <p class="text-gray-600">
+                        Tworzę aplikacje mobilne cross-platform z wykorzystaniem React Native.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 border-t border-gray-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Kontakt</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Masz projekt do realizacji? Skontaktuj się ze mną i omówimy szczegóły.
+                </p>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Imię i nazwisko</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Temat</label>
+                        <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Wiadomość</label>
+                        <textarea id="message" name="message" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
+                            Wyślij wiadomość
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">Portfolio</h3>
+                <p class="text-gray-400 mb-6">Tworzę nowoczesne rozwiązania webowe</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i data-lucide="github" class="h-6 w-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i data-lucide="linkedin" class="h-6 w-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i data-lucide="mail" class="h-6 w-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i data-lucide="twitter" class="h-6 w-6"></i>
+                    </a>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-800">
+                    <p class="text-gray-400">&copy; 2025 Portfolio. Wszystkie prawa zastrzeżone.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 64; // Height of sticky header
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlight
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+        function highlightActiveSection() {
+            const scrollPosition = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    // Remove active class from all links
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-blue-600', 'border-blue-600');
+                        link.classList.add('text-gray-700', 'border-transparent');
+                    });
+
+                    // Add active class to current section link
+                    const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.remove('text-gray-700', 'border-transparent');
+                        activeLink.classList.add('text-blue-600', 'border-blue-600');
+                    }
+                }
+            });
+        }
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', highlightActiveSection);
+        
+        // Highlight active section on page load
+        highlightActiveSection();
+
+        // Form submission
+        const contactForm = document.querySelector('form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Formularz został wysłany! (To tylko demo)');
+        });
+    </script>
+</body>
+</html>
