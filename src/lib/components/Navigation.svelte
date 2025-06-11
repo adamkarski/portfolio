@@ -142,7 +142,7 @@
 					{#each Object.entries(portfolios_all) as elem}
 						<li>
 							<a
-								href="realizacje/{elem.slug}"
+								href="{base}/realizacje/{elem.slug}"
 								target="_self"
 								on:click={() => (mobile = !mobile)}
 								class="mobileMenu_a"
@@ -222,7 +222,7 @@
 				</a>
 			</li>
 			<li class="menu_centered_mobile">
-				<a href="/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a" draggable={false} selectable={false}>
+				<a href="{base}/kontakt" on:click={() => (mobile = !mobile)} class="mobileMenu_a" draggable={false} selectable={false}>
 				
 					{#if browser}
 						<LottiePlayer draggable={false} selectable={false}

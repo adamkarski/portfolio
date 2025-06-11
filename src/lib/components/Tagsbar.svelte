@@ -104,7 +104,13 @@ img{
 	-webkit-user-drag: none;
 	-moz-user-select: none;
 }
+@media screen and (min-width: 1280px) {
 
+#tagsBar {
+    margin-left: -146px !important;
+
+}
+}
 	#tagsBar {
 	/* background-color: rgba(0, 0, 0, 0.04); */
     /* position: fixed; */
@@ -118,7 +124,7 @@ img{
     border-radius: 0px 8px 8px 0px;
     /* height: auto; */
     display: flex;
-	margin-left: -146px;
+	margin-left: 0px;
 
 
 		li.active span{
